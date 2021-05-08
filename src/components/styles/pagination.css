@@ -1,0 +1,85 @@
+.pagination{
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.paginationDoc{
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.page{
+    text-decoration: none;
+    color:#007991;
+    border: 2px solid #0A636D;
+    border-right: none;
+    padding: 0 10px;
+}
+
+.doc-page{
+    text-decoration: none;
+    color:#7E1476;
+    border: 2px solid #41173E;
+    border-right: none;
+    padding: 0 10px;
+}
+
+.doc-page:hover{
+    text-decoration: none;
+}
+
+.page:hover{
+    text-decoration: none;
+}
+
+.activePage{
+    color: white;
+    background-color: #0A636D;
+    text-decoration: none;
+    border: 2px solid #0A636D;
+    border-right: none;
+    padding: 0 10px;
+}
+
+.activePage:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.activePageDoc{
+    color: white;
+    background-color:  #5F1C5A;
+    text-decoration: none;
+    border: 2px solid #5F1C5A;
+    border-right: none;
+    padding: 0 10px;
+}
+
+.activePageDoc:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.pagination a:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child{
+    border-right: 2px solid  #0A636D;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.paginationDoc a:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.paginationDoc a:last-child{
+    border-right: 2px solid #41173E;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
