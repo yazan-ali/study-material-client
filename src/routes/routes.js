@@ -1,7 +1,6 @@
 import React from 'react';
 import Quiz from '../components/quizComponents/quiz';
 import AllQuizizz from '../components/quizComponents/allQuizizz';
-import AllDocuments from '../components/documentCompnents/allDocuments';
 import OneCourseQuizizz from '../components/quizComponents/oneCourseQuizizz';
 import AddQuiz from '../components/quizComponents/addQuiz';
 import EditQuiz from '../components/quizComponents/editQuiz';
@@ -12,7 +11,6 @@ import DashbordData from '../components/userCompnents/dashbordData';
 import AllPosts from '../components/postsComponets/allPosts';
 import { Route, Switch } from 'react-router-dom';
 import '../App.css';
-import Pdf from '../components/documentCompnents/pdf';
 import { AuthRoute, MutationRoute } from '../util/AuthRoute';
 
 function Routes() {
