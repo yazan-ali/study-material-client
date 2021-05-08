@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react';
-import Axios from 'axios';
+import React, { useState } from 'react';
 import '../styles/addQuiz.css';
-import App_Bar from '../appBar';
+import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -21,7 +20,7 @@ function Alert(props) {
 }
 
 
-function AddQuiz(props) {
+function AddQuiz() {
 
     const [quiz, setQuiz] = useState([]);
     const [courseName, setCourseName] = useState("");
@@ -83,7 +82,7 @@ function AddQuiz(props) {
         setSnackBarOpen(false);
     };
 
-    const [createQuiz, { error }] = useMutation(CREATE_QUIZ, {
+    const [createQuiz] = useMutation(CREATE_QUIZ, {
         variables: {
             course_name: courseName,
             quiz_title: quizTitle,
@@ -123,7 +122,7 @@ function AddQuiz(props) {
 
     return (
         <main className="addQuizRoot">
-            <App_Bar backgroundColor={"#0A1E36"} />
+            <AppBar backgroundColor={"#0A1E36"} />
             <Container style={{ padding: "15px 0" }} maxWidth="md">
                 <AddQuizForm addNewQuestion={addNewQuestion} />
                 {

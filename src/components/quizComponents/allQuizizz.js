@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import App_Bar from '../appBar';
+import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';
 import '../styles/quizList.css';
 import Pagination from '../pagination';
@@ -27,7 +27,7 @@ function AllQuizizz() {
 
         return (
             <div className="quiz-list-root">
-                <App_Bar backgroundColor={"#007991"} />
+                <AppBar backgroundColor={"#007991"} />
                 <Container maxWidth="lg">
                     <div className="quiz-list">
                         {

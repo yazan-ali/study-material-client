@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { AuthContext } from '../userContext';
 import { FETCH_POSTS_QUERY } from '../../util/graphql';
 import '../styles/posts.css';
-import App_Bar from '../appBar';
+import AppBar from '../appBar';
 import PostCard from './postCard';
 import PostForm from './postForm';
 import Loading from '../loading';
@@ -15,7 +15,7 @@ function AllPosts() {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <App_Bar backgroundColor={"#4A156B"} />
+            <AppBar backgroundColor={"#4A156B"} />
             {
                 loading ? <Loading /> :
                     (

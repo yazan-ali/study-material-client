@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
-import App_Bar from '../appBar';
+import React, { useState } from 'react';
+import AppBar from '../appBar';
 import '../styles/quiz.css';
-import Axios from 'axios';
-// import { AuthContext } from '../userContext';
 import UpVoteButton from './upVoteButton';
 import DownVoteButton from './downVoteButton';
 import { useMutation } from '@apollo/client';
@@ -13,9 +11,6 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
     const [showScore, setShowScore] = useState(false);
     const [answers, setAnswers] = useState({});
     const [showCorrectAnswers, setShowCorrectAnswers] = useState(false);
-    // const { user } = useContext(AuthContext);
-    const [upVote, setUpVote] = useState(false);
-    const [downVote, setDownVote] = useState(false);
 
     const symbols = ["a", "b", "c", "d"];
 
@@ -76,7 +71,7 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
 
     return (
         < div className="root" >
-            <App_Bar backgroundColor={"#61045f"} />
+            <AppBar backgroundColor={"#61045f"} />
             {course_name && <h1 className="course_name">{`${course_name} quiz`}</h1>}
             {
                 questions && (

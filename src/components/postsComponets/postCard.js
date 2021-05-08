@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import moment from 'moment';
 import CreateCommentForm from './createCommentForm';
 import Fade from '@material-ui/core/Fade';
@@ -44,7 +43,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                             <h1 className="post-body">{body}</h1>
                             {
                                 image && (
-                                    <img className="post-img" src={image} />
+                                    <img alt="post" className="post-img" src={image} />
                                 )
                             }
                         </div>

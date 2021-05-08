@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import '../styles/quiz.css';
-import App_Bar from '../appBar';
-import Axios from 'axios';
-import { AuthContext } from '../userContext';
+import AppBar from '../appBar';
 import UpVoteButton from './upVoteButton';
 import DownVoteButton from './downVoteButton';
 import { useMutation } from '@apollo/client';
@@ -14,7 +12,6 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
     const [answer, setAnswer] = useState("");
     const [showScore, setShowScore] = useState(false);
     const [showCorrectAnswers, setShowCorrectAnswers] = useState(false);
-    // const { user } = useContext(AuthContext);
 
     const symbols = ["a", "b", "c", "d"];
 
@@ -59,7 +56,7 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
 
     return (
         <div style={{ height: "100vh" }} className={`root ${!showCorrectAnswers && 'rootJustify'}`}>
-            <App_Bar backgroundColor={"#61045f"} />
+            <AppBar backgroundColor={"#61045f"} />
             {
                 questions && (
                     <div className="conatiner">

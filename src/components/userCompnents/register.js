@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import signUpSvg from "../../img/signup.svg";
-import App_Bar from '../appBar';
+import AppBar from '../appBar';
 import '../styles/register.css';
-import Axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import { AuthContext } from '../userContext';
 import Alert from '@material-ui/lab/Alert';
 import { useForm } from '../../util/hooks';
@@ -28,7 +26,7 @@ function Register(props) {
 
   const { handleChange, handleSubmit, values } = useForm(registerUser, initialState);
 
-  const [addUser, { loading }] = useMutation(REGISTER_USER, {
+  const [addUser] = useMutation(REGISTER_USER, {
     update(_, result) {
       context.login(result.data.login);
       props.history.push("/quiz");
@@ -45,7 +43,7 @@ function Register(props) {
 
   return (
     <>
-      <App_Bar backgroundColor={"#711B7E"} />
+      <AppBar backgroundColor={"#711B7E"} />
       <div className="container">
         <div className="signup">
           <form onSubmit={handleSubmit} className="sign-up-form">

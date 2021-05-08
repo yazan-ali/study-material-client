@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import '../styles/profile.css';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import App_Bar from '../appBar';
+import AppBar1 from '../appBar';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,11 +10,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Axios from 'axios';
 import AuthUserQuizList from '../quizComponents/authUserQuizList';
-import { useQuery } from '@apollo/client';
-import { gql } from '@apollo/client';
-import { AuthContext } from '../userContext';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -94,7 +91,7 @@ function Dashbord(props) {
         <div className="profile-root">
             <div className="profile-card">
                 <Container maxWidth="md">
-                    <App_Bar backgroundColor={"#26a0da"} />
+                    <AppBar1 backgroundColor={"#26a0da"} />
                     <div className={classes.paper}>
                         <div className="user-card">
                             <div className="profile-pic">
@@ -134,43 +131,5 @@ function Dashbord(props) {
         </div >
     );
 }
-
-// const FETCH_USER_QUERY = gql`
-//   query($username: String!){
-//       getUser(username: $username){
-//         id
-//         first_name
-//         last_name
-//         username
-//         university
-//         major
-//         quizizz{
-//             id
-//             questions{
-//                 question
-//                 answersOptions{
-//                     answerText
-//                 }
-//                 correctAnswer
-//             }
-//             course_name
-//             quiz_title
-//             number_of_questions
-//             isOneWay
-//             createdBy{
-//                 username
-//                 id
-//             }
-//             up_votes
-//             down_votes
-//             up_votes_counts
-//             down_votes_counts
-//             participants
-//         }
-//         # up_voted_quiz:[Quiz!]
-//         # down_voted_quiz:[Quiz!]
-//       }
-//   }
-// `
 
 export default Dashbord;

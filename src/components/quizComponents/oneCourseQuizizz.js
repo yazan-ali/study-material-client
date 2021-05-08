@@ -1,52 +1,5 @@
-// import React, { useState, useEffect } from 'react';
-// import Axios from 'axios';
-// import '../styles/quizList.css';
-// import Pagination from '../pagination';
-// import QuizItem from './quizItem';
-
-// function OneCourseQuizizz(props) {
-
-//     const [quizizz, setQuizizz] = useState([]);
-//     const [currentPage, setCurrentPage] = useState(1);
-//     const [quizizzPerPage] = useState(28);
-
-//     useEffect(() => {
-//         Axios.get(`http://localhost:5000/quiz/${props.course_name}`)
-//             .then(res => {
-//                 if (res.data) {
-//                     setQuizizz(res.data);
-//                 }
-//             });
-//     });
-
-//     const indexOfLastQuiz = currentPage * quizizzPerPage;
-//     const indexOfFirstQuiz = indexOfLastQuiz - quizizzPerPage;
-//     const currentQuizizz = quizizz.slice(indexOfFirstQuiz, indexOfLastQuiz);
-
-//     const paginate = (pageNumber) => {
-//         setCurrentPage(pageNumber);
-//     }
-
-//     return (
-//         <div className="quiz-list-root">
-//             <div className="quiz-list">
-//                 {
-//                     currentQuizizz.map(q => (
-//                         <QuizItem quiz={q} key={q._id} />
-//                     ))
-//                 }
-//             </div>
-//             < Pagination totalQuizizz={quizizz.length} quizizzPerPage={quizizzPerPage} paginate={paginate} currentPage={currentPage} />
-//         </div >
-//     );
-// }
-
-// export default OneCourseQuizizz;
-
-
-
 import React, { useState } from 'react';
-import App_Bar from '../appBar';
+import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';
 import '../styles/quizList.css';
 import Pagination from '../pagination';
@@ -79,7 +32,7 @@ function OneCourseQuizizz(props) {
 
         return (
             <div className="quiz-list-root">
-                <App_Bar backgroundColor={"#007991"} />
+                <AppBar backgroundColor={"#007991"} />
                 <Container maxWidth="lg">
                     <div className="quiz-list">
                         {

@@ -18,7 +18,7 @@ function PostForm({ user }) {
     const [snackBarOpen, setSnackBarOpen] = useState(false);
 
 
-    const handleSnackBarClose = (event, reason) => {
+    const handleSnackBarClose = (_, reason) => {
         if (reason === 'clickaway') {
             setSnackBarOpen(false);
         }
@@ -34,7 +34,7 @@ function PostForm({ user }) {
         setValues({ ...values, [evt.target.name]: evt.target.value });
     }
 
-    const [createPost, { error }] = useMutation(CREATE_POST, {
+    const [createPost,] = useMutation(CREATE_POST, {
         variables: {
             body: values.body,
             image: values.image

@@ -4,7 +4,7 @@
 
 .quiz-list{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
@@ -51,7 +51,7 @@
 
 @media only screen and (max-width: 750px) {
    .quiz-list{
-        justify-content: start;
+        justify-content: flex-start;
    }
    .quiz-div{
         margin-bottom: 10px;

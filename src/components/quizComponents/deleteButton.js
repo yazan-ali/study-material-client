@@ -6,7 +6,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { FETCH_QUIZ_QUERY } from '../../util/graphql';
-import { SpaRounded } from '@material-ui/icons';
 
 function DeleteButton({ quizId, deleteFromDashbord, handleQuizDelete }) {
 

@@ -16,7 +16,7 @@ function EditPostForm({ postId, body, image, user, showEditForm }) {
     const [failMsg, setFailMsg] = useState(false);
     const [snackBarOpen, setSnackBarOpen] = useState(false);
 
-    const handleSnackBarClose = (event, reason) => {
+    const handleSnackBarClose = (_, reason) => {
         if (reason === 'clickaway') {
             setSnackBarOpen(false);
         }
@@ -28,7 +28,7 @@ function EditPostForm({ postId, body, image, user, showEditForm }) {
         image: image
     });
 
-    const [updatePost, { error }] = useMutation(UPDATE_POST, {
+    const [updatePost] = useMutation(UPDATE_POST, {
         variables: {
             postId,
             body: values.body,

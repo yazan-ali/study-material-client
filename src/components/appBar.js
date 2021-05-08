@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -23,7 +23,6 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
 import SchoolIcon from '@material-ui/icons/School';
 import DescriptionIcon from '@material-ui/icons/Description';
-import Axios from 'axios';
 import './styles/appBar.css';
 import { AuthContext } from './userContext';
 import { useQuery } from '@apollo/client';
@@ -124,27 +123,10 @@ function App_Bar(props) {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState("");
-    const [courseName, setQCourseName] = useState([]);
 
     const { user, logout } = useContext(AuthContext);
 
-
-    useEffect(() => {
-        Axios.get(`http://localhost:5000/quiz-name`)
-            .then(res => {
-                if (res.data.length > 0) {
-                    setQCourseName([...courseName, ...res.data]);
-                }
-            }, []);
-        Axios.get(`http://localhost:5000/doc-name`)
-            .then(res => {
-                if (res.data.length > 0) {
-                    setQCourseName([...courseName, ...res.data]);
-                }
-            });
-    }, []);
-
-    const { loading, data } = useQuery(FETCH_COURSE_NAME_QUERY);
+    const { data } = useQuery(FETCH_COURSE_NAME_QUERY);
 
     const handleDrawerOpen = () => {
         setOpen(true);

@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import '../styles/profile.css';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import App_Bar from '../appBar';
+import AppBar1 from '../appBar';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,12 +10,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Axios from 'axios';
 import UserQuizList from '../quizComponents/userQuizList';
-// import UserDocList from '../documentCompnents/userDocList';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
-import { AuthContext } from '../userContext';
 import Loading from '../loading';
 
 function TabPanel(props) {
@@ -81,14 +78,12 @@ function Profile(props) {
     const classes = useStyles();
     const [value, setValue] = useState(0);
 
-    const { user } = useContext(AuthContext);
-
     const { loading, data } = useQuery(FETCH_USER_QUERY, {
         variables: { username: props.match.params.username }
     });
 
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (even, newValue) => {
         setValue(newValue);
     };
 
@@ -100,7 +95,7 @@ function Profile(props) {
                         <div className="profile-root">
                             <div className="profile-card">
                                 <Container maxWidth="md">
-                                    <App_Bar backgroundColor={"#26a0da"} />
+                                    <AppBar1 backgroundColor={"#26a0da"} />
                                     <div className={classes.paper}>
                                         <div className="user-card">
                                             <div className="profile-pic">
@@ -121,11 +116,9 @@ function Profile(props) {
                                                 </Tabs>
                                             </AppBar>
                                             <TabPanel value={value} index={0}>
-                                                {/* {user && <UserQuizList quizizz={user.quizizz} />} */}
                                                 <UserQuizList quizizz={data.getUser.quizizz} />
                                             </TabPanel>
                                             <TabPanel value={value} index={1}>
-                                                {/* {user && <UserDocList doc={user.documents} />} */}
                                             </TabPanel>
                                             <TabPanel value={value} index={2}>
                                             </TabPanel>
