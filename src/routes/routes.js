@@ -17,16 +17,16 @@ function Routes() {
     return (
         <div className="App">
             <Switch>
-                <Route exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/" component={AllPosts} />
-                <AuthRoute exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/login" component={Login} />
-                <AuthRoute exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/register" component={SignUp} />
-                <Route exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/quiz" component={AllQuizizz} />
-                <Route exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/:course_name" render={(routeProps) => <OneCourseQuizizz {...routeProps} />} />
-                <Route exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/quiz/:course_name/:id" render={(routeProps) => < Quiz {...routeProps} />} />
-                <MutationRoute exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/quiz/new" component={AddQuiz} />
-                <Route exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/quiz/:id/:username/edit" render={(routeProps) => <EditQuiz {...routeProps} />} />
-                <Route exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/profile/:username" render={(routeProps) => <Profile {...routeProps} />} />
-                <Route exact path="https://6097254bedc1db000894f7e8--inspiring-babbage-e50db6.netlify.app/dashbord/:username" render={(routeProps) => <DashbordData {...routeProps} />} />
+                <Route exact path="/" component={AllPosts} />
+                <AuthRoute exact path="/login" component={Login} />
+                <AuthRoute exact path="/register" component={SignUp} />
+                <Route exact path="/quiz" component={AllQuizizz} />
+                <Route exact path="/:course_name" render={(routeProps) => <OneCourseQuizizz {...routeProps} />} />
+                <Route exact path="/quiz/:course_name/:id" render={(routeProps) => < Quiz {...routeProps} />} />
+                <MutationRoute exact path="/quiz/new" component={AddQuiz} />
+                <Route exact path="/quiz/:id/:username/edit" render={(routeProps) => <EditQuiz {...routeProps} />} />
+                <Route exact path="/profile/:username" render={(routeProps) => <Profile {...routeProps} />} />
+                <Route exact path="/dashbord/:username" render={(routeProps) => <DashbordData {...routeProps} />} />
             </Switch>
         </div>
     );

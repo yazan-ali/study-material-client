@@ -298,10 +298,6 @@ function App_Bar(props) {
                         <ListItemIcon><SchoolIcon /></ListItemIcon>
                         <a className={classes.listItem} href="/quiz"><ListItemText primary="Quizizz" /></a>
                     </ListItem>
-                    <ListItem button>
-                        <ListItemIcon><DescriptionIcon /></ListItemIcon>
-                        <a className={classes.listItem} href="/documents"><ListItemText primary="Documents" /></a>
-                    </ListItem>
                     <ListItem>
                         <div className={classes.search}>
                             <InputBase
