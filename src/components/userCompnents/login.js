@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import logSvg from "../../img/log.svg";
 import AppBar from '../appBar';
 import '../styles/register.css';
 import { AuthContext } from '../userContext';
@@ -8,6 +7,59 @@ import Alert from '@material-ui/lab/Alert';
 import { useForm } from '../../util/hooks';
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import { fade, withStyles, makeStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
+const BootstrapInput = withStyles((theme) => ({
+  root: {
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
+  },
+  input: {
+    borderRadius: 4,
+    border: "2px solid #5F2384",
+    position: 'relative',
+    backgroundColor: theme.palette.common.white,
+    fontSize: 16,
+    width: '400px',
+    [theme.breakpoints.down('md')]: {
+      width: "300px",
+    },
+    padding: '10px 12px',
+    marginBottom: 15,
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: "#5F2384",
+    },
+  },
+}))(InputBase);
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // display: 'flex',
+    // flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 function Login(props) {
 
@@ -38,46 +90,47 @@ function Login(props) {
     <>
       <AppBar backgroundColor={"#711B7E"} />
       <div className="container">
-        <div className="signin">
-          <form onSubmit={handleSubmit} className="sign-in-form">
-            <h2 className="title">Sign in</h2>
-            {Object.keys(errors).length > 0 && (
-              <Alert style={{ borderRadius: "10px", width: "100%", maxWidth: 380 }} severity="error">{
-                <div>
-                  <ul>
-                    {Object.values(errors).map(err => (
-                      <li key={err}>{err}</li>
-                    )
-                    )}
-                  </ul>
-                </div>
-              }</Alert>
-            )}
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input type="text" onChange={handleChange} name="username" value={values.username} placeholder="Username" />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <input type="password" onChange={handleChange} name="password" value={values.password} placeholder="Password" />
-            </div>
-            <input type="submit" value="Login" className="regBtn solid" />
-          </form>
-        </div>
-        <div className="panels-container">
-          <div className="panel left-panel">
-            <div className="content">
-              <h3>New here ?</h3>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            </p>
-              <Link to="/register" className="" id="sign-up-btn">
-                Sign up
-            </Link>
-            </div>
-            <img src={logSvg} className="image" alt="" />
+        <form onSubmit={handleSubmit}>
+          <h2>Login</h2>
+          {Object.keys(errors).length > 0 && (
+            <Alert style={{ borderRadius: "10px", width: "100%", marginBottom: 10 }} severity="error">{
+              <div>
+                <ul>
+                  {Object.values(errors).map(err => (
+                    <li key={err}>{err}</li>
+                  )
+                  )}
+                </ul>
+              </div>
+            }</Alert>
+          )}
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Username *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.username}
+              name="username"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Password *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.password}
+              name="password"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <div className="btns">
+            <button type="submit" className="register-btn">Login</button>
+            <Link to="/register">Create an account</Link>
           </div>
-        </div>
+        </form>
       </div >
     </>
   );

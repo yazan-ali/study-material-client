@@ -52,7 +52,7 @@ function LikeButton({ post: { likeCount, likes, id }, user }) {
         <>
             <div onClick={like_post} className="like-button">
                 {likeButton}
-                <span>{likeCount}</span>
+                <span style={{ marginLeft: 10 }}>{likeCount}</span>
             </div>
             <div>
                 <Dialog

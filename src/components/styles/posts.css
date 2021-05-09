@@ -90,7 +90,6 @@ hr{
 
 .comment-button{
     display: flex;
-    justify-content: space-around;
     align-items: center;
     background-color: white;
     color: #5F2384;
@@ -103,7 +102,6 @@ hr{
 
 .like-button{
     display: flex;
-    justify-content: space-around;
     align-items: center;
     background-color: white;
     min-width: 70px;

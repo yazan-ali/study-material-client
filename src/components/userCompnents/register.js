@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import signUpSvg from "../../img/signup.svg";
 import AppBar from '../appBar';
 import '../styles/register.css';
 import { AuthContext } from '../userContext';
@@ -8,6 +7,59 @@ import Alert from '@material-ui/lab/Alert';
 import { useForm } from '../../util/hooks';
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import { fade, withStyles, makeStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
+const BootstrapInput = withStyles((theme) => ({
+  root: {
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
+  },
+  input: {
+    borderRadius: 4,
+    border: "2px solid #5F2384",
+    position: 'relative',
+    backgroundColor: theme.palette.common.white,
+    fontSize: 16,
+    width: '400px',
+    [theme.breakpoints.down('md')]: {
+      width: "300px",
+    },
+    padding: '10px 12px',
+    marginBottom: 15,
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: "#5F2384",
+    },
+  },
+}))(InputBase);
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // display: 'flex',
+    // flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 
 function Register(props) {
@@ -34,7 +86,6 @@ function Register(props) {
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
-      console.log(err)
     },
     variables: values
   });
@@ -43,68 +94,98 @@ function Register(props) {
     addUser();
   }
 
+  const classes = useStyles();
+
   return (
     <>
-      <AppBar backgroundColor={"#711B7E"} />
+      <AppBar backgroundColor={"#5F2384"} />
       <div className="container">
-        <div className="signup">
-          <form onSubmit={handleSubmit} className="sign-up-form">
-            <h2 className="title">Sign up</h2>
-            {Object.keys(errors).length > 0 && (
-              <Alert style={{ borderRadius: "10px", width: "100%", maxWidth: 380 }} severity="error">{
-                <div>
-                  <ul>
-                    {Object.values(errors).map(err => (
-                      <li key={err}>{err}</li>
-                    )
-                    )}
-                  </ul>
-                </div>
-              }</Alert>
-            )}
-            <div className="input-field">
-              <i className="fas fa-dice-one"></i>
-              <input type="text" onChange={handleChange} name="first_name" value={values.first_name} placeholder="* First name" />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-dice-two"></i>
-              <input type="text" onChange={handleChange} name="last_name" value={values.last_name} placeholder="* Last name" />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-user"></i>
-              <input type="text" onChange={handleChange} name="username" value={values.username} placeholder="* Username" />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <input type="password" onChange={handleChange} name="password" value={values.password} placeholder="* Password" />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-graduation-cap"></i>
-              <input type="text" onChange={handleChange} name="university" value={values.university} placeholder="University name" />
-            </div>
-            <div className="input-field">
-              <i className="fas fa-book-reader"></i>
-              <input type="text" onChange={handleChange} name="major" value={values.major} placeholder="Major" />
-            </div>
-            <input type="submit" className="regBtn" value="Sign up" />
-          </form>
-        </div>
-
-        <div className="panels-container">
-          <div className="panel signup-left-panel">
-            <div className="content">
-              <h3>already have an account ?</h3>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            </p>
-              <Link to="/login" className="regBtn transparent" id="sign-up-btn">
-                Sign in
-            </Link>
-            </div>
-            <img src={signUpSvg} className="image" alt="" />
+        <form onSubmit={handleSubmit}>
+          <h2>Sign Up</h2>
+          {Object.keys(errors).length > 0 && (
+            <Alert style={{ borderRadius: "10px", width: "100%", marginBottom: 10 }} severity="error">{
+              <div>
+                <ul>
+                  {Object.values(errors).map(err => (
+                    <li key={err}>{err}</li>
+                  )
+                  )}
+                </ul>
+              </div>
+            }</Alert>
+          )}
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              First Name *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.first_name}
+              name="first_name"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Last Name *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.last_name}
+              name="last_name"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Username *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.username}
+              name="username"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Password *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.password}
+              name="password"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              University
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.university}
+              name="university"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Major
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.major}
+              name="major"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <div className="btns">
+            <button type="submit" className="register-btn">Sign up</button>
+            <Link to="/login">Already have an account ?</Link>
           </div>
-        </div>
-      </div >
+        </form>
+      </div>
     </>
   );
 }

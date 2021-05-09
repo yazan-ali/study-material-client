@@ -53,7 +53,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                             <LikeButton user={user} post={{ likes, likeCount, id }} />
                             <div onClick={() => setShowComments(!showComments)} className="comment-button">
                                 <i class="fas fa-comments"></i>
-                                <span>{commentsCount} Comments</span>
+                                <span style={{ marginLeft: 10 }}>{commentsCount} Comments</span>
                             </div>
                         </div>
                     </div>
