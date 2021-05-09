@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import EditQuizForm from "./editQuizForm";
+import Loading from '../loading';
 
 function EditQuiz(props) {
 
@@ -14,7 +15,7 @@ function EditQuiz(props) {
     return (
         <div>
             {
-                loading ? <h3>Loading...</h3> :
+                loading ? <Loading /> :
                     <>
                         <EditQuizForm quiz={data.getQuiz} id={quizId} />
                     </>
