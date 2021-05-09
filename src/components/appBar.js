@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,7 +23,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
 import SchoolIcon from '@material-ui/icons/School';
-import DescriptionIcon from '@material-ui/icons/Description';
 import './styles/appBar.css';
 import { AuthContext } from './userContext';
 import { useQuery } from '@apollo/client';
@@ -292,11 +292,11 @@ function App_Bar(props) {
                 <List>
                     <ListItem button>
                         <ListItemIcon><HomeIcon /></ListItemIcon>
-                        <a className={classes.listItem} href="/"><ListItemText primary="Home" /></a>
+                        <Link className={classes.listItem} to="/"><ListItemText primary="Home" /></Link>
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon><SchoolIcon /></ListItemIcon>
-                        <a className={classes.listItem} href="/quiz"><ListItemText primary="Quizizz" /></a>
+                        <Link className={classes.listItem} to="/quiz"><ListItemText primary="Quizizz" /></Link>
                     </ListItem>
                     <ListItem>
                         <div className={classes.search}>
