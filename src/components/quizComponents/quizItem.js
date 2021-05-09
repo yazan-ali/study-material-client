@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/quizList.css';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import { AuthContext } from '../userContext';
@@ -31,7 +32,7 @@ function QuizItem(props) {
     return (
         <div className="quiz-div quizListBackground">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <a href={`/quiz/${props.quiz.course_name}/${props.quiz.id}`}>{props.quiz.course_name} : {props.quiz.quiz_title}</a>
+                <Link to={`/quiz/${props.quiz.course_name}/${props.quiz.id}`}>{props.quiz.course_name} : {props.quiz.quiz_title}</Link>
                 {
                     user && user.username === props.quiz.createdBy.username && (
                         <div style={{ width: 20, marginTop: -12, marginRight: 20 }}>
@@ -58,7 +59,7 @@ function QuizItem(props) {
                                 }}
                             >
                                 <MenuItem key="edit">
-                                    {/* <a style={{ textDecoration: "none", color: "black" }} href={`/quiz/${props.quiz.id}/${props.user.username}/edit`}>Edit</a> */}
+                                    <Link style={{ textDecoration: "none", color: "black" }} to={`/quiz/${props.quiz.id}/${props.quiz.createdBy.username}/edit`}>Edit</Link>
                                 </MenuItem>
                                 <MenuItem key="delete">
                                     <DeleteButton deleteFromDashbord={false} quizId={props.quiz.id} />
@@ -73,7 +74,7 @@ function QuizItem(props) {
                 <PersonRoundedIcon style={{ color: "white" }} />
                 <span>{props.quiz.participants}</span>
             </div>
-            <a href={`/profile/${props.quiz.createdBy.username}`} > {`created by : ${props.quiz.createdBy.username}`}</a>
+            <Link to={`/profile/${props.quiz.createdBy.username}`} > {`created by : ${props.quiz.createdBy.username}`}</Link>
             <UpVoteButton
                 quizId={props.quiz.id}
                 up_votes={props.quiz.up_votes}

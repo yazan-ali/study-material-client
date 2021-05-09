@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -65,7 +66,7 @@ function LikeButton({ post: { likeCount, likes, id }, user }) {
                         <Button onClick={handleClose} color="primary">
                             Cancel
                         </Button>
-                        <a href="/login">Login</a>
+                        <Link className="loginDialogBtn" to="/login">Login</Link>
                     </DialogActions>
                 </Dialog>
             </div>

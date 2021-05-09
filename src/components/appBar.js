@@ -19,6 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
@@ -133,11 +134,12 @@ function App_Bar(props) {
     };
 
     const handleDrawerClose = (evt, reason) => {
-        if (reason === 'clickaway') {
-            setOpen(false);
-        }
         setOpen(false);
     };
+
+    const handleClickAway = () => {
+        setOpen(false);
+    }
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -224,111 +226,113 @@ function App_Bar(props) {
     );
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                style={{ backgroundColor: props.backgroundColor }}
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6">
-                        Study-Material
+        <ClickAwayListener onClickAway={handleClickAway}>
+            <div className={classes.root}>
+                <CssBaseline />
+                <AppBar
+                    style={{ backgroundColor: props.backgroundColor }}
+                    position="fixed"
+                    className={clsx(classes.appBar, {
+                        [classes.appBarShift]: open,
+                    })}
+                >
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            className={clsx(classes.menuButton, open && classes.hide)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6">
+                            Study-Material
                     </Typography>
-                    <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                    </div>
-                    <div className={classes.sectionMobile}>
-                        <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </div>
-                </Toolbar>
-            </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <ListItem button>
-                        <ListItemIcon><HomeIcon /></ListItemIcon>
-                        <Link className={classes.listItem} to="/"><ListItemText primary="Home" /></Link>
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon><SchoolIcon /></ListItemIcon>
-                        <Link className={classes.listItem} to="/quiz"><ListItemText primary="Quizizz" /></Link>
-                    </ListItem>
-                    <ListItem>
-                        <div className={classes.search}>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                                onChange={handleSearch}
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                            <div className="vertical-menu">
-                                {filteredCourses.map(c => (
-                                    <>
-                                        <a href={`/${c}`}>{c}</a>
-                                    </>
-                                ))}
-                            </div>
+                        <div className={classes.grow} />
+                        <div className={classes.sectionDesktop}>
+                            <IconButton
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-controls={menuId}
+                                aria-haspopup="true"
+                                onClick={handleProfileMenuOpen}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
                         </div>
-                    </ListItem>
-                </List>
-                <Divider />
-            </Drawer>
-            <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.drawerHeader} />
-            </main>
-        </div >
+                        <div className={classes.sectionMobile}>
+                            <IconButton
+                                aria-label="show more"
+                                aria-controls={mobileMenuId}
+                                aria-haspopup="true"
+                                onClick={handleMobileMenuOpen}
+                                color="inherit"
+                            >
+                                <MoreIcon />
+                            </IconButton>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+                {renderMobileMenu}
+                {renderMenu}
+                <Drawer
+                    className={classes.drawer}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                >
+                    <div className={classes.drawerHeader}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <ListItem button>
+                            <ListItemIcon><SchoolIcon /></ListItemIcon>
+                            <Link className={classes.listItem} to="/"><ListItemText primary="Quizizz" /></Link>
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon><HomeIcon /></ListItemIcon>
+                            <Link className={classes.listItem} to="/posts"><ListItemText primary="Posts" /></Link>
+                        </ListItem>
+                        <ListItem>
+                            <div className={classes.search}>
+                                <InputBase
+                                    placeholder="Search…"
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput,
+                                    }}
+                                    onChange={handleSearch}
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                                <div className="vertical-menu">
+                                    {filteredCourses.map(c => (
+                                        <>
+                                            <Link to={`/${c}`}>{c}</Link>
+                                        </>
+                                    ))}
+                                </div>
+                            </div>
+                        </ListItem>
+                    </List>
+                    <Divider />
+                </Drawer>
+                <main
+                    className={clsx(classes.content, {
+                        [classes.contentShift]: open,
+                    })}
+                >
+                    <div className={classes.drawerHeader} />
+                </main>
+            </div >
+        </ClickAwayListener>
     );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/profile.css';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
@@ -29,7 +30,7 @@ function UserQuizList(props) {
                 {
                     props.quizizz.slice(indexOfFirstQuiz, indexOfLastQuiz).map(q => (
                         <div className="user-material">
-                            <a href={`/quiz/${q.course_name}/${q.id}`}>{q.course_name} : {q.quiz_title}</a><br />
+                            <Link to={`/quiz/${q.course_name}/${q.id}`}>{q.course_name} : {q.quiz_title}</Link><br />
                         </div>
                     ))
                 }

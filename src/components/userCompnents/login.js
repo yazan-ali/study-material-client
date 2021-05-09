@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import logSvg from "../../img/log.svg";
 import AppBar from '../appBar';
 import '../styles/register.css';
@@ -21,7 +22,7 @@ function Login(props) {
   const [loginUser] = useMutation(LOGIN_USER, {
     update(_, result) {
       context.login(result.data.login);
-      props.history.push("/quiz");
+      props.history.push("/");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -51,7 +52,8 @@ function Login(props) {
                   </ul>
                 </div>
               }</Alert>
-            )}            <div className="input-field">
+            )}
+            <div className="input-field">
               <i className="fas fa-user"></i>
               <input type="text" onChange={handleChange} name="username" value={values.username} placeholder="Username" />
             </div>
@@ -69,9 +71,9 @@ function Login(props) {
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             </p>
-              <a href="/register" className="" id="sign-up-btn">
+              <Link to="/register" className="" id="sign-up-btn">
                 Sign up
-            </a>
+            </Link>
             </div>
             <img src={logSvg} className="image" alt="" />
           </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
@@ -24,7 +25,7 @@ function ProfileQuizCard(props) {
 
     return (
         <div className="user-material">
-            <a href={`/quiz/${props.quiz.course_name}/${props.quiz.id}`}>{props.quiz.course_name} : {props.quiz.quiz_title}</a>
+            <Link to={`/quiz/${props.quiz.course_name}/${props.quiz.id}`}>{props.quiz.course_name} : {props.quiz.quiz_title}</Link>
             <IconButton
                 style={{ color: "white" }}
                 aria-label="more"
@@ -48,7 +49,7 @@ function ProfileQuizCard(props) {
                 }}
             >
                 <MenuItem key="edit">
-                    <a style={{ textDecoration: "none", color: "black" }} href={`/quiz/${props.quiz.id}/${props.user.username}/edit`}>Edit</a>
+                    <Link style={{ textDecoration: "none", color: "black" }} to={`/quiz/${props.quiz.id}/${props.user.username}/edit`}>Edit</Link>
                 </MenuItem>
                 <MenuItem key="delete">
                     <DeleteButton deleteFromDashbord={true} quizId={props.quiz.id} handleQuizDelete={props.handleQuizDelete} />

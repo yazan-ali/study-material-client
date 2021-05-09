@@ -5,7 +5,7 @@ import { setContext } from "@apollo/client/link/context";
 import Routes from './routes/routes';
 
 const httpLink = createHttpLink({
-  uri: 'https://tranquil-harbor-97714.herokuapp.com/'
+  uri: 'http://localhost:5000/'
 });
 
 const authLink = setContext(() => {

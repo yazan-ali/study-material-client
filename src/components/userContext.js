@@ -20,6 +20,8 @@ const AuthContext = createContext({
     logout: () => { }
 });
 
+const pathName = window.location.pathname;
+
 function authReducer(state, action) {
     switch (action.type) {
         case "LOGIN":

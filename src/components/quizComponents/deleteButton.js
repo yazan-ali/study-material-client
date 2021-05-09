@@ -24,7 +24,6 @@ function DeleteButton({ quizId, deleteFromDashbord, handleQuizDelete }) {
         update(proxy) {
             setOpen(true);
             if (deleteFromDashbord) {
-                // window.location.reload();
                 handleQuizDelete(quizId);
             } else {
                 const data = proxy.readQuery({

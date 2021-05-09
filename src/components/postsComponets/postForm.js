@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { FETCH_POSTS_QUERY } from '../../util/graphql';
@@ -71,12 +72,12 @@ function PostForm({ user }) {
             <form className="add-post-form" onSubmit={handleSubmit}>
                 <h2>Create a Post: </h2>
                 {
-                    user && <a className="post-createdBy" href={`profile/${user.username}`}>
+                    user && <Link className="post-createdBy" href={`profile/${user.username}`}>
                         <Avatar style={{ width: 40, fontSize: 15 }} alt="Remy Sharp">
                             {user.first_name[0].toUpperCase()}  {user.first_name[0].toUpperCase()}
                         </Avatar>
                         <span> {user.first_name} {user.last_name}</span>
-                    </a>
+                    </Link>
                 }
                 <input type="text" name="body" value={values.body} onChange={handleChange} placeholder="Add Post" ref={commentInputRef} />
                 {/* <input type="input" name="image" value={values.image} onChange={handleChange} placeholder="upload image" ref={commentInputRef} /> */}

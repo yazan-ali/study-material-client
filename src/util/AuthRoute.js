@@ -8,7 +8,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             render={props =>
-                user ? <Redirect to="/quiz" /> : <Component {...props} />
+                user ? <Redirect to="/" /> : <Component {...props} />
             }
         />
     )

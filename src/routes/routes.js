@@ -17,10 +17,10 @@ function Routes() {
     return (
         <div className="App">
             <Switch>
-                <Route exact path="/" component={AllPosts} />
+                <Route exact path="/" component={AllQuizizz} />
+                <Route exact path="/posts" component={AllPosts} />
                 <AuthRoute exact path="/login" component={Login} />
                 <AuthRoute exact path="/register" component={SignUp} />
-                <Route exact path="/quiz" component={AllQuizizz} />
                 <Route exact path="/:course_name" render={(routeProps) => <OneCourseQuizizz {...routeProps} />} />
                 <Route exact path="/quiz/:course_name/:id" render={(routeProps) => < Quiz {...routeProps} />} />
                 <MutationRoute exact path="/quiz/new" component={AddQuiz} />

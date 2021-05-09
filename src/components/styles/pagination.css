@@ -6,8 +6,8 @@
 
 .page{
     text-decoration: none;
-    color:#007991;
-    border: 2px solid #0A636D;
+    color:#7E1476;
+    border: 2px solid #7E1476;
     border-right: none;
     padding: 0 10px;
 }
@@ -18,9 +18,9 @@
 
 .activePage{
     color: white;
-    background-color: #0A636D;
+    background-color: #7E1476;
     text-decoration: none;
-    border: 2px solid #0A636D;
+    border: 2px solid #7E1476;
     border-right: none;
     padding: 0 10px;
 }
@@ -36,7 +36,7 @@
 }
 
 .pagination span:last-child{
-    border-right: 2px solid  #0A636D;
+    border-right: 2px solid  #7E1476;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }

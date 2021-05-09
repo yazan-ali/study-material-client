@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
 import ForwardOutlinedIcon from '@material-ui/icons/ForwardOutlined';
@@ -75,7 +76,7 @@ function DownVoteButton({ user, quizId, down_votes, down_votes_count }) {
                         <Button onClick={handleClose} color="primary">
                             Cancel
                         </Button>
-                        <a href="/login">Login</a>
+                        <Link className="loginDialogBtn" to="/login">Login</Link>
                     </DialogActions>
                 </Dialog>
             </div>

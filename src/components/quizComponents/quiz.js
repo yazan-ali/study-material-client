@@ -4,6 +4,7 @@ import BothWayQuiz from './bothWayQuiz';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { AuthContext } from '../userContext';
+import Loading from '../loading';
 
 function Quiz(props) {
 
@@ -18,7 +19,7 @@ function Quiz(props) {
     return (
         <div className="App">
             {
-                loading ? <h3>Loading...</h3> :
+                loading ? <Loading /> :
                     (
                         // if the quiz is one way
                         data.getQuiz.isOneWay ?

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import EditCommentForm from './editCommentForm';
 import Avatar from '@material-ui/core/Avatar';
 import EditDeleteIcon from './editDeleteIcon';
@@ -27,12 +28,12 @@ function CommentItem({ comment: { username, first_name, last_name, id, body }, p
                 ) : (
                     <div className="comment">
                         <div style={{ marginLeft: -10 }} className="post-header">
-                            <a className="post-createdBy" href={`profile/${username}`}>
+                            <Link className="post-createdBy" to={`profile/${username}`}>
                                 <Avatar style={{ width: 40, fontSize: 15 }} alt="Remy Sharp">
                                     {first_name[0].toUpperCase()}  {first_name[0].toUpperCase()}
                                 </Avatar>
                                 <span> {first_name} {last_name}</span>
-                            </a>
+                            </Link>
                             {user && user.username === username && (
                                 <div style={{ marginLeft: -50, marginTop: -10, width: 30 }}>
                                     <EditDeleteIcon

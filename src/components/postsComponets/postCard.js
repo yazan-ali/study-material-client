@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import CreateCommentForm from './createCommentForm';
 import Fade from '@material-ui/core/Fade';
@@ -31,12 +32,12 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                             </div>
                         )}
                         <div className="post-header">
-                            <a className="post-createdBy" href={`profile/${createdBy.username}`}>
+                            <Link className="post-createdBy" to={`profile/${createdBy.username}`}>
                                 <Avatar style={{ width: 40, fontSize: 15 }} alt="Remy Sharp">
                                     {createdBy.first_name[0].toUpperCase()}  {createdBy.first_name[0].toUpperCase()}
                                 </Avatar>
                                 <span> {createdBy.first_name} {createdBy.last_name}</span>
-                            </a>
+                            </Link>
                             <span>{moment(createdAt).fromNow()}</span>
                         </div>
                         <div className="post-content">

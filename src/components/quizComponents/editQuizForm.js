@@ -42,7 +42,7 @@ function EditQuizForm(props) {
         })
         )
         setQuiz(quizData);
-    }, [quiz]);
+    }, []);
 
 
     const addNewQuestion = (newQuestion) => {
@@ -112,7 +112,7 @@ function EditQuizForm(props) {
             if (result) {
                 setSuccessMsg("Quiz Updated Successfully");
                 setSnackBarOpen(true);
-                console.log(result);
+                window.location.reload();
             }
         },
         onError(err) {

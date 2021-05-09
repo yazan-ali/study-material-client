@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import signUpSvg from "../../img/signup.svg";
 import AppBar from '../appBar';
 import '../styles/register.css';
@@ -29,7 +30,7 @@ function Register(props) {
   const [addUser] = useMutation(REGISTER_USER, {
     update(_, result) {
       context.login(result.data.login);
-      props.history.push("/quiz");
+      props.history.push("/");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -95,9 +96,9 @@ function Register(props) {
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             </p>
-              <a href="/login" className="regBtn transparent" id="sign-up-btn">
+              <Link to="/login" className="regBtn transparent" id="sign-up-btn">
                 Sign in
-            </a>
+            </Link>
             </div>
             <img src={signUpSvg} className="image" alt="" />
           </div>

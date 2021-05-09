@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../userContext';
 import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';
 import '../styles/quizList.css';
@@ -9,6 +11,8 @@ import { FETCH_QUIZ_QUERY } from '../../util/graphql';
 import Loading from '../loading';
 
 function AllQuizizz() {
+
+    const { user } = useContext(AuthContext);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [quizizzPerPage] = useState(12);
@@ -27,9 +31,10 @@ function AllQuizizz() {
 
         return (
             <div className="quiz-list-root">
-                <AppBar backgroundColor={"#007991"} />
+                <AppBar backgroundColor={"#7E1476"} />
                 <Container maxWidth="lg">
-                    <div className="quiz-list">
+                    {user && <Link className="AddQuizBtn" to="/quiz/new">Add New Quiz</Link>}
+                    <div style={{ marginTop: 20 }} className="quiz-list">
                         {
                             currentQuizizz.map(q => (
                                 <QuizItem quiz={q} key={q._id} />

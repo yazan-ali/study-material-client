@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/profile.css';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
@@ -114,7 +115,7 @@ function Dashbord(props) {
                             <TabPanel value={value} index={0}>
                                 {user && (
                                     <div style={{ marginBottom: "15px" }}>
-                                        <a className="addQuizBtn" href={`/quiz/new`}>Add New Quiz</a>
+                                        <Link className="addQuizBtn" to={`/quiz/new`}>Add New Quiz</Link>
                                     </div>
                                 )}
                                 <AuthUserQuizList quizizz={user.quizizz} user={user} handleQuizDelete={handleQuizDelete} />
