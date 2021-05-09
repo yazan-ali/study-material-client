@@ -6,10 +6,11 @@
 
 .page{
     text-decoration: none;
-    color:#7E1476;
-    border: 2px solid #7E1476;
+    color:#5F2384;
+    border: 2px solid hsl(277, 58%, 33%);
     border-right: none;
     padding: 0 10px;
+    cursor: pointer;
 }
 
 .page:hover{
@@ -18,11 +19,12 @@
 
 .activePage{
     color: white;
-    background-color: #7E1476;
+    background-color: #5F2384;
     text-decoration: none;
-    border: 2px solid #7E1476;
+    border: 2px solid #5F2384;
     border-right: none;
     padding: 0 10px;
+    cursor: pointer;
 }
 
 .activePage:hover{
@@ -36,7 +38,7 @@
 }
 
 .pagination span:last-child{
-    border-right: 2px solid  #7E1476;
+    border-right: 2px solid  #5F2384;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }

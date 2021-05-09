@@ -42,9 +42,9 @@ function Login(props) {
           <form onSubmit={handleSubmit} className="sign-in-form">
             <h2 className="title">Sign in</h2>
             {Object.keys(errors).length > 0 && (
-              <Alert style={{ borderRadius: "10px" }} severity="error">{
-                <div className="ui error message">
-                  <ul className="list">
+              <Alert style={{ borderRadius: "10px", width: "100%", maxWidth: 380 }} severity="error">{
+                <div>
+                  <ul>
                     {Object.values(errors).map(err => (
                       <li key={err}>{err}</li>
                     )

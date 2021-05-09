@@ -70,7 +70,7 @@ function PostForm({ user }) {
     return (
         <div>
             <form className="add-post-form" onSubmit={handleSubmit}>
-                <h2>Create a Post: </h2>
+                <h2>Create a Post </h2>
                 {
                     user && <Link className="post-createdBy" href={`profile/${user.username}`}>
                         <Avatar style={{ width: 40, fontSize: 15 }} alt="Remy Sharp">

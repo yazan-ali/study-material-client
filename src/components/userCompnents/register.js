@@ -22,18 +22,19 @@ function Register(props) {
     password: "",
     university: "",
     major: "",
-    isAdmin: false,
+    isAdmin: false
   }
 
   const { handleChange, handleSubmit, values } = useForm(registerUser, initialState);
 
   const [addUser] = useMutation(REGISTER_USER, {
     update(_, result) {
-      context.login(result.data.login);
+      context.login(result.data.register);
       props.history.push("/");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      console.log(err)
     },
     variables: values
   });
@@ -50,9 +51,9 @@ function Register(props) {
           <form onSubmit={handleSubmit} className="sign-up-form">
             <h2 className="title">Sign up</h2>
             {Object.keys(errors).length > 0 && (
-              <Alert style={{ borderRadius: "10px" }} severity="error">{
-                <div className="ui error message">
-                  <ul className="list">
+              <Alert style={{ borderRadius: "10px", width: "100%", maxWidth: 380 }} severity="error">{
+                <div>
+                  <ul>
                     {Object.values(errors).map(err => (
                       <li key={err}>{err}</li>
                     )

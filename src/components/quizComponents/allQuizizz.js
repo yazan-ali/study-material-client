@@ -31,7 +31,7 @@ function AllQuizizz() {
 
         return (
             <div className="quiz-list-root">
-                <AppBar backgroundColor={"#7E1476"} />
+                <AppBar backgroundColor={"#5F2384"} />
                 <Container maxWidth="lg">
                     {user && <Link className="AddQuizBtn" to="/quiz/new">Add New Quiz</Link>}
                     <div style={{ marginTop: 20 }} className="quiz-list">

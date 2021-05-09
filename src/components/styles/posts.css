@@ -8,12 +8,9 @@ hr{
 
 .post-container{
     width: 100%;
-    /* max-height: 400px; */
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    /* border: 2px solid teal; */
-    /* background-color: #5F2384; */
     background-color: #5F2384;
     box-shadow: -5px -1px 5px rgba(0,0,0,0.6);
     color: #fff;
@@ -21,11 +18,9 @@ hr{
 }
 
 .post-card{
-    /* border: 2px solid teal; */
     padding: 15px;
     border-radius: 10px;
     width: 60%;
-    /* overflow: auto; */
 }
 
 .post-header{
@@ -99,7 +94,7 @@ hr{
     align-items: center;
     background-color: white;
     color: #5F2384;
-    width: 150px;
+    min-width: 150px;
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
@@ -111,7 +106,7 @@ hr{
     justify-content: space-around;
     align-items: center;
     background-color: white;
-    width: 70px;
+    min-width: 70px;
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
@@ -157,6 +152,7 @@ hr{
     background-color: #fff;
     color: #5F2384;
     cursor: pointer;
+    font-family: inherit;
 }
 
 .add-comment-form{
@@ -178,6 +174,7 @@ hr{
     padding: 5px;
     margin-top: 10px;
     cursor: pointer;
+    font-family: inherit;
 }
 
 @media only screen and (max-width: 950px) {

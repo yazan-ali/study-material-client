@@ -32,7 +32,7 @@ function OneCourseQuizizz(props) {
 
         return (
             <div className="quiz-list-root">
-                <AppBar backgroundColor={"#007991"} />
+                <AppBar backgroundColor={"#5F2384"} />
                 <Container maxWidth="lg">
                     <div className="quiz-list">
                         {

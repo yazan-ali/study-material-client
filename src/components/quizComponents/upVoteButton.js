@@ -44,12 +44,12 @@ function UpVoteButton({ user, quizId, up_votes, up_votes_count, }, props) {
 
     const upVoteButton = user ? (
         upVoted ? (
-            <ForwardIcon style={{ transform: "rotate(270deg)", marginTop: 8, marginRight: 5 }} />
+            <ForwardIcon style={{ transform: "rotate(270deg)", marginTop: 8, marginRight: 5, cursor: "pointer" }} />
         ) : (
-            <ForwardOutlinedIcon style={{ transform: "rotate(270deg)", marginTop: 8, marginRight: 5 }} />
+            <ForwardOutlinedIcon style={{ transform: "rotate(270deg)", marginTop: 8, marginRight: 5, cursor: "pointer" }} />
         )
     ) : (
-        <ForwardOutlinedIcon style={{ transform: "rotate(270deg)", marginTop: 8, marginRight: 5 }} />
+        <ForwardOutlinedIcon style={{ transform: "rotate(270deg)", marginTop: 8, marginRight: 5, cursor: "pointer" }} />
     )
 
     return (

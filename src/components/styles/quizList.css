@@ -9,9 +9,9 @@
 }
 
 .quizListBackground{
-    background: #7E1476; 
-    background: -webkit-linear-gradient(to right,#5F1C5A,#7E1476,#41173E); 
-    background: linear-gradient(to right,#5F1C5A,#7E1476,#41173E); 
+    background: #5F2384; 
+    background: -webkit-linear-gradient(to right,#5F2384,#592B86,#5F2384); 
+    background: linear-gradient(to right,#5F2384,#592B86,#5F2384); 
 }
 
 .quiz-div{
@@ -44,7 +44,7 @@
 }
 
 .AddQuizBtn{
-    background-color: #7E1476;
+    background-color: #5F2384;
     padding: 10px;
     border-radius: 5px;
     color: #fff;

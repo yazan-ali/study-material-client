@@ -44,12 +44,12 @@ function DownVoteButton({ user, quizId, down_votes, down_votes_count }) {
 
     const downVoteButton = user ? (
         downVoted ? (
-            <ForwardIcon style={{ transform: "rotate(90deg)", marginTop: 8, marginRight: 5 }} />
+            <ForwardIcon style={{ transform: "rotate(90deg)", marginTop: 8, marginRight: 5, cursor: "pointer" }} />
         ) : (
-            <ForwardOutlinedIcon style={{ transform: "rotate(90deg)", marginTop: 8, marginRight: 5 }} />
+            <ForwardOutlinedIcon style={{ transform: "rotate(90deg)", marginTop: 8, marginRight: 5, cursor: "pointer" }} />
         )
     ) : (
-        <ForwardOutlinedIcon style={{ transform: "rotate(90deg)", marginTop: 8, marginRight: 5 }} />
+        <ForwardOutlinedIcon style={{ transform: "rotate(90deg)", marginTop: 8, marginRight: 5, cursor: "pointer" }} />
     )
 
     return (

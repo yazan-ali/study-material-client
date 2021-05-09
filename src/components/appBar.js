@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
     search: {
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: "#E7EEE9",
+        backgroundColor: "#DADADA",
         '&:hover': {
         },
     },
