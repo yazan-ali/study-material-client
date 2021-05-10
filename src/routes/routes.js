@@ -25,7 +25,7 @@ function Routes() {
                 <AuthRoute exact path="/register/admin" component={RegisterAdmin} />
                 <Route exact path="/:course_name" render={(routeProps) => <OneCourseQuizizz {...routeProps} />} />
                 <Route exact path="/quiz/:course_name/:id" render={(routeProps) => < Quiz {...routeProps} />} />
-                <MutationRoute exact path="https://6098f4f4edc1db0008b8762c--inspiring-babbage-e50db6.netlify.app/hi/quiz/new" component={AddQuiz} />
+                <MutationRoute exact path="/quiz/new" component={AddQuiz} />
                 <Route exact path="/quiz/:id/:username/edit" render={(routeProps) => <EditQuiz {...routeProps} />} />
                 {/* <Route exact path="/profile/:username" render={(routeProps) => <Profile {...routeProps} />} /> */}
                 <Route exact path="/dashbord/:username" render={(routeProps) => <DashbordData {...routeProps} />} />
