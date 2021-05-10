@@ -59,7 +59,7 @@ function QuizItem(props) {
                                 }}
                             >
                                 <MenuItem key="edit">
-                                    <Link style={{ textDecoration: "none", color: "black" }} to={`/quiz/${props.quiz.id}/${props.quiz.createdBy.username}/edit`}>Edit</Link>
+                                    <a style={{ textDecoration: "none", color: "black" }} href={`/quiz/${props.quiz.id}/${props.quiz.createdBy.username}/edit`}>Edit</a>
                                 </MenuItem>
                                 <MenuItem key="delete">
                                     <DeleteButton deleteFromDashbord={false} quizId={props.quiz.id} />

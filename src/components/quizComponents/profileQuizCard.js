@@ -49,7 +49,7 @@ function ProfileQuizCard(props) {
                 }}
             >
                 <MenuItem key="edit">
-                    <Link style={{ textDecoration: "none", color: "black" }} to={`/quiz/${props.quiz.id}/${props.user.username}/edit`}>Edit</Link>
+                    <a style={{ textDecoration: "none", color: "black" }} href={`/quiz/${props.quiz.id}/${props.user.username}/edit`}>Edit</a>
                 </MenuItem>
                 <MenuItem key="delete">
                     <DeleteButton deleteFromDashbord={true} quizId={props.quiz.id} handleQuizDelete={props.handleQuizDelete} />

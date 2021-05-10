@@ -115,16 +115,16 @@ function Dashbord(props) {
                             <TabPanel value={value} index={0}>
                                 {user && (
                                     <div style={{ marginBottom: "15px" }}>
-                                        <Link className="addQuizBtn" to={`/quiz/new`}>Add New Quiz</Link>
+                                        <a className="addQuizBtn" href="/quiz/new">Add New Quiz</a>
                                     </div>
                                 )}
                                 <AuthUserQuizList quizizz={user.quizizz} user={user} handleQuizDelete={handleQuizDelete} />
                             </TabPanel>
-                            <TabPanel value={value} index={1}>
-                                {/* <AuthUserDocList doc={doc} handleDelete={handleDocDelete} /> */}
+                            {/* <TabPanel value={value} index={1}>
+                                <AuthUserDocList doc={doc} handleDelete={handleDocDelete} />
                             </TabPanel>
                             <TabPanel value={value} index={2}>
-                            </TabPanel>
+                            </TabPanel> */}
                         </div>
                     </div>
                 </Container>
