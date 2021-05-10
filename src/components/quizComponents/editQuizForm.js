@@ -26,7 +26,7 @@ function EditQuizForm(props) {
     const [open, setOpen] = useState(false);
     const [courseName, setCourseName] = useState(quizData.course_name);
     const [quizTitle, setQuizTitle] = useState(quizData.quiz_title);
-    const [oneWay, setOneWay] = useState(false);
+    const [oneWay, setOneWay] = useState(quizData.isOneWay);
     const [showNewQuestionForm, setShowNewQuestionForm] = useState(false)
     const [successMsg, setSuccessMsg] = useState(false);
     const [failMsg, setFailMsg] = useState(false);
