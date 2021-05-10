@@ -293,14 +293,18 @@ function App_Bar(props) {
                     </div>
                     <Divider />
                     <List>
-                        <ListItem button>
-                            <ListItemIcon><SchoolIcon /></ListItemIcon>
-                            <Link className={classes.listItem} to="/"><ListItemText primary="Quizizz" /></Link>
-                        </ListItem>
-                        <ListItem button>
-                            <ListItemIcon><HomeIcon /></ListItemIcon>
-                            <Link className={classes.listItem} to="/posts"><ListItemText primary="Posts" /></Link>
-                        </ListItem>
+                        <Link className={classes.listItem} to="/">
+                            <ListItem button>
+                                <ListItemIcon><SchoolIcon /></ListItemIcon>
+                                <ListItemText primary="Quizizz" />
+                            </ListItem>
+                        </Link>
+                        <Link className={classes.listItem} to="/posts">
+                            <ListItem button>
+                                <ListItemIcon><HomeIcon /></ListItemIcon>
+                                <ListItemText primary="Posts" />
+                            </ListItem>
+                        </Link>
                         <ListItem>
                             <div className={classes.search}>
                                 <InputBase
@@ -332,7 +336,7 @@ function App_Bar(props) {
                     <div className={classes.drawerHeader} />
                 </main>
             </div >
-        </ClickAwayListener>
+        </ClickAwayListener >
     );
 }
 
