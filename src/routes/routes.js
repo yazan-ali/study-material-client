@@ -18,7 +18,7 @@ function Routes() {
     return (
         <div className="App">
             <Switch>
-                <Route exact path="/" component={AllQuizizz} />
+                <Route exact path="/homePage" component={AllQuizizz} />
                 <Route exact path="/posts" component={AllPosts} />
                 <AuthRoute exact path="/login" component={Login} />
                 <AuthRoute exact path="/register" component={SignUp} />
