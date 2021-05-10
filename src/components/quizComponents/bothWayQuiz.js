@@ -71,7 +71,7 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
 
     return (
         < div className="root" >
-            <AppBar backgroundColor={"#61045f"} />
+            <AppBar backgroundColor={"#4A156B"} />
             {course_name && <h1 className="course_name">{`${course_name} quiz`}</h1>}
             {
                 questions && (

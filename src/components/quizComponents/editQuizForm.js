@@ -143,7 +143,7 @@ function EditQuizForm(props) {
 
     return (
         <main className="addQuizRoot">
-            <AppBar backgroundColor={"#0A1E36"} />
+            <AppBar backgroundColor={"#4A156B"} />
             <Container style={{ padding: "15px 0" }} maxWidth="md">
                 <button style={{ margin: "10px 25px" }} className="addQuiz-paperBtn" onClick={showAddNewQuestionForm}>{`${showNewQuestionForm ? "Cancel" : "Add new question"}`}</button>
                 {showNewQuestionForm && <AddQuizForm addNewQuestion={addNewQuestion} />}

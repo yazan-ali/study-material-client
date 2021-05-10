@@ -56,7 +56,7 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
 
     return (
         <div style={{ height: "100vh" }} className={`root ${!showCorrectAnswers && 'rootJustify'}`}>
-            <AppBar backgroundColor={"#61045f"} />
+            <AppBar backgroundColor={"#4A156B"} />
             {
                 questions && (
                     <div className="conatiner">

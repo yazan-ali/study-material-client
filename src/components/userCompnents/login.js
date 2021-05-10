@@ -20,7 +20,7 @@ const BootstrapInput = withStyles((theme) => ({
   },
   input: {
     borderRadius: 4,
-    border: "2px solid #5F2384",
+    border: "2px solid  gray",
     position: 'relative',
     backgroundColor: theme.palette.common.white,
     fontSize: 16,
@@ -51,16 +51,6 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // display: 'flex',
-    // flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
-
 function Login(props) {
 
   const [errors, setErrors] = useState("");
@@ -88,7 +78,7 @@ function Login(props) {
 
   return (
     <>
-      <AppBar backgroundColor={"#711B7E"} />
+      <AppBar backgroundColor={"#4A156B"} />
       <div className="container">
         <form onSubmit={handleSubmit}>
           <h2>Login</h2>
@@ -105,7 +95,7 @@ function Login(props) {
             }</Alert>
           )}
           <FormControl>
-            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+            <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
               Username *
             </InputLabel>
             <BootstrapInput
@@ -116,7 +106,7 @@ function Login(props) {
             />
           </FormControl>
           <FormControl>
-            <InputLabel style={{ color: "#5F2384", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+            <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
               Password *
             </InputLabel>
             <BootstrapInput

@@ -122,7 +122,7 @@ function AddQuiz() {
 
     return (
         <main className="addQuizRoot">
-            <AppBar backgroundColor={"#0A1E36"} />
+            <AppBar backgroundColor={"#4A156B"} />
             <Container style={{ padding: "15px 0" }} maxWidth="md">
                 <AddQuizForm addNewQuestion={addNewQuestion} />
                 {
