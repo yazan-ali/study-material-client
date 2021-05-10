@@ -112,12 +112,10 @@ function EditQuizForm(props) {
             if (result) {
                 setSuccessMsg("Quiz Updated Successfully");
                 setSnackBarOpen(true);
-                window.location.reload();
             }
         },
         onError(err) {
             setFailMsg(err.graphQLErrors[0].message);
-            console.log(err)
             setSnackBarOpen(true);
         },
     });
@@ -132,7 +130,6 @@ function EditQuizForm(props) {
             setSnackBarOpen(true);
         } else {
             updateQuiz();
-            console.log(quiz)
         }
         setOpen(false);
     }
