@@ -144,6 +144,7 @@ function Register(props) {
               value={values.password}
               name="password"
               id="bootstrap-input"
+              type="password"
             />
           </FormControl>
           <FormControl>

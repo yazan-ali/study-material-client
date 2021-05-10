@@ -20,7 +20,7 @@ const BootstrapInput = withStyles((theme) => ({
   },
   input: {
     borderRadius: 4,
-    border: "2px solid  gray",
+    border: "2px solid gray",
     position: 'relative',
     backgroundColor: theme.palette.common.white,
     fontSize: 16,
@@ -51,19 +51,27 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-function Login(props) {
+
+function RegisterAdmin(props) {
 
   const [errors, setErrors] = useState("");
   const context = useContext(AuthContext);
 
-  const { handleChange, handleSubmit, values } = useForm(login, {
+  const initialState = {
+    first_name: "",
+    last_name: "",
     username: "",
-    password: ""
-  });
+    password: "",
+    university: "",
+    major: "",
+    isAdmin: true
+  }
 
-  const [loginUser] = useMutation(LOGIN_USER, {
+  const { handleChange, handleSubmit, values } = useForm(registerUser, initialState);
+
+  const [addUser] = useMutation(REGISTER_USER, {
     update(_, result) {
-      context.login(result.data.login);
+      context.login(result.data.register);
       props.history.push("/");
     },
     onError(err) {
@@ -72,8 +80,8 @@ function Login(props) {
     variables: values
   });
 
-  function login() {
-    loginUser();
+  function registerUser() {
+    addUser();
   }
 
   return (
@@ -81,7 +89,7 @@ function Login(props) {
       <AppBar backgroundColor={"#4A156B"} />
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <h2>Login</h2>
+          <h2>Sign Up</h2>
           {Object.keys(errors).length > 0 && (
             <Alert style={{ borderRadius: "10px", width: "100%", marginBottom: 10 }} severity="error">{
               <div>
@@ -94,6 +102,28 @@ function Login(props) {
               </div>
             }</Alert>
           )}
+          <FormControl>
+            <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              First Name *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.first_name}
+              name="first_name"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Last Name *
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.last_name}
+              name="last_name"
+              id="bootstrap-input"
+            />
+          </FormControl>
           <FormControl>
             <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
               Username *
@@ -117,35 +147,69 @@ function Login(props) {
               type="password"
             />
           </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              University
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.university}
+              name="university"
+              id="bootstrap-input"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+              Major
+            </InputLabel>
+            <BootstrapInput
+              onChange={handleChange}
+              value={values.major}
+              name="major"
+              id="bootstrap-input"
+            />
+          </FormControl>
           <div className="btns">
-            <button type="submit" className="register-btn">Login</button>
-            <Link to="/register">Create an account</Link>
+            <button type="submit" className="register-btn">Sign up</button>
+            <Link to="/login">Already have an account ?</Link>
           </div>
         </form>
-      </div >
+      </div>
     </>
   );
 }
 
-const LOGIN_USER = gql`
-  mutation login(
+const REGISTER_USER = gql`
+  mutation register(
+    $first_name: String!
+    $last_name: String!
     $username: String!
     $password: String!
+    $university: String
+    $major: String
+    $isAdmin: Boolean!
   ) {
-    login(
+    register(
+      registerInput: {
+        first_name: $first_name
+        last_name: $last_name
         username: $username
         password: $password
+        university: $university
+        major: $major
+        isAdmin: $isAdmin
+      }
     ) {
       id
       first_name
       last_name
       username
-      token
       university
       major
       isAdmin
+      token
     }
   }
 `;
 
-export default Login;
+export default RegisterAdmin;

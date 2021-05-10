@@ -190,9 +190,3 @@ hr{
         border-left: none;
     }
 }
-
-@media only screen and (max-width: 570px) {
-    .add-comment-form{
-    margin-left: -20px;
-   }
-}

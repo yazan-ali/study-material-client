@@ -33,7 +33,7 @@ function AllQuizizz() {
             <div className="quiz-list-root">
                 <AppBar backgroundColor={"#4A156B"} />
                 <Container maxWidth="lg">
-                    {user && <Link className="AddQuizBtn" to="/quiz/new">Add New Quiz</Link>}
+                    {user && <a className="AddQuizBtn" href="/quiz/new">Add New Quiz</a>}
                     <div style={{ marginTop: 20 }} className="quiz-list">
                         {
                             currentQuizizz.map(q => (
