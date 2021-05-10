@@ -70,15 +70,18 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                                 </div>
                             )
                         }
-                        <div className="comments-list">
-                            {
-                                comments.map(comment => (
-                                    <>
-                                        <CommentItem postId={id} comment={comment} user={user} />
-                                    </>
-                                ))
-                            }
-                        </div>
+                        {
+                            commentsCount === 0 ? <h3>No comments found</h3> :
+                                <div className="comments-list">
+                                    {
+                                        comments.map(comment => (
+                                            <>
+                                                <CommentItem postId={id} comment={comment} user={user} />
+                                            </>
+                                        ))
+                                    }
+                                </div>
+                        }
                     </div>
                 </Fade>
             )}

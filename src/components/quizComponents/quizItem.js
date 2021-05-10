@@ -32,7 +32,7 @@ function QuizItem(props) {
     return (
         <div className="quiz-div quizListBackground">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <Link to={`/quiz/${props.quiz.course_name}/${props.quiz.id}`}>{props.quiz.course_name} : {props.quiz.quiz_title}</Link>
+                <Link className="capitalize" to={`/quiz/${props.quiz.course_name}/${props.quiz.id}`}>{props.quiz.course_name} {props.quiz.quiz_title && `: ${props.quiz.quiz_title}`} </Link>
                 {
                     user && user.username === props.quiz.createdBy.username && (
                         <div style={{ width: 20, marginTop: -12, marginRight: 20 }}>
@@ -74,7 +74,7 @@ function QuizItem(props) {
                 <PersonRoundedIcon style={{ color: "white" }} />
                 <span>{props.quiz.participants}</span>
             </div>
-            <Link to={`/profile/${props.quiz.createdBy.username}`} > {`created by : ${props.quiz.createdBy.username}`}</Link>
+            <Link to={`/profile/${props.quiz.createdBy.username}`} > {`Created by : ${props.quiz.createdBy.username}`}</Link>
             <UpVoteButton
                 quizId={props.quiz.id}
                 up_votes={props.quiz.up_votes}

@@ -52,6 +52,7 @@ function EditPostForm({ postId, body, image, user, showEditForm }) {
                     getPosts: updatedPost,
                 },
             });
+            showEditForm();
         },
         onError(err) {
             setFailMsg(err.graphQLErrors[0].message);

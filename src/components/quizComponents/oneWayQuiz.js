@@ -25,7 +25,7 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
             radio.checked = false
         })
         setAnswer("");
-        if (answer === questions[currentQuestion].correctAnswer) {
+        if (answer.toLowerCase() === questions[currentQuestion].correctAnswer.toLowerCase()) {
             setScore(score + 1);
         }
         if (currentQuestion < number_of_questions - 1) {

@@ -35,14 +35,14 @@ function AddQuizForm(props) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         const quiz = {
-            question: quizData.question,
+            question: quizData.question.trim(),
             answersOptions: [
-                { answerText: quizData.answer1 },
-                { answerText: quizData.answer2 },
-                { answerText: quizData.answer3 },
-                { answerText: quizData.answer4 }
+                { answerText: quizData.answer1.trim() },
+                { answerText: quizData.answer2.trim() },
+                { answerText: quizData.answer3.trim() },
+                { answerText: quizData.answer4.trim() }
             ],
-            correctAnswer: quizData.correctAnswer,
+            correctAnswer: quizData.correctAnswer.trim(),
         };
         props.addNewQuestion({ ...quiz, id: uuid() });
         quizData.question = "";

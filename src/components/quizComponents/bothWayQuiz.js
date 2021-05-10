@@ -45,7 +45,10 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
 
         ];
         for (let i = 0; i < number_of_questions; i++) {
-            if (currentAnswer[i] === questions[i].correctAnswer) {
+            if (!currentAnswer[i]) {
+                currentAnswer[i] = ""
+            }
+            if (currentAnswer[i].toLowerCase() === questions[i].correctAnswer.toLowerCase()) {
                 result++;
             }
         }
