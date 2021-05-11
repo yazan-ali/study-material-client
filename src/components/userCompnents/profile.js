@@ -1,27 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/profile.css';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar1 from '../appBar';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import UserQuizList from '../quizComponents/userQuizList';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import Loading from '../loading';
 import Avatar from '@material-ui/core/Avatar';
 import QuizItem from '../quizComponents/quizItem';
 import PostCard from '../postsComponets/postCard';
-import PostForm from '../postsComponets/postForm';
+import { AuthContext } from '../userContext';
 
 
 function Profile(props) {
 
+    const { user } = useContext(AuthContext);
 
     const { loading, data } = useQuery(FETCH_USER_QUERY, {
         variables: { username: props.match.params.username }
@@ -61,8 +53,8 @@ function Profile(props) {
                                             <h3>{data.getUser.major}</h3>
                                         </div>
                                         <div className="tabs-bar">
-                                            <button onClick={() => handleTabsChange(0)}>Quizizz</button>
-                                            <button onClick={() => handleTabsChange(1)}>Posts</button>
+                                            <button style={{ borderBottom: tab === 0 && "4px solid #5F2384" }} onClick={() => handleTabsChange(0)}>Quizizz</button>
+                                            <button style={{ borderBottom: tab === 1 && "4px solid #5F2384" }} onClick={() => handleTabsChange(1)}>Posts</button>
                                         </div>
                                     </div>
                                     {tab === 0 && (

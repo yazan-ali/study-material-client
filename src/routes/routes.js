@@ -11,7 +11,7 @@ import DashbordData from '../components/userCompnents/dashbordData';
 import AllPosts from '../components/postsComponets/allPosts';
 import { Route, Switch } from 'react-router-dom';
 import '../App.css';
-import { AuthRoute, MutationRoute } from '../util/AuthRoute';
+import { AuthRoute, MutationRoute, DashboardRoute } from '../util/AuthRoute';
 import RegisterAdmin from '../components/userCompnents/registerAdmin';
 
 function Routes() {
@@ -28,7 +28,7 @@ function Routes() {
                 <MutationRoute exact path="/quiz/new" component={AddQuiz} />
                 <Route exact path="/quiz/:id/:username/edit" render={(routeProps) => <EditQuiz {...routeProps} />} />
                 <Route exact path="/profile/:username" render={(routeProps) => <Profile {...routeProps} />} />
-                <Route exact path="/dashbord/:username" render={(routeProps) => <DashbordData {...routeProps} />} />
+                <DashboardRoute exact path="/dashbord/:username" component={DashbordData} />
             </Switch>
         </div>
     );

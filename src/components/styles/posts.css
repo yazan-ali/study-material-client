@@ -173,6 +173,7 @@ hr{
     margin-top: 10px;
     cursor: pointer;
     font-family: inherit;
+    outline: none;
 }
 
 @media only screen and (max-width: 950px) {

@@ -27,4 +27,16 @@ const MutationRoute = ({ component: Component, ...rest }) => {
     )
 }
 
-export { AuthRoute, MutationRoute };
+const DashboardRoute = ({ component: Component, ...rest }) => {
+    const { user } = useContext(AuthContext);
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                !user ? <Redirect to="/" /> : <Component {...props} />
+            }
+        />
+    )
+}
+
+export { AuthRoute, MutationRoute, DashboardRoute };
