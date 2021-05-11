@@ -37,7 +37,7 @@ function OneCourseQuizizz(props) {
                     <div className="quiz-list">
                         {
                             currentQuizizz.map(q => (
-                                <QuizItem quiz={q} key={q._id} />
+                                <QuizItem quiz={q} key={q._id} fromDashboard={false} />
                             ))
                         }
                     </div>

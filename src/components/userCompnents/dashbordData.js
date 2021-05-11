@@ -18,7 +18,9 @@ function DashbordData() {
             {
                 loading ? <Loading />
                     :
-                    <Dashbord userData={data.getUser} />
+                    <>
+                        <Dashbord userData={data.getUser} />
+                    </>
 
             }
         </div>
@@ -59,7 +61,30 @@ const FETCH_USER_QUERY = gql`
         }
         # up_voted_quiz:[Quiz!]
         # down_voted_quiz:[Quiz!]
+        posts{
+          id
+          body
+          image
+          createdAt
+          createdBy{
+              first_name
+              last_name
+              username
+          }
+          comments{
+              first_name
+              last_name
+              username
+              id
+              body
+          }
+          likes{
+              username
+          }
+          likeCount
+          commentsCount
       }
+    }
   }
 `
 

@@ -8,7 +8,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function CreateCommentForm({ postId, user }) {
+function CreateCommentForm({ postId, user, fromDashboard }) {
 
     const commentInputRef = useRef(null);
 
@@ -30,6 +30,9 @@ function CreateCommentForm({ postId, user }) {
 
     const [createComment] = useMutation(CREATE_COMMENT_MUTAION, {
         update() {
+            if (fromDashboard) {
+                window.location.reload();
+            }
             setBody("");
             commentInputRef.current.blur();
         },

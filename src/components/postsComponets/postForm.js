@@ -11,7 +11,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function PostForm({ user }) {
+function PostForm({ user, fromDashboard, addPost }) {
 
     const commentInputRef = useRef(null);
 
@@ -41,15 +41,26 @@ function PostForm({ user }) {
             image: values.image
         },
         update(proxy, result) {
-            const data = proxy.readQuery({
-                query: FETCH_POSTS_QUERY
-            });
-            proxy.writeQuery({
-                query: FETCH_POSTS_QUERY,
-                data: {
-                    getPosts: [result.data.createPost, ...data.getPosts],
-                },
-            });
+            if (fromDashboard) {
+                addPost({
+                    ...result.data.createPost,
+                    createdBy: {
+                        username: user.username,
+                        first_name: user.first_name,
+                        last_name: user.last_name
+                    }
+                });
+            } else {
+                const data = proxy.readQuery({
+                    query: FETCH_POSTS_QUERY
+                });
+                proxy.writeQuery({
+                    query: FETCH_POSTS_QUERY,
+                    data: {
+                        getPosts: [result.data.createPost, ...data.getPosts],
+                    },
+                });
+            }
             setValues({
                 body: "",
                 image: ""
@@ -57,7 +68,8 @@ function PostForm({ user }) {
             commentInputRef.current.blur();
         },
         onError(err) {
-            setFailMsg(err.graphQLErrors[0].message);
+            // setFailMsg(err.graphQLErrors[0].message);
+            console.log(err)
             setSnackBarOpen(true);
         }
     });

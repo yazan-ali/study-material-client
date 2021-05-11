@@ -27,7 +27,7 @@ function Routes() {
                 <Route exact path="/quiz/:course_name/:id" render={(routeProps) => < Quiz {...routeProps} />} />
                 <MutationRoute exact path="/quiz/new" component={AddQuiz} />
                 <Route exact path="/quiz/:id/:username/edit" render={(routeProps) => <EditQuiz {...routeProps} />} />
-                {/* <Route exact path="/profile/:username" render={(routeProps) => <Profile {...routeProps} />} /> */}
+                <Route exact path="/profile/:username" render={(routeProps) => <Profile {...routeProps} />} />
                 <Route exact path="/dashbord/:username" render={(routeProps) => <DashbordData {...routeProps} />} />
             </Switch>
         </div>

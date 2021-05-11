@@ -14,77 +14,24 @@ import UserQuizList from '../quizComponents/userQuizList';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import Loading from '../loading';
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        padding: theme.spacing(2),
-        width: "80%",
-        margin: "auto",
-        [theme.breakpoints.down('sm')]: {
-            width: "100%",
-        },
-    },
-    pic: {
-        fontSize: 150,
-        color: "white"
-    },
-    root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-        [theme.breakpoints.down('sm')]: {
-        },
-    },
-    appBar: {
-        backgroundColor: "#26a0da",
-    },
-}));
+import Avatar from '@material-ui/core/Avatar';
+import QuizItem from '../quizComponents/quizItem';
+import PostCard from '../postsComponets/postCard';
+import PostForm from '../postsComponets/postForm';
 
 
 function Profile(props) {
 
-    const classes = useStyles();
-    const [value, setValue] = useState(0);
 
     const { loading, data } = useQuery(FETCH_USER_QUERY, {
         variables: { username: props.match.params.username }
     });
 
+    const [tab, setTab] = useState(0);
 
-    const handleChange = (even, newValue) => {
-        setValue(newValue);
+
+    const handleTabsChange = (value) => {
+        setTab(value);
     };
 
     return (
@@ -92,41 +39,56 @@ function Profile(props) {
             {
                 loading ? <Loading /> :
                     (
-                        <div className="profile-root">
-                            <div className="profile-card">
-                                <Container maxWidth="md">
-                                    <AppBar1 backgroundColor={"#26a0da"} />
-                                    <div className={classes.paper}>
-                                        <div className="user-card">
-                                            <div className="profile-pic">
-                                                <AccountCircleIcon className={classes.pic} />
-                                            </div>
-                                            <div className="user-info">
-                                                <h3>{`${data.getUser.first_name}  ${data.getUser.last_name}`}</h3>
-                                                <h3> {data.getUser.university}</h3>
-                                                <h3>{data.getUser.major}</h3>
-                                            </div>
+                        <div>
+                            <AppBar1 backgroundColor={"#4A156B"} />
+                            <Container maxWidth="lg">
+                                <div className="profile-container">
+                                    <div className="profile-card">
+                                        <Avatar className="profile-pic"
+                                            style={{
+                                                width: 90,
+                                                height: 90,
+                                                fontSize: 30,
+                                                backgroundColor: "#fff",
+                                                color: "#5F2384",
+                                                fontWeight: 600
+                                            }} alt="Remy Sharp">
+                                            {data.getUser.first_name[0].toUpperCase()}  {data.getUser.first_name[0].toUpperCase()}
+                                        </Avatar>
+                                        <div className="user-info">
+                                            <h3>{data.getUser.first_name} {data.getUser.last_name}</h3>
+                                            <h3> {data.getUser.university}</h3>
+                                            <h3>{data.getUser.major}</h3>
                                         </div>
-                                        <div className={classes.root}>
-                                            <AppBar className={classes.appBar} position="static">
-                                                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" indicatorColor="primary">
-                                                    <Tab label="Quizizz" {...a11yProps(0)} />
-                                                    <Tab label="Documents" {...a11yProps(1)} />
-                                                    <Tab label="Send message" {...a11yProps(2)} />
-                                                </Tabs>
-                                            </AppBar>
-                                            <TabPanel value={value} index={0}>
-                                                <UserQuizList quizizz={data.getUser.quizizz} />
-                                            </TabPanel>
-                                            <TabPanel value={value} index={1}>
-                                            </TabPanel>
-                                            <TabPanel value={value} index={2}>
-                                            </TabPanel>
+                                        <div className="tabs-bar">
+                                            <button onClick={() => handleTabsChange(0)}>Quizizz</button>
+                                            <button onClick={() => handleTabsChange(1)}>Posts</button>
                                         </div>
                                     </div>
-                                </Container>
-                            </div>
-                        </div>
+                                    {tab === 0 && (
+                                        <div style={{ marginTop: 50 }}>
+                                            <a className="AddQuizBtn" href="/quiz/new">Add New Quiz</a>
+                                            <div style={{ marginTop: 20 }} className="quiz-list">
+                                                {
+                                                    data.getUser.quizizz.map(q => (
+                                                        <QuizItem quiz={q} key={q._id} />
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
+                                    )}
+                                    {tab === 1 && (
+                                        <div style={{ marginTop: 50 }} className="posts-container">
+                                            {
+                                                data.getUser.posts.map(post => (
+                                                    <PostCard post={post} />
+                                                ))
+                                            }
+                                        </div>
+                                    )}
+                                </div>
+                            </Container>
+                        </div >
                     )
             }
         </>
@@ -164,6 +126,26 @@ const FETCH_USER_QUERY = gql`
             up_votes_counts
             down_votes_counts
             participants
+        }
+        posts{
+          id
+          body
+          image
+          createdAt
+          createdBy{
+              first_name
+              last_name
+              username
+          }
+          comments{
+              first_name
+              last_name
+              username
+              id
+              body
+          }
+          commentsCount
+          likeCount
         }
         # up_voted_quiz:[Quiz!]
         # down_voted_quiz:[Quiz!]

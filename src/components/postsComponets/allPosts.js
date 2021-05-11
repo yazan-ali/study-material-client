@@ -23,7 +23,7 @@ function AllPosts() {
                             {user && <PostForm user={user} />}
                             {
                                 data.getPosts.map(post => (
-                                    <PostCard post={post} user={user} />
+                                    <PostCard post={post} user={user} fromDashboard={false} />
                                 ))
                             }
                         </div>

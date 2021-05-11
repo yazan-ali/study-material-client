@@ -5,7 +5,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import DeleteButton from './deleteButton';
 
-function EditDeleteIcon({ postId, commentId, iconColor, showEditForm, handleCommentEditForm }) {
+function EditDeleteIcon({ postId, commentId, iconColor, showEditForm, handleCommentEditForm, deletePost, fromDashboard }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const openMenu = Boolean(anchorEl);
@@ -57,7 +57,7 @@ function EditDeleteIcon({ postId, commentId, iconColor, showEditForm, handleComm
                     <span onClick={handleEditForm}>Edit</span>
                 </MenuItem>
                 <MenuItem key="delete">
-                    <DeleteButton postId={postId} commentId={commentId} />
+                    <DeleteButton postId={postId} commentId={commentId} deletePost={deletePost} fromDashboard={fromDashboard} />
                 </MenuItem>
             </Menu>
         </div>

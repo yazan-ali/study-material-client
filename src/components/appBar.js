@@ -188,7 +188,7 @@ function App_Bar(props) {
         >
             {user ?
                 <>
-                    <MenuItem><Link style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} to={`/dashbord/${user.username}`}>{user.username}</Link></MenuItem>
+                    <MenuItem><a style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} href={`/dashbord/${user.username}`}>{user.username}</a></MenuItem>
                     <MenuItem onClick={logout}><span style={{ color: `${props.backgroundColor}`, textDecoration: "none" }}>Logout</span></MenuItem>
                 </>
                 :
@@ -213,7 +213,7 @@ function App_Bar(props) {
         >
             {user ?
                 <>
-                    <MenuItem><Link style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} to={`/dashbord/${user.username}`}>{user.username}</Link></MenuItem>
+                    <MenuItem><a style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} href={`/dashbord/${user.username}`}>{user.username}</a></MenuItem>
                     <MenuItem onClick={logout}><span style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} >Logout</span></MenuItem>
                 </>
                 :

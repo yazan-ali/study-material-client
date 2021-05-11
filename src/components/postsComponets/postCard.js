@@ -10,7 +10,7 @@ import EditPostForm from './editPostForm';
 import CommentItem from './commentItem';
 
 
-function PostCard({ post: { id, body, image, createdAt, createdBy, comments, commentsCount, likes, likeCount }, user }) {
+function PostCard({ post: { id, body, image, createdAt, createdBy, comments, commentsCount, likes, likeCount }, user, fromDashboard, editPost, deletePost }) {
 
     const [showComments, setShowComments] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
@@ -23,12 +23,20 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
         <div className="post-container">
             {
                 showEditForm ? (
-                    <EditPostForm postId={id} body={body} image={image} user={user} showEditForm={handleEditForm} />
+                    <EditPostForm
+                        postId={id}
+                        body={body}
+                        image={image}
+                        user={user}
+                        fromDashboard={fromDashboard}
+                        showEditForm={handleEditForm}
+                        editPost={editPost}
+                    />
                 ) : (
                     <div className="post-card" style={{ width: showComments ? "" : "100%" }}>
                         {user && user.username === createdBy.username && (
                             <div style={{ marginLeft: -30, marginTop: -10 }}>
-                                <EditDeleteIcon showEditForm={handleEditForm} postId={id} iconColor="white" />
+                                <EditDeleteIcon showEditForm={handleEditForm} deletePost={deletePost} postId={id} fromDashboard={fromDashboard} iconColor="white" />
                             </div>
                         )}
                         <div className="post-header">
@@ -66,7 +74,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                         {
                             user && (
                                 <div className="comment-form-container">
-                                    <CreateCommentForm postId={id} user={user} />
+                                    <CreateCommentForm postId={id} user={user} fromDashboard={fromDashboard} />
                                 </div>
                             )
                         }
@@ -76,7 +84,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                                     {
                                         comments.map(comment => (
                                             <>
-                                                <CommentItem postId={id} comment={comment} user={user} />
+                                                <CommentItem postId={id} comment={comment} user={user} fromDashboard={fromDashboard} />
                                             </>
                                         ))
                                     }

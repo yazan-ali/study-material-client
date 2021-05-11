@@ -12,7 +12,7 @@ function Alert(props) {
 }
 
 
-function EditPostForm({ postId, body, image, user, showEditForm }) {
+function EditPostForm({ postId, body, image, user, showEditForm, fromDashboard, editPost }) {
 
     const [failMsg, setFailMsg] = useState(false);
     const [snackBarOpen, setSnackBarOpen] = useState(false);
@@ -36,23 +36,34 @@ function EditPostForm({ postId, body, image, user, showEditForm }) {
             image: values.image
         },
         update(proxy, result) {
-            let data = proxy.readQuery({
-                query: FETCH_POSTS_QUERY
-            });
-            const updatedPost = data.getPosts.map(post => {
-                if (post.id === postId) {
-                    return { ...post, body: values.body, image: values.image }
-                } else {
-                    return post
+            if (fromDashboard) {
+                const updatedPost = {
+                    postId: postId,
+                    body: values.body,
+                    image: values.image,
                 }
-            });
-            proxy.writeQuery({
-                query: FETCH_POSTS_QUERY,
-                data: {
-                    getPosts: updatedPost,
-                },
-            });
-            showEditForm();
+                editPost(updatedPost);
+                showEditForm();
+            }
+            else {
+                let data = proxy.readQuery({
+                    query: FETCH_POSTS_QUERY
+                });
+                const updatedPost = data.getPosts.map(post => {
+                    if (post.id === postId) {
+                        return { ...post, body: values.body, image: values.image }
+                    } else {
+                        return post
+                    }
+                });
+                proxy.writeQuery({
+                    query: FETCH_POSTS_QUERY,
+                    data: {
+                        getPosts: updatedPost,
+                    },
+                });
+                showEditForm();
+            }
         },
         onError(err) {
             setFailMsg(err.graphQLErrors[0].message);

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../userContext';
 import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';
@@ -37,7 +36,7 @@ function AllQuizizz() {
                     <div style={{ marginTop: 20 }} className="quiz-list">
                         {
                             currentQuizizz.map(q => (
-                                <QuizItem quiz={q} key={q._id} />
+                                <QuizItem quiz={q} key={q._id} fromDashboard={false} />
                             ))
                         }
                     </div>

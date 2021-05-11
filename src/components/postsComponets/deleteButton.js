@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { FETCH_POSTS_QUERY } from '../../util/graphql';
 
-function DeleteButton({ postId, commentId }) {
+function DeleteButton({ postId, commentId, deletePost, fromDashboard }) {
 
     const [open, setOpen] = useState(false);
 
@@ -24,16 +24,23 @@ function DeleteButton({ postId, commentId }) {
     const [deletePostOrComment] = useMutation(mutation, {
         update(proxy) {
             setOpen(false);
-            if (!commentId) {
-                const data = proxy.readQuery({
-                    query: FETCH_POSTS_QUERY
-                });
-                proxy.writeQuery({
-                    query: FETCH_POSTS_QUERY,
-                    data: {
-                        getPosts: data.getPosts.filter(post => post.id !== postId),
-                    },
-                });
+            if (fromDashboard) {
+                window.location.reload();
+            }
+            if (deletePost) {
+                deletePost(postId)
+            } else {
+                if (!commentId) {
+                    const data = proxy.readQuery({
+                        query: FETCH_POSTS_QUERY
+                    });
+                    proxy.writeQuery({
+                        query: FETCH_POSTS_QUERY,
+                        data: {
+                            getPosts: data.getPosts.filter(post => post.id !== postId),
+                        },
+                    });
+                }
             }
         },
         variables: { postId, commentId }

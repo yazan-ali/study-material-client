@@ -4,7 +4,7 @@ import EditCommentForm from './editCommentForm';
 import Avatar from '@material-ui/core/Avatar';
 import EditDeleteIcon from './editDeleteIcon';
 
-function CommentItem({ comment: { username, first_name, last_name, id, body }, postId, user }) {
+function CommentItem({ comment: { username, first_name, last_name, id, body }, postId, user, fromDashboard }) {
 
     const [showCommentEditForm, setShowCommentEditForm] = useState(false);
 
@@ -23,6 +23,7 @@ function CommentItem({ comment: { username, first_name, last_name, id, body }, p
                             commentBody={body}
                             user={user}
                             handleCommentEditForm={handleCommentEditForm}
+                            fromDashboard={fromDashboard}
                         />
                     </div>
                 ) : (
@@ -41,6 +42,7 @@ function CommentItem({ comment: { username, first_name, last_name, id, body }, p
                                         commentId={id} i
                                         conColor="gray"
                                         handleCommentEditForm={handleCommentEditForm}
+                                        fromDashboard={fromDashboard}
                                     />
                                 </div>
                             )}
