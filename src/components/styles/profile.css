@@ -1,95 +1,3 @@
-/* .profile-root{
-    background: #314755;  
-    background: -webkit-linear-gradient(to right, #26a0da, #314755); 
-    background: linear-gradient(to right, #26a0da, #314755); 
-    min-height: 100vh;
-}
-
-.profile-card{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 41px;
-}
-
-.user-info{
-    color: white;
-    height: 100%;
-    text-transform: capitalize;
-}
-
-.user-card{
-    text-align: center;
-    padding: 20px 40px;
-    background-color: #26a0da;
-    font-size: 25px;
-    line-height: 0.5;
-}
-
-.user-quiz-list{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.user-material{
-    background-color:#26a0da;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 5px 5px;
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.user-material a{
-    text-decoration: none;
-    color: white;
-}
-
-
-.addQuizBtn{
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #26a0da;
-    color: #fff;
-    margin-left: 5px;
-    font-weight: 600;
-    font-size: inherit;
-    font-family: inherit;
-    text-decoration: none;
-}
-
-.addQuizBtn:hover{
-    text-decoration: none;
-    color: #fff;
-}
-
-.addQuizBtn:focus{
-    outline: none;
-}
-
-.nextPrevIcons{
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    cursor: pointer;
-    color: #26a0da;
-}
-
-@media only screen and (max-width: 750px) {
-   .user-material{
-        width: 100%;
-   }
-   .profile-root{
-       height: 100%;
-       width: 100%;
-   }
-} */
-
 .profile-container{
     display: flex;
     flex-direction: column;
@@ -136,4 +44,10 @@
 
 .quizizz{
     margin-top: 50px;
+}
+
+@media only screen and (max-width: 750px) {
+    .profile-card{
+        width: 95%;
+    }
 }

@@ -24,9 +24,6 @@ function DeleteButton({ postId, commentId, deletePost, fromDashboard }) {
     const [deletePostOrComment] = useMutation(mutation, {
         update(proxy) {
             setOpen(false);
-            if (fromDashboard) {
-                window.location.reload();
-            }
             if (deletePost) {
                 deletePost(postId)
             } else {
@@ -40,6 +37,8 @@ function DeleteButton({ postId, commentId, deletePost, fromDashboard }) {
                             getPosts: data.getPosts.filter(post => post.id !== postId),
                         },
                     });
+                } else if (commentId && fromDashboard) {
+                    window.location.reload();
                 }
             }
         },

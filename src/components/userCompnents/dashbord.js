@@ -72,12 +72,12 @@ function Dashbord(props) {
                             <h3>{userData.major}</h3>
                         </div>
                         <div className="tabs-bar">
-                            <button onClick={() => handleTabsChange(0)}>Quizizz</button>
-                            <button onClick={() => handleTabsChange(1)}>Posts</button>
+                            <button style={{ borderBottom: tab === 0 && "4px solid #5F2384" }} onClick={() => handleTabsChange(0)}>Quizizz</button>
+                            <button style={{ borderBottom: tab === 1 && "4px solid #5F2384" }} onClick={() => handleTabsChange(1)}>Posts</button>
                         </div>
                     </div>
                     {tab === 0 && (
-                        <div style={{ marginTop: 50 }}>
+                        <div style={{ marginTop: 50, }}>
                             <a className="AddQuizBtn" href="/quiz/new">Add New Quiz</a>
                             <div style={{ marginTop: 20 }} className="quiz-list">
                                 {
