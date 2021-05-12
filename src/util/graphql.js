@@ -57,8 +57,11 @@ export const FETCH_POSTS_QUERY = gql`
   }
 `;
 
-export const FETCH_COURSE_NAME_QUERY = gql`
+export const FETCH_SEARCH_RESULT_QUERY = gql`
   {
-      getCourseName
+      getSearchOptions{
+        searchType
+        searchName
+      }
   }
 `;

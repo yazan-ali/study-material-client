@@ -117,6 +117,7 @@
 .answerLabel{
     color: #4A156B;
     margin-left: 20px;
+    display: flex;
 }
 .option {
   position: relative;

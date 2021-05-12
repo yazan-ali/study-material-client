@@ -27,7 +27,7 @@ import SchoolIcon from '@material-ui/icons/School';
 import './styles/appBar.css';
 import { AuthContext } from './userContext';
 import { useQuery } from '@apollo/client';
-import { FETCH_COURSE_NAME_QUERY } from '../util/graphql'
+import { FETCH_SEARCH_RESULT_QUERY } from '../util/graphql'
 
 const drawerWidth = 240;
 
@@ -127,7 +127,7 @@ function App_Bar(props) {
 
     const { user, logout } = useContext(AuthContext);
 
-    const { data } = useQuery(FETCH_COURSE_NAME_QUERY);
+    const { data } = useQuery(FETCH_SEARCH_RESULT_QUERY);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -168,10 +168,10 @@ function App_Bar(props) {
         setSearch(evt.target.value);
     }
 
-    const filteredCourses =
+    const filteredSearchOptions =
         search !== "" ?
-            data.getCourseName.filter(c => {
-                return c.toLowerCase().includes(search.toLowerCase())
+            data.getSearchOptions.filter(option => {
+                return option.searchName.toLowerCase().includes(search.toLowerCase())
             })
             : [];
 
@@ -317,9 +317,15 @@ function App_Bar(props) {
                                     inputProps={{ 'aria-label': 'search' }}
                                 />
                                 <div className="vertical-menu">
-                                    {filteredCourses.map(c => (
+                                    {filteredSearchOptions.map(option => (
                                         <>
-                                            <Link to={`/${c}`}>{c}</Link>
+                                            {
+                                                option.searchType === "course_name" ? (
+                                                    <Link to={`/${option.searchName}`}>{option.searchName}</Link>
+                                                ) : (
+                                                    <Link to={`profile/${option.searchName}`}>{option.searchName}</Link>
+                                                )
+                                            }
                                         </>
                                     ))}
                                 </div>
