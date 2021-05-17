@@ -33,6 +33,10 @@
     padding: 10px;
 }
 
+.addQuiz-option{
+    display: flex;
+}
+
 .addQuiz-Btn{
     padding: 10px;
     border: none;

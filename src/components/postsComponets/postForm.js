@@ -68,8 +68,7 @@ function PostForm({ user, fromDashboard, addPost }) {
             commentInputRef.current.blur();
         },
         onError(err) {
-            // setFailMsg(err.graphQLErrors[0].message);
-            console.log(err)
+            setFailMsg(err.graphQLErrors[0].message);
             setSnackBarOpen(true);
         }
     });

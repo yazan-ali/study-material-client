@@ -59,7 +59,7 @@ function Profile(props) {
                                     </div>
                                     {tab === 0 && (
                                         <div style={{ marginTop: 50 }}>
-                                            <a className="AddQuizBtn" href="/quiz/new">Add New Quiz</a>
+                                            {user && <a className="AddQuizBtn" href="/quiz/new">Add New Quiz</a>}
                                             <div style={{ marginTop: 20 }} className="quiz-list">
                                                 {
                                                     data.getUser.quizizz.map(q => (

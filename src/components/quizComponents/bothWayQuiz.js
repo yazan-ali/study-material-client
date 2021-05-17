@@ -18,48 +18,25 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
         variables: { quizId: id },
     });
 
+    const handleChange = (evt) => {
+        setAnswers({ ...answers, [evt.target.name]: evt.target.value });
+    }
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
         let result = 0;
-        const currentAnswer = [
-            answers.answer1, answers.answer2, answers.answer3, answers.answer4, answers.answer5,
-            answers.answer6, answers.answer7, answers.answer8, answers.answer9, answers.answer10,
-            answers.answer11, answers.answer12, answers.answer13, answers.answer14, answers.answer15,
-            answers.answer16, answers.answer17, answers.answer18, answers.answer19, answers.answer20,
-            answers.answer21, answers.answer22, answers.answer23, answers.answer24, answers.answer25,
-            answers.answer26, answers.answer27, answers.answer28, answers.answer29, answers.answer30,
-            answers.answer31, answers.answer32, answers.answer33, answers.answer34, answers.answer35,
-            answers.answer36, answers.answer37, answers.answer38, answers.answer39, answers.answer40,
-            answers.answer41, answers.answer42, answers.answer43, answers.answer44, answers.answer45,
-            answers.answer46, answers.answer47, answers.answer48, answers.answer49, answers.answer50,
-            answers.answer51, answers.answer52, answers.answer53, answers.answer54, answers.answer55,
-            answers.answer56, answers.answer57, answers.answer58, answers.answer59, answers.answer60,
-            answers.answer61, answers.answer62, answers.answer63, answers.answer64, answers.answer65,
-            answers.answer66, answers.answer67, answers.answer68, answers.answer69, answers.answer70,
-            answers.answer71, answers.answer72, answers.answer73, answers.answer74, answers.answer75,
-            answers.answer76, answers.answer77, answers.answer78, answers.answer79, answers.answer80,
-            answers.answer81, answers.answer82, answers.answer83, answers.answer84, answers.answer85,
-            answers.answer86, answers.answer87, answers.answer88, answers.answer89, answers.answer90,
-            answers.answer91, answers.answer92, answers.answer93, answers.answer94, answers.answer95,
-            answers.answer96, answers.answer97, answers.answer99, answers.answer99, answers.answer100,
 
-        ];
-        for (let i = 0; i < number_of_questions; i++) {
-            if (!currentAnswer[i]) {
-                currentAnswer[i] = ""
-            }
-            if (currentAnswer[i].toLowerCase() === questions[i].correctAnswer.toLowerCase()) {
+        for (let key in answers) {
+            if (answers[key].toLowerCase() === questions[key].correctAnswer.toLowerCase()) {
                 result++;
             }
         }
+
         setScore(result);
         setShowScore(true);
         addParticipant();
     }
 
-    const handleChange = (evt) => {
-        setAnswers({ ...answers, [evt.target.name]: evt.target.value });
-    }
 
     const retyQuiz = () => {
         setScore(0);
@@ -116,7 +93,7 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
                                                     < div className="option">
                                                         {answer.answerText &&
                                                             <label className="answerLabel" for={`answer${idx}${i + 1}`}>{`${symbols[i]}: ${answer.answerText}`}
-                                                                <input onChange={handleChange} type="radio" id={`answer${idx}${i + 1}`} name={`answer${idx + 1}`} value={answer.answerText} />
+                                                                <input onChange={handleChange} type="radio" id={`answer${idx}${i + 1}`} name={idx} value={answer.answerText} />
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         }

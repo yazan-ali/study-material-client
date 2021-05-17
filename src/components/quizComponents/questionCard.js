@@ -148,7 +148,8 @@ function QuestionCard(props) {
                                 <div className="addQuiz-answer">
                                     {props.answers.map((answer, i) => (
                                         answer.answerText && < div className="addQuiz-option">
-                                            <h4>{`${symbols[i]}: ${answer.answerText}`}</h4>
+                                            <h4>{`${symbols[i]}: `}</h4>
+                                            <h4 style={{ marginLeft: 10 }}>{`${answer.answerText}`}</h4>
                                         </div>
                                     ))}
                                     <h3>{`correct ansewr : ${props.correctAnswer}`}</h3>
