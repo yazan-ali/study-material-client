@@ -5,6 +5,8 @@ import Paper from "@material-ui/core/Paper";
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -15,9 +17,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function AddQuizForm(props) {
 
     const classes = useStyles();
+
+    const [failMsg, setFailMsg] = useState(false);
+    const [snackBarOpen, setSnackBarOpen] = useState(false);
 
     const [quizData, setQuizData] = useState({
         question: "",
@@ -27,6 +36,13 @@ function AddQuizForm(props) {
         answer4: "",
         correctAnswer: "",
     });
+
+    const handleSnackBarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            setSnackBarOpen(false);
+        }
+        setSnackBarOpen(false);
+    };
 
     const handleChange = (evt) => {
         setQuizData({ ...quizData, [evt.target.name]: evt.target.value })
@@ -44,13 +60,19 @@ function AddQuizForm(props) {
             ],
             correctAnswer: quizData.correctAnswer.trim(),
         };
-        props.addNewQuestion({ ...quiz, id: uuid() });
-        quizData.question = "";
-        quizData.answer1 = "";
-        quizData.answer2 = "";
-        quizData.answer3 = "";
-        quizData.answer4 = "";
-        quizData.correctAnswer = "";
+
+        const answers = [quizData.answer1.trim(), quizData.answer2.trim(), quizData.answer3.trim(), quizData.answer4.trim()]
+        if (answers.includes(quiz.correctAnswer)) {
+            props.addNewQuestion({ ...quiz, id: uuid() });
+            quizData.question = "";
+            quizData.answer1 = "";
+            quizData.answer2 = "";
+            quizData.answer3 = "";
+            quizData.answer4 = "";
+            quizData.correctAnswer = "";
+        } else {
+            setSnackBarOpen(true);
+        }
     }
 
     return (
@@ -125,6 +147,11 @@ function AddQuizForm(props) {
                     />
                     <button className="addQuiz-paperBtn" type="submit">Add Question</button>
                 </form>
+                <Snackbar open={snackBarOpen} autoHideDuration={5000} onClose={handleSnackBarClose}>
+                    <Alert onClose={handleSnackBarClose} severity="error">
+                        correct answer must match one of the answers options
+                    </Alert>
+                </Snackbar>
             </Paper>
         </Container>
     );
