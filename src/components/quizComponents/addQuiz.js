@@ -109,14 +109,10 @@ function AddQuiz() {
         if (quiz.length < 1) {
             setFailMsg("the quiz should have at least 1 question")
             setSnackBarOpen(true);
-            // if the user try to add a quiz with more than 100 questions
-        } else if (quiz.length > 100) {
-            setFailMsg("the quiz should have at most 100 question")
-            setSnackBarOpen(true);
         } else {
             createQuiz();
         }
-        // if not show fail msg
+        // if not show msg
         setDialogOpen(false);
     }
 
