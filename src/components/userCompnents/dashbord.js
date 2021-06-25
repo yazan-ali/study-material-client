@@ -44,6 +44,51 @@ function Dashbord(props) {
         setUserData({ ...userData, posts: filterUserPost });
     }
 
+    const addComment = (postId, newComment) => {
+
+        const newPostsData = userData.posts.map(post => {
+            if (post.id === postId) {
+                const newPostComment = [newComment, ...post.comments];
+                return { ...post, commentsCount: post.commentsCount + 1, comments: newPostComment };
+            } else {
+                return post;
+            }
+        });
+        setUserData({ ...userData, posts: newPostsData });
+    }
+
+    const editComment = (postId, commentId, updatedComment) => {
+
+        const newPostsData = userData.posts.map(post => {
+            if (post.id === postId) {
+                return {
+                    ...post, comments: post.comments.map(comment => {
+                        if (comment.id === commentId) {
+                            return updatedComment
+                        } else {
+                            return comment;
+                        }
+                    })
+                };
+            } else {
+                return post;
+            }
+        });
+
+        setUserData({ ...userData, posts: newPostsData });
+    }
+
+    const deleteComment = (postId, commentId) => {
+        const filterUserPostComments = userData.posts.map(post => {
+            if (post.id === postId) {
+                return { ...post, commentsCount: post.commentsCount - 1, comments: post.comments.filter(comment => comment.id !== commentId) };
+            } else {
+                return post;
+            }
+        });
+        setUserData({ ...userData, posts: filterUserPostComments });
+    }
+
     const handleQuizDelete = (id) => {
         const filterUserQuizizz = userData.quizizz.filter(quiz => quiz.id !== id);
         setUserData({ ...userData, quizizz: filterUserQuizizz });
@@ -93,7 +138,7 @@ function Dashbord(props) {
                             {user && <PostForm user={user} fromDashboard={true} addPost={addPost} />}
                             {
                                 userData.posts.map(post => (
-                                    <PostCard post={post} user={user} fromDashboard={true} editPost={editPost} deletePost={deletePost} />
+                                    <PostCard post={post} user={user} fromDashboard={true} editPost={editPost} deletePost={deletePost} deleteComment={deleteComment} addComment={addComment} editComment={editComment} />
                                 ))
                             }
                         </div>

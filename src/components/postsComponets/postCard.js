@@ -10,7 +10,7 @@ import EditPostForm from './editPostForm';
 import CommentItem from './commentItem';
 
 
-function PostCard({ post: { id, body, image, createdAt, createdBy, comments, commentsCount, likes, likeCount }, user, fromDashboard, editPost, deletePost }) {
+function PostCard({ post: { id, body, image, createdAt, createdBy, comments, commentsCount, likes, likeCount }, user, fromDashboard, editPost, deletePost, addComment, editComment, deleteComment }) {
 
     const [showComments, setShowComments] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
@@ -67,14 +67,14 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                     </div>
                 )
             }
-            { showComments && (
+            {showComments && (
                 <Fade in={showComments} timeout={1000}>
                     <div className="comments-card">
                         <h3>Comments</h3>
                         {
                             user && (
                                 <div className="comment-form-container">
-                                    <CreateCommentForm postId={id} user={user} fromDashboard={fromDashboard} />
+                                    <CreateCommentForm postId={id} user={user} fromDashboard={fromDashboard} addComment={addComment} />
                                 </div>
                             )
                         }
@@ -84,7 +84,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                                     {
                                         comments.map(comment => (
                                             <>
-                                                <CommentItem postId={id} comment={comment} user={user} fromDashboard={fromDashboard} />
+                                                <CommentItem postId={id} comment={comment} user={user} fromDashboard={fromDashboard} deleteComment={deleteComment} editComment={editComment} />
                                             </>
                                         ))
                                     }

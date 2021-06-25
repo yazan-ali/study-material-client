@@ -77,6 +77,7 @@ const FETCH_USER_QUERY = gql`
               username
               id
               body
+              createdAt
           }
           likes{
               username

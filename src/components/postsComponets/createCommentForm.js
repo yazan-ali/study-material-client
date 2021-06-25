@@ -8,7 +8,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function CreateCommentForm({ postId, user, fromDashboard }) {
+function CreateCommentForm({ postId, user, fromDashboard, addComment }) {
 
     const commentInputRef = useRef(null);
 
@@ -29,9 +29,17 @@ function CreateCommentForm({ postId, user, fromDashboard }) {
     }
 
     const [createComment] = useMutation(CREATE_COMMENT_MUTAION, {
-        update() {
+        update(proxy, result) {
             if (fromDashboard) {
-                window.location.reload();
+                const { first_name, last_name, username, id, body } = result.data.createComment.comments[0]
+                const newComment = {
+                    first_name,
+                    last_name,
+                    username,
+                    id,
+                    body
+                }
+                addComment(postId, result.data.createComment.comments[0])
             }
             setBody("");
             commentInputRef.current.blur();

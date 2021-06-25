@@ -8,7 +8,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function CreateCommentForm({ postId, commentId, commentBody, user, handleCommentEditForm, fromDashboard }) {
+function CreateCommentForm({ postId, commentId, commentBody, user, handleCommentEditForm, fromDashboard, editComment }) {
 
     const [failMsg, setFailMsg] = useState(false);
     const [snackBarOpen, setSnackBarOpen] = useState(false);
@@ -29,7 +29,14 @@ function CreateCommentForm({ postId, commentId, commentBody, user, handleComment
     const [createComment] = useMutation(UPDATE_COMMENT_MUTAION, {
         update() {
             if (fromDashboard) {
-                window.location.reload();
+                const updatedComment = {
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    username: user.username,
+                    id: commentId,
+                    body: body,
+                }
+                editComment(postId, commentId, updatedComment)
             }
             handleCommentEditForm();
         },

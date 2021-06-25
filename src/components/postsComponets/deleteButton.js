@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { FETCH_POSTS_QUERY } from '../../util/graphql';
 
-function DeleteButton({ postId, commentId, deletePost, fromDashboard }) {
+function DeleteButton({ postId, commentId, deletePost, deleteComment, fromDashboard }) {
 
     const [open, setOpen] = useState(false);
 
@@ -38,7 +38,8 @@ function DeleteButton({ postId, commentId, deletePost, fromDashboard }) {
                         },
                     });
                 } else if (commentId && fromDashboard) {
-                    window.location.reload();
+                    // window.location.reload();
+                    deleteComment(postId, commentId);
                 }
             }
         },
