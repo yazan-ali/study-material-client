@@ -40,12 +40,14 @@ export const FETCH_POSTS_QUERY = gql`
           first_name
           last_name
           username
+          image
         }
         comments{
             body
             first_name
             last_name
             username
+            user_image
             id
         }
         likes{

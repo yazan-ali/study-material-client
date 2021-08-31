@@ -36,17 +36,23 @@ function Profile(props) {
                             <Container maxWidth="lg">
                                 <div className="profile-container">
                                     <div className="profile-card">
-                                        <Avatar className="profile-pic"
-                                            style={{
-                                                width: 90,
-                                                height: 90,
-                                                fontSize: 30,
-                                                backgroundColor: "#fff",
-                                                color: "#5F2384",
-                                                fontWeight: 600
-                                            }} alt="Remy Sharp">
-                                            {data.getUser.first_name[0].toUpperCase()}  {data.getUser.first_name[0].toUpperCase()}
-                                        </Avatar>
+                                        {
+                                            data.getUser.image ? (
+                                                <img src={data.getUser.image} className="profile-pic" alt="profile-pic" />
+                                            ) : (
+                                                <Avatar
+                                                    style={{
+                                                        width: 90,
+                                                        height: 90,
+                                                        fontSize: 30,
+                                                        backgroundColor: "#fff",
+                                                        color: "#5F2384",
+                                                        fontWeight: 600
+                                                    }} alt="Remy Sharp">
+                                                    {data.getUser.first_name[0].toUpperCase()}  {data.getUser.last_name[0].toUpperCase()}
+                                                </Avatar>
+                                            )
+                                        }
                                         <div className="user-info">
                                             <h3>{data.getUser.first_name} {data.getUser.last_name}</h3>
                                             <h3> {data.getUser.university}</h3>
@@ -96,6 +102,7 @@ const FETCH_USER_QUERY = gql`
         username
         university
         major
+        image
         quizizz{
             id
             questions{
@@ -128,6 +135,7 @@ const FETCH_USER_QUERY = gql`
               first_name
               last_name
               username
+              image
           }
           comments{
               first_name

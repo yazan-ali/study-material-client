@@ -20,6 +20,7 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
 
     const handleChange = (evt) => {
         setAnswers({ ...answers, [evt.target.name]: evt.target.value });
+        console.log(answers)
     }
 
     const handleSubmit = (evt) => {

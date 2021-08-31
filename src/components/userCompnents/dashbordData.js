@@ -36,6 +36,7 @@ const FETCH_USER_QUERY = gql`
         username
         university
         major
+        image
         quizizz{
             id
             questions{
@@ -70,6 +71,7 @@ const FETCH_USER_QUERY = gql`
               first_name
               last_name
               username
+              image
           }
           comments{
               first_name
@@ -78,6 +80,7 @@ const FETCH_USER_QUERY = gql`
               id
               body
               createdAt
+              user_image
           }
           likes{
               username

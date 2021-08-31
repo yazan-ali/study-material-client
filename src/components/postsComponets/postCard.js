@@ -41,9 +41,19 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                         )}
                         <div className="post-header">
                             <Link className="post-createdBy" to={`profile/${createdBy.username}`}>
-                                <Avatar style={{ width: 40, fontSize: 15 }} alt="Remy Sharp">
-                                    {createdBy.first_name[0].toUpperCase()}  {createdBy.first_name[0].toUpperCase()}
-                                </Avatar>
+                                {
+                                    createdBy.image ? (
+                                        <img style={{ width: 80 }} src={createdBy.image} className="profile-pic" alt="profile-pic" />
+                                    ) : (
+                                        <Avatar
+                                            style={{
+                                                width: 40,
+                                                fontSize: 15,
+                                            }} alt="Remy Sharp">
+                                            {createdBy.first_name[0].toUpperCase()}  {createdBy.last_name[0].toUpperCase()}
+                                        </Avatar>
+                                    )
+                                }
                                 <span> {createdBy.first_name} {createdBy.last_name}</span>
                             </Link>
                             <span>{moment(createdAt).fromNow()}</span>

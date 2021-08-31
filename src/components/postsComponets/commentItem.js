@@ -4,7 +4,7 @@ import EditCommentForm from './editCommentForm';
 import Avatar from '@material-ui/core/Avatar';
 import EditDeleteIcon from './editDeleteIcon';
 
-function CommentItem({ comment: { username, first_name, last_name, id, body }, postId, user, fromDashboard, editComment, deleteComment }) {
+function CommentItem({ comment: { username, first_name, last_name, user_image, id, body }, postId, user, fromDashboard, editComment, deleteComment }) {
 
     const [showCommentEditForm, setShowCommentEditForm] = useState(false);
 
@@ -31,9 +31,19 @@ function CommentItem({ comment: { username, first_name, last_name, id, body }, p
                     <div className="comment">
                         <div style={{ marginLeft: -10 }} className="post-header">
                             <Link className="post-createdBy" to={`profile/${username}`}>
-                                <Avatar style={{ width: 40, fontSize: 15 }} alt="Remy Sharp">
-                                    {first_name[0].toUpperCase()}  {first_name[0].toUpperCase()}
-                                </Avatar>
+                                {
+                                    user_image ? (
+                                        <img style={{ width: 50 }} src={user_image} className="profile-pic" alt="profile-pic" />
+                                    ) : (
+                                        <Avatar
+                                            style={{
+                                                width: 40,
+                                                fontSize: 15,
+                                            }} alt="Remy Sharp">
+                                            {first_name[0].toUpperCase()}  {last_name[0].toUpperCase()}
+                                        </Avatar>
+                                    )
+                                }
                                 <span> {first_name} {last_name}</span>
                             </Link>
                             {user && user.username === username && (

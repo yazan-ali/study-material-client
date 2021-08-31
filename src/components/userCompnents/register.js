@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '../appBar';
 import '../styles/register.css';
+import Image_Uplode from "../image_uplode"
 import { AuthContext } from '../userContext';
 import Alert from '@material-ui/lab/Alert';
 import { useForm } from '../../util/hooks';
@@ -55,6 +56,7 @@ const BootstrapInput = withStyles((theme) => ({
 function Register(props) {
 
   const [errors, setErrors] = useState("");
+  const [image, setImage] = useState("");
   const context = useContext(AuthContext);
 
   const initialState = {
@@ -64,7 +66,11 @@ function Register(props) {
     password: "",
     university: "",
     major: "",
-    isAdmin: false
+    isAdmin: false,
+  }
+
+  const handelUploadImage = (image_url) => {
+    setImage(image_url)
   }
 
   const { handleChange, handleSubmit, values } = useForm(registerUser, initialState);
@@ -77,7 +83,16 @@ function Register(props) {
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
-    variables: values
+    variables: {
+      first_name: values.first_name,
+      last_name: values.last_name,
+      username: values.username,
+      password: values.password,
+      university: values.university,
+      major: values.major,
+      isAdmin: values.isAdmin,
+      image: image,
+    }
   });
 
   function registerUser() {
@@ -102,11 +117,13 @@ function Register(props) {
               </div>
             }</Alert>
           )}
+          <Image_Uplode getImageUrl={handelUploadImage} />
           <FormControl>
             <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
               First Name *
             </InputLabel>
             <BootstrapInput
+              required
               onChange={handleChange}
               value={values.first_name}
               name="first_name"
@@ -118,6 +135,7 @@ function Register(props) {
               Last Name *
             </InputLabel>
             <BootstrapInput
+              required
               onChange={handleChange}
               value={values.last_name}
               name="last_name"
@@ -129,6 +147,7 @@ function Register(props) {
               Username *
             </InputLabel>
             <BootstrapInput
+              required
               onChange={handleChange}
               value={values.username}
               name="username"
@@ -140,6 +159,7 @@ function Register(props) {
               Password *
             </InputLabel>
             <BootstrapInput
+              required
               onChange={handleChange}
               value={values.password}
               name="password"
@@ -188,6 +208,7 @@ const REGISTER_USER = gql`
     $university: String
     $major: String
     $isAdmin: Boolean!
+    $image: String
   ) {
     register(
       registerInput: {
@@ -198,6 +219,7 @@ const REGISTER_USER = gql`
         university: $university
         major: $major
         isAdmin: $isAdmin
+        image: $image
       }
     ) {
       id
@@ -207,6 +229,7 @@ const REGISTER_USER = gql`
       university
       major
       isAdmin
+      image
       token
     }
   }

@@ -46,6 +46,11 @@
     margin-top: 50px;
 }
 
+.profile-pic{
+    width: 120px;
+    border-radius: 50%;
+}
+
 @media only screen and (max-width: 750px) {
     .profile-card{
         width: 95%;

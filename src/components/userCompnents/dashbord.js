@@ -100,17 +100,23 @@ function Dashbord(props) {
             <Container maxWidth="lg">
                 <div className="profile-container">
                     <div className="profile-card">
-                        <Avatar className="profile-pic"
-                            style={{
-                                width: 90,
-                                height: 90,
-                                fontSize: 30,
-                                backgroundColor: "#fff",
-                                color: "#5F2384",
-                                fontWeight: 600
-                            }} alt="Remy Sharp">
-                            {userData.first_name[0].toUpperCase()}  {userData.first_name[0].toUpperCase()}
-                        </Avatar>
+                        {
+                            userData.image ? (
+                                <img src={userData.image} className="profile-pic" alt="profile-pic" />
+                            ) : (
+                                <Avatar
+                                    style={{
+                                        width: 90,
+                                        height: 90,
+                                        fontSize: 30,
+                                        backgroundColor: "#fff",
+                                        color: "#5F2384",
+                                        fontWeight: 600
+                                    }} alt="Remy Sharp">
+                                    {userData.first_name[0].toUpperCase()}  {userData.last_name[0].toUpperCase()}
+                                </Avatar>
+                            )
+                        }
                         <div className="user-info">
                             <h3>{userData.first_name} {userData.last_name}</h3>
                             <h3> {userData.university}</h3>

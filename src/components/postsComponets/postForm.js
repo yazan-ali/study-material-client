@@ -84,9 +84,19 @@ function PostForm({ user, fromDashboard, addPost }) {
                 <h2>Create a Post </h2>
                 {
                     user && <Link className="post-createdBy" href={`profile/${user.username}`}>
-                        <Avatar style={{ width: 40, fontSize: 15 }} alt="Remy Sharp">
-                            {user.first_name[0].toUpperCase()}  {user.first_name[0].toUpperCase()}
-                        </Avatar>
+                        {
+                            user.image ? (
+                                <img style={{ width: 80 }} src={user.image} className="profile-pic" alt="profile-pic" />
+                            ) : (
+                                <Avatar
+                                    style={{
+                                        width: 40,
+                                        fontSize: 15,
+                                    }} alt="Remy Sharp">
+                                    {user.first_name[0].toUpperCase()}  {user.first_name[0].toUpperCase()}
+                                </Avatar>
+                            )
+                        }
                         <span> {user.first_name} {user.last_name}</span>
                     </Link>
                 }
