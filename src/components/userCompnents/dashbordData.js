@@ -60,8 +60,6 @@ const FETCH_USER_QUERY = gql`
             down_votes_counts
             participants
         }
-        # up_voted_quiz:[Quiz!]
-        # down_voted_quiz:[Quiz!]
         posts{
           id
           body
@@ -74,13 +72,15 @@ const FETCH_USER_QUERY = gql`
               image
           }
           comments{
-              first_name
-              last_name
-              username
+              createdBy{
+                  username
+                  first_name
+                  last_name
+                  image
+              }
               id
               body
               createdAt
-              user_image
           }
           likes{
               username

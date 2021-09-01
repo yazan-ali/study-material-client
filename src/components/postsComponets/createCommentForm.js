@@ -31,14 +31,6 @@ function CreateCommentForm({ postId, user, fromDashboard, addComment }) {
     const [createComment] = useMutation(CREATE_COMMENT_MUTAION, {
         update(proxy, result) {
             if (fromDashboard) {
-                const { first_name, last_name, username, id, body } = result.data.createComment.comments[0]
-                const newComment = {
-                    first_name,
-                    last_name,
-                    username,
-                    id,
-                    body
-                }
                 addComment(postId, result.data.createComment.comments[0])
             }
             setBody("");
@@ -79,7 +71,14 @@ const CREATE_COMMENT_MUTAION = gql`
       createComment(postId: $postId, body: $body){
           id
           comments{
-              id body first_name last_name username createdAt
+              id 
+              body 
+              createdBy{
+                first_name 
+                last_name 
+                username
+              }
+              createdAt
           }
           commentsCount
       }

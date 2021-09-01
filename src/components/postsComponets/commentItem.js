@@ -4,7 +4,7 @@ import EditCommentForm from './editCommentForm';
 import Avatar from '@material-ui/core/Avatar';
 import EditDeleteIcon from './editDeleteIcon';
 
-function CommentItem({ comment: { username, first_name, last_name, user_image, id, body }, postId, user, fromDashboard, editComment, deleteComment }) {
+function CommentItem({ comment: { createdBy: { username, first_name, last_name, image }, id, body }, postId, user, fromDashboard, editComment, deleteComment }) {
 
     const [showCommentEditForm, setShowCommentEditForm] = useState(false);
 
@@ -32,8 +32,8 @@ function CommentItem({ comment: { username, first_name, last_name, user_image, i
                         <div style={{ marginLeft: -10 }} className="post-header">
                             <Link className="post-createdBy" to={`profile/${username}`}>
                                 {
-                                    user_image ? (
-                                        <img style={{ width: 50 }} src={user_image} className="profile-pic" alt="profile-pic" />
+                                    image ? (
+                                        <img style={{ width: 50, height: 50 }} src={image} className="profile-pic" alt="profile-pic" />
                                     ) : (
                                         <Avatar
                                             style={{

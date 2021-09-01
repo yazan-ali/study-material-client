@@ -122,7 +122,15 @@ const UPDATE_POST = gql`
             }
             likeCount
             comments{
-                id body first_name last_name username createdAt
+                id 
+                body 
+                createdBy{
+                    first_name 
+                    last_name 
+                    username
+                    image
+                }
+                createdAt
             }
             commentsCount
         }

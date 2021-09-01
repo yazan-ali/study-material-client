@@ -30,9 +30,11 @@ function CreateCommentForm({ postId, commentId, commentBody, user, handleComment
         update() {
             if (fromDashboard) {
                 const updatedComment = {
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    username: user.username,
+                    createdBy: {
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        username: user.username,
+                    },
                     id: commentId,
                     body: body,
                 }
@@ -77,7 +79,15 @@ const UPDATE_COMMENT_MUTAION = gql`
       updateComment(postId: $postId, commentId: $commentId, body: $body){
           id
           comments{
-              id body first_name last_name username createdAt
+              id 
+              body
+              createdBy{
+                  first_name 
+                  last_name 
+                  username
+                  image
+              }
+              createdAt
           }
           commentsCount
       }

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
 import axios from 'axios';
 
-function Image_Uplode({ getImageUrl }) {
+function Image_Uplode({ handelChangeProfilePic }) {
 
     const [fileInput, setFileInput] = useState('');
     const [previewSource, setPreviewSource] = useState('');
     const [selectedFile, setSelectedFile] = useState();
-    const [successMsg, setSuccessMsg] = useState('');
-    const [errMsg, setErrMsg] = useState('');
+    const [imageUrl, setImageUrl] = useState("");
 
     const handleFileInputChange = (evt) => {
         const file = evt.target.files[0];
@@ -24,17 +25,17 @@ function Image_Uplode({ getImageUrl }) {
         };
     };
 
-    const handleSubmitFile = (evt) => {
+    const handleSubmitFile = async (evt) => {
         evt.preventDefault();
         if (!selectedFile) return;
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
         reader.onloadend = () => {
             uploadImage(reader.result);
+            updataProfileImage()
         };
         reader.onerror = () => {
-            console.error('AHHHHHHHH!!');
-            setErrMsg('something went wrong!');
+            console.error('something went wrong!');
         };
     };
 
@@ -50,44 +51,50 @@ function Image_Uplode({ getImageUrl }) {
                 "https://api.cloudinary.com/v1_1/study-material/image/upload",
                 data
             )
-
-            getImageUrl(res.data.url)
+            setImageUrl(res.data.url)
+            handelChangeProfilePic(res.data.url)
             return res.data.url
-
-            // setFileInput('');
-            // setPreviewSource('');
-            // setSuccessMsg('Image uploaded successfully');
         } catch (err) {
             console.error(err);
-            setErrMsg('Something went wrong!');
         }
     };
 
+    const [updataProfileImage] = useMutation(UpdataProfileImage, {
+        variables: { image: imageUrl },
+    });
+
 
     return (
-        <div>
+        <div style={{ zIndex: 2 }}>
             <form className="form">
                 <input
-                    id="fileInput"
+                    id="upload"
+                    hidden
                     type="file"
                     name="image"
                     onChange={handleFileInputChange}
                     value={fileInput}
-                    className="form-input"
                 />
-                <button onClick={handleSubmitFile} className="btn" type="button">
-                    Submit
-                </button>
+                <label className="image_upload" for="upload">Change</label>
+
+                {
+                    selectedFile ? (
+                        <button onClick={handleSubmitFile} className="btn" type="button">
+                            Submit
+                        </button>
+                    ) : ""
+                }
             </form>
-            {previewSource && (
-                <img
-                    src={previewSource}
-                    alt="chosen"
-                    style={{ height: '300px' }}
-                />
-            )}
         </div>
     )
 }
 
 export default Image_Uplode;
+
+const UpdataProfileImage = gql`
+mutation updataProfileImage($image: String!){
+    updataProfileImage(image: $image){
+        id
+    }
+}
+`

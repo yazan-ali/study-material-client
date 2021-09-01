@@ -44,11 +44,13 @@ export const FETCH_POSTS_QUERY = gql`
         }
         comments{
             body
-            first_name
-            last_name
-            username
-            user_image
             id
+            createdBy{
+              username
+              first_name
+              last_name
+              image
+            }
         }
         likes{
             username

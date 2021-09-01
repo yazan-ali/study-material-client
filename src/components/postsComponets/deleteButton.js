@@ -38,7 +38,6 @@ function DeleteButton({ postId, commentId, deletePost, deleteComment, fromDashbo
                         },
                     });
                 } else if (commentId && fromDashboard) {
-                    // window.location.reload();
                     deleteComment(postId, commentId);
                 }
             }
@@ -83,7 +82,12 @@ const DELETE_COMMENT_MUTATION = gql`
           id
           comments{
               id
-              username
+              createdBy{
+                  username
+                  first_name
+                  last_name
+                  image
+              }
               createdAt
               body
           }

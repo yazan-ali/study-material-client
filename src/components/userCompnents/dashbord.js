@@ -6,7 +6,9 @@ import Avatar from '@material-ui/core/Avatar';
 import QuizItem from '../quizComponents/quizItem';
 import PostCard from '../postsComponets/postCard';
 import PostForm from '../postsComponets/postForm';
+import ImageUplode from '../image_uplode';
 import { AuthContext } from '../userContext';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 
 function Dashbord(props) {
@@ -14,6 +16,7 @@ function Dashbord(props) {
     const [tab, setTab] = useState(0);
 
     const { user } = useContext(AuthContext);
+    const [profilePic, setProfilePic] = useState(null);
 
 
     const handleTabsChange = (value) => {
@@ -45,7 +48,7 @@ function Dashbord(props) {
     }
 
     const addComment = (postId, newComment) => {
-
+        console.log(newComment);
         const newPostsData = userData.posts.map(post => {
             if (post.id === postId) {
                 const newPostComment = [newComment, ...post.comments];
@@ -94,29 +97,39 @@ function Dashbord(props) {
         setUserData({ ...userData, quizizz: filterUserQuizizz });
     }
 
+    const handelChangeProfilePic = (img_url) => {
+        setProfilePic(img_url)
+    }
+
     return (
         <div>
             <AppBar1 backgroundColor={"#4A156B"} />
             <Container maxWidth="lg">
                 <div className="profile-container">
                     <div className="profile-card">
-                        {
-                            userData.image ? (
-                                <img src={userData.image} className="profile-pic" alt="profile-pic" />
-                            ) : (
-                                <Avatar
-                                    style={{
-                                        width: 90,
-                                        height: 90,
-                                        fontSize: 30,
-                                        backgroundColor: "#fff",
-                                        color: "#5F2384",
-                                        fontWeight: 600
-                                    }} alt="Remy Sharp">
-                                    {userData.first_name[0].toUpperCase()}  {userData.last_name[0].toUpperCase()}
-                                </Avatar>
-                            )
-                        }
+                        <div style={{ display: "flex", marginLeft: 40 }}>
+                            {
+                                userData.image ? (
+                                    <img src={profilePic || userData.image} className="profile-pic" alt="profile-pic" />
+                                ) : (
+                                    <Avatar
+                                        style={{
+                                            width: 90,
+                                            height: 90,
+                                            fontSize: 30,
+                                            backgroundColor: "#fff",
+                                            color: "#5F2384",
+                                            fontWeight: 600,
+                                        }}
+                                        alt="Remy Sharp">
+                                        {userData.first_name[0].toUpperCase()}  {userData.last_name[0].toUpperCase()}
+                                    </Avatar>
+                                )
+                            }
+                            {
+                                user && <ImageUplode handelChangeProfilePic={handelChangeProfilePic} />
+                            }
+                        </div>
                         <div className="user-info">
                             <h3>{userData.first_name} {userData.last_name}</h3>
                             <h3> {userData.university}</h3>

@@ -138,9 +138,12 @@ const FETCH_USER_QUERY = gql`
               image
           }
           comments{
-              first_name
-              last_name
-              username
+              createdBy{
+                first_name
+                last_name
+                username
+                image
+              }
               id
               body
           }

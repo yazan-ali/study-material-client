@@ -248,7 +248,7 @@ function App_Bar(props) {
                         </IconButton>
                         <Typography variant="h6">
                             Study-Material
-                    </Typography>
+                        </Typography>
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
                             <IconButton
@@ -323,7 +323,7 @@ function App_Bar(props) {
                                                 option.searchType === "course_name" ? (
                                                     <Link to={`/${option.searchName}`}>{option.searchName}</Link>
                                                 ) : (
-                                                    <Link to={`profile/${option.searchName}`}>{option.searchName}</Link>
+                                                    <Link to={`/profile/${option.searchName}`}>{option.searchName}</Link>
                                                 )
                                             }
                                         </>

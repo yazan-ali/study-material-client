@@ -43,11 +43,12 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                             <Link className="post-createdBy" to={`profile/${createdBy.username}`}>
                                 {
                                     createdBy.image ? (
-                                        <img style={{ width: 80 }} src={createdBy.image} className="profile-pic" alt="profile-pic" />
+                                        <img style={{ width: 80, height: 80 }} src={createdBy.image} className="profile-pic" alt="profile-pic" />
                                     ) : (
                                         <Avatar
                                             style={{
-                                                width: 40,
+                                                width: 70,
+                                                height: 70,
                                                 fontSize: 15,
                                             }} alt="Remy Sharp">
                                             {createdBy.first_name[0].toUpperCase()}  {createdBy.last_name[0].toUpperCase()}

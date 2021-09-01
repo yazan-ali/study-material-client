@@ -47,7 +47,8 @@ function PostForm({ user, fromDashboard, addPost }) {
                     createdBy: {
                         username: user.username,
                         first_name: user.first_name,
-                        last_name: user.last_name
+                        last_name: user.last_name,
+                        image: user.image
                     }
                 });
             } else {
@@ -86,7 +87,7 @@ function PostForm({ user, fromDashboard, addPost }) {
                     user && <Link className="post-createdBy" href={`profile/${user.username}`}>
                         {
                             user.image ? (
-                                <img style={{ width: 80 }} src={user.image} className="profile-pic" alt="profile-pic" />
+                                <img style={{ width: 80, height: 80 }} src={user.image} className="profile-pic" alt="profile-pic" />
                             ) : (
                                 <Avatar
                                     style={{
@@ -128,7 +129,15 @@ const CREATE_POST = gql`
             }
             likeCount
             comments{
-                id body first_name last_name username createdAt
+                id 
+                body 
+                createdBy{
+                    username
+                    first_name
+                    last_name
+                    image
+                }
+                createdAt
             }
             commentsCount
         }

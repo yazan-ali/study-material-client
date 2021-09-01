@@ -140,6 +140,7 @@ const LOGIN_USER = gql`
       first_name
       last_name
       username
+      image
       token
       university
       major
