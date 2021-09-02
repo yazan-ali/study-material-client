@@ -8,7 +8,7 @@ import PostCard from '../postsComponets/postCard';
 import PostForm from '../postsComponets/postForm';
 import ImageUplode from '../image_uplode';
 import { AuthContext } from '../userContext';
-import zIndex from '@material-ui/core/styles/zIndex';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function Dashbord(props) {
@@ -17,6 +17,7 @@ function Dashbord(props) {
 
     const { user } = useContext(AuthContext);
     const [profilePic, setProfilePic] = useState(null);
+    const [loading, setLoading] = useState(false);
 
 
     const handleTabsChange = (value) => {
@@ -97,8 +98,13 @@ function Dashbord(props) {
         setUserData({ ...userData, quizizz: filterUserQuizizz });
     }
 
-    const handelChangeProfilePic = (img_url) => {
+    const handelImageLoading = (isLoading) => {
+        setLoading(isLoading)
+    }
+
+    const handelUploadImage = (img_url, isLoading) => {
         setProfilePic(img_url)
+        handelImageLoading(isLoading)
     }
 
     return (
@@ -109,25 +115,29 @@ function Dashbord(props) {
                     <div className="profile-card">
                         <div style={{ display: "flex", marginLeft: 40 }}>
                             {
-                                userData.image ? (
-                                    <img src={profilePic || userData.image} className="profile-pic" alt="profile-pic" />
-                                ) : (
-                                    <Avatar
-                                        style={{
-                                            width: 90,
-                                            height: 90,
-                                            fontSize: 30,
-                                            backgroundColor: "#fff",
-                                            color: "#5F2384",
-                                            fontWeight: 600,
-                                        }}
-                                        alt="Remy Sharp">
-                                        {userData.first_name[0].toUpperCase()}  {userData.last_name[0].toUpperCase()}
-                                    </Avatar>
-                                )
+                                loading ? <CircularProgress style={{ color: "gray", marginRight: 40 }} /> :
+                                    userData.image ? (
+                                        <img src={profilePic || userData.image} className="profile-pic" alt="profile-pic" />
+                                    ) : (
+                                        <Avatar
+                                            style={{
+                                                width: 90,
+                                                height: 90,
+                                                fontSize: 30,
+                                                backgroundColor: "#fff",
+                                                color: "#5F2384",
+                                                fontWeight: 600,
+                                            }}
+                                            alt="Remy Sharp">
+                                            {userData.first_name[0].toUpperCase()}  {userData.last_name[0].toUpperCase()}
+                                        </Avatar>
+                                    )
                             }
                             {
-                                user && <ImageUplode handelChangeProfilePic={handelChangeProfilePic} />
+                                user && !loading && <ImageUplode
+                                    handelUploadImage={handelUploadImage}
+                                    profileImage={true}
+                                />
                             }
                         </div>
                         <div className="user-info">

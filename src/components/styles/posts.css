@@ -44,6 +44,10 @@ hr{
     margin-bottom: 5px;
 }
 
+.post-body{
+    font-size: 30px;
+}
+
 .comments-card{
     width: 35%;
     border-radius: 10px;
@@ -175,6 +179,16 @@ hr{
     font-family: inherit;
     outline: none;
 }
+
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
 
 @media only screen and (max-width: 950px) {
     .posts-container{

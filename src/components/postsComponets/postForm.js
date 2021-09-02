@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import ImageUplode from '../image_uplode';
 import { Link } from 'react-router-dom';
 import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
@@ -6,6 +7,7 @@ import { FETCH_POSTS_QUERY } from '../../util/graphql';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Avatar from '@material-ui/core/Avatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -16,6 +18,7 @@ function PostForm({ user, fromDashboard, addPost }) {
     const commentInputRef = useRef(null);
 
     const [failMsg, setFailMsg] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [snackBarOpen, setSnackBarOpen] = useState(false);
 
 
@@ -74,6 +77,15 @@ function PostForm({ user, fromDashboard, addPost }) {
         }
     });
 
+    const handelImageLoading = (isLoading) => {
+        setLoading(isLoading)
+    }
+
+    const handelUploadImage = (img_url, isLoading) => {
+        setValues({ ...values, image: img_url });
+        handelImageLoading(isLoading)
+    }
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
         createPost();
@@ -101,9 +113,25 @@ function PostForm({ user, fromDashboard, addPost }) {
                         <span> {user.first_name} {user.last_name}</span>
                     </Link>
                 }
-                <input type="text" name="body" value={values.body} onChange={handleChange} placeholder="Add Post" ref={commentInputRef} />
-                {/* <input type="input" name="image" value={values.image} onChange={handleChange} placeholder="upload image" ref={commentInputRef} /> */}
-                <button disabled={!user} type="submit">Add Post</button>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <input type="text"
+                        name="body"
+                        value={values.body}
+                        onChange={handleChange}
+                        placeholder="Add Post"
+                        ref={commentInputRef}
+                    />
+                    <ImageUplode handelUploadImage={handelUploadImage} />
+                </div>
+                <img style={{ maxWidth: "100%" }} src={values.image} />
+                {
+                    loading ? <div style={{ display: "flex", alignItems: "center" }}>
+                        <button style={{ marginRight: 20 }} disabled type="submit">Add Post</button>
+                        <CircularProgress style={{ color: "gray", marginTop: 18 }} />
+                    </div>
+                        :
+                        <button type="submit">Add Post</button>
+                }
             </form>
             <Snackbar open={snackBarOpen} autoHideDuration={5000} onClose={handleSnackBarClose}>
                 <Alert onClose={handleSnackBarClose} severity="error">
@@ -115,33 +143,33 @@ function PostForm({ user, fromDashboard, addPost }) {
 }
 
 const CREATE_POST = gql`
-    mutation createPost(
-        $body: String! 
-        $image: String
-       ){
-        createPost(
-            body: $body 
+            mutation createPost(
+            $body: String!
+            $image: String
+            ){
+                createPost(
+                    body: $body
             image: $image
             ){
-            id body image createdAt 
+                id body image createdAt
             likes{
                 username
             }
             likeCount
             comments{
                 id 
-                body 
-                createdBy{
-                    username
+                body
+            createdBy{
+                username
                     first_name
-                    last_name
-                    image
+            last_name
+            image
                 }
-                createdAt
+            createdAt
             }
             commentsCount
         }
     }
-`;
+            `;
 
 export default PostForm;

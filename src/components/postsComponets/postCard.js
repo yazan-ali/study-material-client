@@ -60,7 +60,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                             <span>{moment(createdAt).fromNow()}</span>
                         </div>
                         <div className="post-content">
-                            <h1 className="post-body">{body}</h1>
+                            <p className="post-body">{body}</p>
                             {
                                 image && (
                                     <img alt="post" className="post-img" src={image} />

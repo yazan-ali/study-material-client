@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 import axios from 'axios';
+import ImageIcon from '@material-ui/icons/Image';
 
-function Image_Uplode({ handelChangeProfilePic }) {
+function Image_Uplode({ handelUploadImage, profileImage }) {
 
     const [fileInput, setFileInput] = useState('');
     const [previewSource, setPreviewSource] = useState('');
@@ -15,6 +16,16 @@ function Image_Uplode({ handelChangeProfilePic }) {
         previewFile(file);
         setSelectedFile(file);
         setFileInput(evt.target.value);
+
+        if (file.length > 0) return;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            uploadImage(reader.result)
+        };
+        reader.onerror = () => {
+            console.error('something went wrong!');
+        };
     };
 
     const previewFile = (file) => {
@@ -27,16 +38,8 @@ function Image_Uplode({ handelChangeProfilePic }) {
 
     const handleSubmitFile = async (evt) => {
         evt.preventDefault();
-        if (!selectedFile) return;
-        const reader = new FileReader();
-        reader.readAsDataURL(selectedFile);
-        reader.onloadend = () => {
-            uploadImage(reader.result);
-            updataProfileImage()
-        };
-        reader.onerror = () => {
-            console.error('something went wrong!');
-        };
+        updataProfileImage()
+        setSelectedFile(null);
     };
 
     const uploadImage = async (base64EncodedImage) => {
@@ -45,14 +48,14 @@ function Image_Uplode({ handelChangeProfilePic }) {
             data.append("file", base64EncodedImage);
             data.append("upload_preset", "study-material")
             data.append("cloud_name", "study-material")
-            data.append("folder", "profile-pic")
-
+            data.append("folder", profileImage ? "profile-pic" : "posts-images")
+            handelUploadImage("", true)
             const res = await axios.post(
                 "https://api.cloudinary.com/v1_1/study-material/image/upload",
                 data
             )
             setImageUrl(res.data.url)
-            handelChangeProfilePic(res.data.url)
+            handelUploadImage(res.data.url, false)
             return res.data.url
         } catch (err) {
             console.error(err);
@@ -68,6 +71,7 @@ function Image_Uplode({ handelChangeProfilePic }) {
         <div style={{ zIndex: 2 }}>
             <form className="form">
                 <input
+                    style={{ display: 'none' }}
                     id="upload"
                     hidden
                     type="file"
@@ -75,12 +79,16 @@ function Image_Uplode({ handelChangeProfilePic }) {
                     onChange={handleFileInputChange}
                     value={fileInput}
                 />
-                <label className="image_upload" for="upload">Change</label>
-
                 {
-                    selectedFile ? (
-                        <button onClick={handleSubmitFile} className="btn" type="button">
-                            Submit
+                    profileImage ? (
+                        <label className="profile-image_upload" for="upload">Change</label>
+                    ) : (
+                        <label className="post-image_upload" for="upload"><ImageIcon /></label>)
+                }
+                {
+                    profileImage && selectedFile ? (
+                        <button onClick={handleSubmitFile} className="save-btn" type="button">
+                            Save
                         </button>
                     ) : ""
                 }
