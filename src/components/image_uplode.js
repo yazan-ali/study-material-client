@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag';
 import axios from 'axios';
 import ImageIcon from '@material-ui/icons/Image';
 
@@ -10,6 +8,7 @@ function Image_Uplode({ handelUploadImage, profileImage }) {
     const [previewSource, setPreviewSource] = useState('');
     const [selectedFile, setSelectedFile] = useState();
     const [imageUrl, setImageUrl] = useState("");
+    const [show, setShow] = useState(false)
 
     const handleFileInputChange = (evt) => {
         const file = evt.target.files[0];
@@ -17,7 +16,6 @@ function Image_Uplode({ handelUploadImage, profileImage }) {
         setSelectedFile(file);
         setFileInput(evt.target.value);
 
-        if (file.length > 0) return;
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
@@ -36,11 +34,6 @@ function Image_Uplode({ handelUploadImage, profileImage }) {
         };
     };
 
-    const handleSubmitFile = async (evt) => {
-        evt.preventDefault();
-        updataProfileImage()
-        setSelectedFile(null);
-    };
 
     const uploadImage = async (base64EncodedImage) => {
         try {
@@ -56,41 +49,44 @@ function Image_Uplode({ handelUploadImage, profileImage }) {
             )
             setImageUrl(res.data.url)
             handelUploadImage(res.data.url, false)
+            setShow(true)
             return res.data.url
         } catch (err) {
             console.error(err);
         }
     };
 
-    const [updataProfileImage] = useMutation(UpdataProfileImage, {
-        variables: { image: imageUrl },
-    });
-
-
     return (
         <div style={{ zIndex: 2 }}>
             <form className="form">
-                <input
-                    style={{ display: 'none' }}
-                    id="upload"
-                    hidden
-                    type="file"
-                    name="image"
-                    onChange={handleFileInputChange}
-                    value={fileInput}
-                />
                 {
                     profileImage ? (
-                        <label className="profile-image_upload" for="upload">Change</label>
+                        <input
+                            style={{ display: 'none' }}
+                            id="profile-upload"
+                            hidden
+                            type="file"
+                            name="image"
+                            onChange={handleFileInputChange}
+                            value={fileInput}
+                        />
                     ) : (
-                        <label className="post-image_upload" for="upload"><ImageIcon /></label>)
+                        <input
+                            style={{ display: 'none' }}
+                            id="upload"
+                            hidden
+                            type="file"
+                            name="image"
+                            onChange={handleFileInputChange}
+                            value={fileInput}
+                        />
+                    )
                 }
                 {
-                    profileImage && selectedFile ? (
-                        <button onClick={handleSubmitFile} className="save-btn" type="button">
-                            Save
-                        </button>
-                    ) : ""
+                    profileImage ? (
+                        <label className="profile-image_upload" for="profile-upload">Change</label>
+                    ) : (
+                        <label className="post-image_upload" for="upload"><ImageIcon /></label>)
                 }
             </form>
         </div>
@@ -98,11 +94,3 @@ function Image_Uplode({ handelUploadImage, profileImage }) {
 }
 
 export default Image_Uplode;
-
-const UpdataProfileImage = gql`
-mutation updataProfileImage($image: String!){
-    updataProfileImage(image: $image){
-        id
-    }
-}
-`

@@ -69,7 +69,6 @@
 .post-image_upload{
   background-color: #fff;
   color: #5F2384;
-  /* padding: 9px 5px 17px 5px; */
   padding: 5px;
   font-size: 10px;
   font-weight: 600;
@@ -87,14 +86,15 @@
 
 .save-btn{
     border: none;
-    padding: 0.3rem;
+    padding: 5px 10px;
     border-radius: 3px;
     background-color: #fff;
-    font-size: 10px;
     font-weight: 600;
     color: #5F2384;
     font-family: sans-serif;
+    margin-top: 20px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 750px) {

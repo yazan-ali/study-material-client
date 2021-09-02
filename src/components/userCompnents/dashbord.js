@@ -9,6 +9,8 @@ import PostForm from '../postsComponets/postForm';
 import ImageUplode from '../image_uplode';
 import { AuthContext } from '../userContext';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useMutation } from '@apollo/client';
+import gql from 'graphql-tag';
 
 
 function Dashbord(props) {
@@ -18,6 +20,7 @@ function Dashbord(props) {
     const { user } = useContext(AuthContext);
     const [profilePic, setProfilePic] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [showSaveBtn, setShowSaveBtn] = useState(true);
 
 
     const handleTabsChange = (value) => {
@@ -107,6 +110,15 @@ function Dashbord(props) {
         handelImageLoading(isLoading)
     }
 
+    const handelChangeProfilePic = () => {
+        updataProfileImage()
+        setShowSaveBtn(false)
+    }
+
+    const [updataProfileImage] = useMutation(UpdataProfileImage, {
+        variables: { image: profilePic },
+    });
+
     return (
         <div>
             <AppBar1 backgroundColor={"#4A156B"} />
@@ -133,13 +145,16 @@ function Dashbord(props) {
                                         </Avatar>
                                     )
                             }
-                            {
-                                user && !loading && <ImageUplode
-                                    handelUploadImage={handelUploadImage}
-                                    profileImage={true}
-                                />
-                            }
+                            <>
+                                {
+                                    user && !loading && <ImageUplode
+                                        handelUploadImage={handelUploadImage}
+                                        profileImage={true}
+                                    />
+                                }
+                            </>
                         </div>
+                        {(showSaveBtn && profilePic) && <button className="save-btn" onClick={handelChangeProfilePic}>Save</button>}
                         <div className="user-info">
                             <h3>{userData.first_name} {userData.last_name}</h3>
                             <h3> {userData.university}</h3>
@@ -179,3 +194,11 @@ function Dashbord(props) {
 }
 
 export default Dashbord;
+
+const UpdataProfileImage = gql`
+mutation updataProfileImage($image: String!){
+    updataProfileImage(image: $image){
+        id
+    }
+}
+`
