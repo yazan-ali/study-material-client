@@ -123,7 +123,7 @@ function PostForm({ user, fromDashboard, addPost }) {
                     />
                     <ImageUplode handelUploadImage={handelUploadImage} />
                 </div>
-                <img style={{ maxWidth: "100%" }} src={values.image} />
+                <img style={{ maxWidth: "100%", marginTop: 20 }} src={values.image} />
                 {
                     loading ? <div style={{ display: "flex", alignItems: "center" }}>
                         <button style={{ marginRight: 20 }} disabled type="submit">Add Post</button>
