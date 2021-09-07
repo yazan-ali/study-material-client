@@ -36,7 +36,7 @@ function AllQuizizz() {
                     <div style={{ marginTop: 20 }} className="quiz-list">
                         {
                             currentQuizizz.map(q => (
-                                <QuizItem quiz={q} key={q._id} fromDashboard={false} />
+                                <QuizItem quiz={q} key={q.id} fromDashboard={false} />
                             ))
                         }
                     </div>

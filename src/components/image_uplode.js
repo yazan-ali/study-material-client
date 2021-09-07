@@ -58,7 +58,7 @@ function Image_Uplode({ handelUploadImage, profileImage }) {
 
     return (
         <div style={{ zIndex: 2 }}>
-            <form className="form">
+            <div className="form">
                 {
                     profileImage ? (
                         <input
@@ -84,11 +84,11 @@ function Image_Uplode({ handelUploadImage, profileImage }) {
                 }
                 {
                     profileImage ? (
-                        <label className="profile-image_upload" for="profile-upload">Change</label>
+                        <label className="profile-image_upload" htmlFor="profile-upload">Change</label>
                     ) : (
-                        <label className="post-image_upload" for="upload"><ImageIcon /></label>)
+                        <label className="post-image_upload" htmlFor="upload"><ImageIcon /></label>)
                 }
-            </form>
+            </div>
         </div>
     )
 }

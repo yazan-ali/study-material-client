@@ -12,7 +12,7 @@ function Pagination({ quizizzPerPage, totalQuizizz, paginate, currentPage }) {
     return (
         <div>
             <div className="pagination">{pageNumbers.map((number, i) => (
-                <span className={(i + 1) === currentPage ? "activePage" : "page"} onClick={() => paginate(number)} href="#">{number}</span>
+                <span key={i} className={(i + 1) === currentPage ? "activePage" : "page"} onClick={() => paginate(number)} href="#">{number}</span>
             ))
             }
             </div>

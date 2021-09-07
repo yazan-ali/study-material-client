@@ -187,15 +187,15 @@ function App_Bar(props) {
             onClose={handleMenuClose}
         >
             {user ?
-                <>
+                <div>
                     <MenuItem><a style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} href={`/dashbord/${user.username}`}>{user.username}</a></MenuItem>
                     <MenuItem onClick={logout}><span style={{ color: `${props.backgroundColor}`, textDecoration: "none" }}>Logout</span></MenuItem>
-                </>
+                </div>
                 :
-                <>
+                <div>
                     <MenuItem onClick={handleMenuClose}><Link style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} to="/login">Login</Link></MenuItem>
                     <MenuItem onClick={handleMenuClose}><Link style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} to="/register">Sing up</Link></MenuItem>
-                </>
+                </div>
             }
         </Menu>
     );
@@ -212,15 +212,15 @@ function App_Bar(props) {
             onClose={handleMobileMenuClose}
         >
             {user ?
-                <>
+                <div>
                     <MenuItem><a style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} href={`/dashbord/${user.username}`}>{user.username}</a></MenuItem>
                     <MenuItem onClick={logout}><span style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} >Logout</span></MenuItem>
-                </>
+                </div>
                 :
-                <>
+                <div>
                     <MenuItem onClick={handleMenuClose}><Link style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} to="/login">Login</Link></MenuItem>
                     <MenuItem onClick={handleMenuClose}><Link style={{ color: `${props.backgroundColor}`, textDecoration: "none" }} to="/register">Sing up</Link></MenuItem>
-                </>
+                </div>
             }
         </Menu>
     );

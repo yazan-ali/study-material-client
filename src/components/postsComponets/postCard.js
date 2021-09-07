@@ -71,7 +71,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                         <div className="react-post-buttons">
                             <LikeButton user={user} post={{ likes, likeCount, id }} />
                             <div onClick={() => setShowComments(!showComments)} className="comment-button">
-                                <i class="fas fa-comments"></i>
+                                <i className="fas fa-comments"></i>
                                 <span style={{ marginLeft: 10 }}>{commentsCount} Comments</span>
                             </div>
                         </div>
@@ -94,9 +94,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                                 <div className="comments-list">
                                     {
                                         comments.map(comment => (
-                                            <>
-                                                <CommentItem postId={id} comment={comment} user={user} fromDashboard={fromDashboard} deleteComment={deleteComment} editComment={editComment} />
-                                            </>
+                                            <CommentItem key={comment.id} postId={id} comment={comment} user={user} fromDashboard={fromDashboard} deleteComment={deleteComment} editComment={editComment} />
                                         ))
                                     }
                                 </div>

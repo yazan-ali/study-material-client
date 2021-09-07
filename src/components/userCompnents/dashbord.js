@@ -171,7 +171,7 @@ function Dashbord(props) {
                             <div style={{ marginTop: 20 }} className="quiz-list">
                                 {
                                     userData.quizizz.map(q => (
-                                        <QuizItem quiz={q} key={q._id} handleQuizDelete={handleQuizDelete} fromDashboard={true} />
+                                        <QuizItem quiz={q} key={q.id} handleQuizDelete={handleQuizDelete} fromDashboard={true} />
                                     ))
                                 }
                             </div>
@@ -182,7 +182,7 @@ function Dashbord(props) {
                             {user && <PostForm user={user} fromDashboard={true} addPost={addPost} />}
                             {
                                 userData.posts.map(post => (
-                                    <PostCard post={post} user={user} fromDashboard={true} editPost={editPost} deletePost={deletePost} deleteComment={deleteComment} addComment={addComment} editComment={editComment} />
+                                    <PostCard key={post.id} post={post} user={user} fromDashboard={true} editPost={editPost} deletePost={deletePost} deleteComment={deleteComment} addComment={addComment} editComment={editComment} />
                                 ))
                             }
                         </div>

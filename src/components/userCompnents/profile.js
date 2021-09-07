@@ -69,7 +69,7 @@ function Profile(props) {
                                             <div style={{ marginTop: 20 }} className="quiz-list">
                                                 {
                                                     data.getUser.quizizz.map(q => (
-                                                        <QuizItem quiz={q} key={q._id} />
+                                                        <QuizItem quiz={q} key={q.id} />
                                                     ))
                                                 }
                                             </div>
@@ -79,7 +79,7 @@ function Profile(props) {
                                         <div style={{ marginTop: 50 }} className="posts-container">
                                             {
                                                 data.getUser.posts.map(post => (
-                                                    <PostCard post={post} />
+                                                    <PostCard key={post.id} post={post} />
                                                 ))
                                             }
                                         </div>

@@ -96,7 +96,7 @@ function PostForm({ user, fromDashboard, addPost }) {
             <form className="add-post-form" onSubmit={handleSubmit}>
                 <h2>Create a Post </h2>
                 {
-                    user && <Link className="post-createdBy" href={`profile/${user.username}`}>
+                    user && <Link className="post-createdBy" to={`profile/${user.username}`}>
                         {
                             user.image ? (
                                 <img style={{ width: 80, height: 80 }} src={user.image} className="profile-pic" alt="profile-pic" />
