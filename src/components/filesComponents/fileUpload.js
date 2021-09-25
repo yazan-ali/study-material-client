@@ -146,14 +146,13 @@ function FileUpload({ fromDashboard, addFile }) {
     }
 
     return (
-        <div style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}>
-            <button
-                className="AddQuizBtn"
-                onClick={handelShowFileUpload}
-            >
-                {`${showFileUpload ? "Close" : "Upload File"}`}
-            </button>
-            {showFileUpload && (
+        <div style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: showFileUpload ? "center" : "flex-start"
+        }}>
+            {showFileUpload ? (
                 <div className="file-upload-root">
                     <h2>File Upload</h2>
                     <form onSubmit={handelFileSubmit}>
@@ -221,6 +220,13 @@ function FileUpload({ fromDashboard, addFile }) {
                         </Snackbar>
                     </form>
                 </div>
+            ) : (
+                <button
+                    className="AddQuizBtn"
+                    onClick={handelShowFileUpload}
+                >
+                    {`${showFileUpload ? "Close" : "Upload File"}`}
+                </button>
             )}
         </div>
     )
