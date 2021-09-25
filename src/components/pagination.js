@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles/pagination.css';
 
-function Pagination({ quizizzPerPage, totalQuizizz, paginate, currentPage }) {
+function Pagination({ itemsPerPage, totalItems, paginate, currentPage }) {
 
     const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(totalQuizizz / quizizzPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
         pageNumbers.push(i);
     }
 

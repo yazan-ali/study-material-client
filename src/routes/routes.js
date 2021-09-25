@@ -9,6 +9,7 @@ import SignUp from '../components/userCompnents/register';
 import Profile from '../components/userCompnents/profile';
 import DashbordData from '../components/userCompnents/dashbordData';
 import AllPosts from '../components/postsComponets/allPosts';
+import AllFiles from '../components/filesComponents/allFiles';
 import { Route, Switch } from 'react-router-dom';
 import '../App.css';
 import { AuthRoute, MutationRoute, DashboardRoute } from '../util/AuthRoute';
@@ -20,6 +21,7 @@ function Routes() {
             <Switch>
                 <Route exact path="/" component={AllQuizizz} />
                 <Route exact path="/posts" component={AllPosts} />
+                <Route exact path="/files" component={AllFiles} />
                 <AuthRoute exact path="/login" component={Login} />
                 <AuthRoute exact path="/register" component={SignUp} />
                 <AuthRoute exact path="/register/admin" component={RegisterAdmin} />

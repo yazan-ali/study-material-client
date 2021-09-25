@@ -69,3 +69,21 @@ export const FETCH_SEARCH_RESULT_QUERY = gql`
       }
   }
 `;
+
+export const FETCH_FILES_QUERY = gql`
+  {
+      getFiles{
+        id
+        course_name
+        file_name
+        file_url
+        uploadId
+        downloads
+        uploadedBy{
+            username
+            id
+        }
+        # createdAt
+      }
+  }
+`

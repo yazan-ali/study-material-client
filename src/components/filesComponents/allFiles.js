@@ -2,26 +2,29 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../userContext';
 import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';
-import QuizizzList from './quizizzList';
+import FilesList from './filesList';
+import FileUpload from './fileUpload';
 import '../styles/quizList.css';
 import { useQuery } from '@apollo/client';
-import { FETCH_QUIZ_QUERY } from '../../util/graphql';
+import { FETCH_FILES_QUERY } from '../../util/graphql';
 import Loading from '../loading';
 
-function AllQuizizz() {
+function AllFiles() {
 
     const { user } = useContext(AuthContext);
-    const { loading, data } = useQuery(FETCH_QUIZ_QUERY);
+    const { loading, data } = useQuery(FETCH_FILES_QUERY);
 
     if (loading) {
         return <Loading />
     } else {
         return (
-            <div className="quiz-list-root">
+            <div className="file-list-root">
                 <AppBar backgroundColor={"#4A156B"} />
                 <Container maxWidth="lg">
-                    {user && <a className="AddQuizBtn" href="/quiz/new">Add New Quiz</a>}
-                    <QuizizzList quizizz={data.getQuizizz} quizizzPerPage={12} />
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        {user && <FileUpload />}
+                        <FilesList files={data.getFiles} filesPerPage={12} />
+                    </div>
                 </Container>
             </div >
         );
@@ -29,4 +32,4 @@ function AllQuizizz() {
 }
 
 
-export default AllQuizizz;
+export default AllFiles;

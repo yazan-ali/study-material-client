@@ -111,6 +111,7 @@ function RegisterAdmin(props) {
               value={values.first_name}
               name="first_name"
               id="bootstrap-input"
+              required
             />
           </FormControl>
           <FormControl>
@@ -122,6 +123,7 @@ function RegisterAdmin(props) {
               value={values.last_name}
               name="last_name"
               id="bootstrap-input"
+              required
             />
           </FormControl>
           <FormControl>
@@ -133,6 +135,7 @@ function RegisterAdmin(props) {
               value={values.username}
               name="username"
               id="bootstrap-input"
+              required
             />
           </FormControl>
           <FormControl>
@@ -145,6 +148,7 @@ function RegisterAdmin(props) {
               name="password"
               id="bootstrap-input"
               type="password"
+              required
             />
           </FormControl>
           <FormControl>

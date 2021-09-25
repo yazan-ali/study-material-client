@@ -299,6 +299,12 @@ function App_Bar(props) {
                                 <ListItemText primary="Quizizz" />
                             </ListItem>
                         </Link>
+                        <Link className={classes.listItem} to="/files">
+                            <ListItem button>
+                                <ListItemIcon><SchoolIcon /></ListItemIcon>
+                                <ListItemText primary="Documents" />
+                            </ListItem>
+                        </Link>
                         <Link className={classes.listItem} to="/posts">
                             <ListItem button>
                                 <ListItemIcon><HomeIcon /></ListItemIcon>

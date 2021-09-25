@@ -103,6 +103,7 @@ function Login(props) {
               value={values.username}
               name="username"
               id="bootstrap-input"
+              required
             />
           </FormControl>
           <FormControl>
@@ -115,6 +116,7 @@ function Login(props) {
               name="password"
               id="bootstrap-input"
               type="password"
+              required
             />
           </FormControl>
           <div className="btns">

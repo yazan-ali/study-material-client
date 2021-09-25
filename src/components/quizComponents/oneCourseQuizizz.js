@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';
+import QuizizzList from './quizizzList';
 import '../styles/quizList.css';
-import Pagination from '../pagination';
-import QuizItem from './quizItem';
 import { useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import Loading from '../loading';
 
 function OneCourseQuizizz(props) {
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [quizizzPerPage] = useState(12);
 
     const course_name = props.match.params.course_name;
 
@@ -22,26 +18,11 @@ function OneCourseQuizizz(props) {
     if (loading) {
         return <Loading />
     } else {
-        const indexOfLastQuiz = currentPage * quizizzPerPage;
-        const indexOfFirstQuiz = indexOfLastQuiz - quizizzPerPage;
-        const currentQuizizz = data.getQuizizzByCourseName.slice(indexOfFirstQuiz, indexOfLastQuiz);
-
-        const paginate = (pageNumber) => {
-            setCurrentPage(pageNumber);
-        }
-
         return (
             <div className="quiz-list-root">
                 <AppBar backgroundColor={"#4A156B"} />
                 <Container maxWidth="lg">
-                    <div className="quiz-list">
-                        {
-                            currentQuizizz.map(q => (
-                                <QuizItem quiz={q} key={q.id} fromDashboard={false} />
-                            ))
-                        }
-                    </div>
-                    < Pagination totalQuizizz={data.getQuizizzByCourseName.length} quizizzPerPage={quizizzPerPage} paginate={paginate} currentPage={currentPage} />
+                    <QuizizzList quizizz={data.getQuizizzByCourseName} quizizzPerPage={12} />
                 </Container>
             </div >
         );
