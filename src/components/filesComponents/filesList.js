@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/files.css';
 import Pagination from '../pagination';
 import File from './file.js';
 

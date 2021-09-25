@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/client';
 import { FETCH_FILES_QUERY } from '../../util/graphql';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 
-function DeleteButton({ fileId, deleteFromDashbord, handleQuizDelete }) {
+function DeleteButton({ fileId, deleteFromDashbord, handelDeleteFile }) {
 
     const [open, setOpen] = useState(false);
 
@@ -25,7 +25,7 @@ function DeleteButton({ fileId, deleteFromDashbord, handleQuizDelete }) {
         update(proxy) {
             setOpen(true);
             if (deleteFromDashbord) {
-                handleQuizDelete(fileId);
+                handelDeleteFile(fileId);
             } else {
                 const data = proxy.readQuery({
                     query: FETCH_FILES_QUERY

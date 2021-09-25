@@ -55,7 +55,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function FileUpload({ fromDashboard }) {
+function FileUpload({ fromDashboard, addFile }) {
 
     const [fileUrl, setFileUrl] = useState("");
     const [uploadId, setUploadId] = useState("");
@@ -65,6 +65,7 @@ function FileUpload({ fromDashboard }) {
     const [successMsg, setSuccessMsg] = useState(false);
     const [failMsg, setFailMsg] = useState(false);
     const [snackBarOpen, setSnackBarOpen] = useState(false);
+    const [showFileUpload, setShowFileUpload] = useState(false);
 
     const inputRef = useRef(null);
 
@@ -77,6 +78,10 @@ function FileUpload({ fromDashboard }) {
 
     const handelShowFilePicker = () => {
         setShowFilePicker(true)
+    }
+
+    const handelShowFileUpload = () => {
+        setShowFileUpload(prefState => !prefState)
     }
 
     const handleCourseNameChange = (evt) => {
@@ -102,15 +107,7 @@ function FileUpload({ fromDashboard }) {
                 setFileName("");
             }
             if (fromDashboard) {
-                // addPost({
-                //     ...result.data.createPost,
-                //     createdBy: {
-                //         username: user.username,
-                //         first_name: user.first_name,
-                //         last_name: user.last_name,
-                //         image: user.image
-                //     }
-                // });
+                addFile(result.data.uploadFile);
             } else {
                 const data = proxy.readQuery({
                     query: FETCH_FILES_QUERY
@@ -122,10 +119,6 @@ function FileUpload({ fromDashboard }) {
                     },
                 });
             }
-            // setValues({
-            //     body: "",
-            //     image: ""
-            // });
             inputRef.current.blur();
         },
         onError(err) {
@@ -153,91 +146,101 @@ function FileUpload({ fromDashboard }) {
     }
 
     return (
-        <div className="file-upload-root">
-            <h2>File Upload</h2>
-            <form onSubmit={handelFileSubmit}>
-                <FormControl>
-                    <InputLabel ref={inputRef} style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
-                        Course Name *
-                    </InputLabel>
-                    <BootstrapInput
-                        onChange={handleCourseNameChange}
-                        value={courseName}
-                        name="course_name"
-                        id="bootstrap-input"
-                        required
-                    />
-                </FormControl>
-                {fileUrl.length > 0 && (
-                    <FormControl>
-                        <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
-                            File Name *
-                        </InputLabel>
-                        <BootstrapInput
-                            onChange={handleFileNameChange}
-                            value={fileName}
-                            name="file_name"
-                            id="bootstrap-input"
-                            required
-                        />
-                    </FormControl>
-                )}
-                {fileUrl.length > 0 &&
-                    <p>
-                        <em>Selected file: {fileName}</em>
-                        <span onClick={clearFilePicker}>
-                            < ClearRoundedIcon style={{ marginBottom: -5 }} />
-                        </span>
-                    </p>
-                }
-                {
-                    showFilePicker && (
-                        <PickerOverlay
-                            apikey="AYjtgfnMtSSCeojaAOQcnz"
-                            onSuccess={(res) => setShowFilePicker(false)}
-                            onUploadDone={(res) => handelFileUpolad(res)}
-                            pickerOptions={{ fromSources: ["local_file_system", "googledrive"] }}
-                        />
-                    )
-                }
-                <div className="btn-container">
-                    {
-                        fileUrl.length > 0 ? (
-                            <button type="submit">Submit</button>
-                        ) : (
-                            <button onClick={handelShowFilePicker} type="button">Upload file</button>
-                        )
-                    }
+        <div style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}>
+            <button
+                className="AddQuizBtn"
+                onClick={handelShowFileUpload}
+            >
+                {`${showFileUpload ? "Close" : "Upload File"}`}
+            </button>
+            {showFileUpload && (
+                <div className="file-upload-root">
+                    <h2>File Upload</h2>
+                    <form onSubmit={handelFileSubmit}>
+                        <FormControl>
+                            <InputLabel ref={inputRef} style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+                                Course Name *
+                            </InputLabel>
+                            <BootstrapInput
+                                onChange={handleCourseNameChange}
+                                value={courseName}
+                                name="course_name"
+                                id="bootstrap-input"
+                                required
+                            />
+                        </FormControl>
+                        {fileUrl.length > 0 && (
+                            <FormControl>
+                                <InputLabel style={{ color: " gray", fontWeight: 600 }} shrink htmlFor="bootstrap-input">
+                                    File Name *
+                                </InputLabel>
+                                <BootstrapInput
+                                    onChange={handleFileNameChange}
+                                    value={fileName}
+                                    name="file_name"
+                                    id="bootstrap-input"
+                                    required
+                                />
+                            </FormControl>
+                        )}
+                        {fileUrl.length > 0 &&
+                            <p>
+                                <em>Selected file: {fileName}</em>
+                                <span onClick={clearFilePicker}>
+                                    < ClearRoundedIcon style={{ marginBottom: -5 }} />
+                                </span>
+                            </p>
+                        }
+                        {
+                            showFilePicker && (
+                                <PickerOverlay
+                                    apikey="AYjtgfnMtSSCeojaAOQcnz"
+                                    onSuccess={(res) => setShowFilePicker(false)}
+                                    onUploadDone={(res) => handelFileUpolad(res)}
+                                    pickerOptions={{ fromSources: ["local_file_system", "googledrive"] }}
+                                />
+                            )
+                        }
+                        <div className="btn-container">
+                            {
+                                fileUrl.length > 0 ? (
+                                    <button type="submit">Submit</button>
+                                ) : (
+                                    <button onClick={handelShowFilePicker} type="button">Upload file</button>
+                                )
+                            }
+                        </div>
+                        <Snackbar open={snackBarOpen} autoHideDuration={5000} onClose={handleSnackBarClose}>
+                            {successMsg ? <Alert onClose={handleSnackBarClose} severity="success">
+                                {successMsg}
+                            </Alert>
+                                :
+                                failMsg && <Alert onClose={handleSnackBarClose} severity="error">
+                                    {failMsg}
+                                </Alert>}
+                        </Snackbar>
+                    </form>
                 </div>
-                <Snackbar open={snackBarOpen} autoHideDuration={5000} onClose={handleSnackBarClose}>
-                    {successMsg ? <Alert onClose={handleSnackBarClose} severity="success">
-                        {successMsg}
-                    </Alert>
-                        :
-                        failMsg && <Alert onClose={handleSnackBarClose} severity="error">
-                            {failMsg}
-                        </Alert>}
-                </Snackbar>
-            </form>
+            )}
         </div>
     )
 }
 
 
 const UPLOAD_FILE = gql`
-    mutation uploadFile(
-        $course_name: String!
-        $file_name: String!
-        $file_url: String!
-        $uploadId: String!
-    ){
-        uploadFile(
-            course_name: $course_name
+            mutation uploadFile(
+            $course_name: String!
+            $file_name: String!
+            $file_url: String!
+            $uploadId: String!
+            ){
+                uploadFile(
+                    course_name: $course_name
             file_name: $file_name
             file_url: $file_url
             uploadId: $uploadId
-        ){
-            id
+            ){
+                id
             course_name
             file_name
             file_name
@@ -247,7 +250,7 @@ const UPLOAD_FILE = gql`
             }
         }
     }
-`;
+            `;
 
 
 export default FileUpload;

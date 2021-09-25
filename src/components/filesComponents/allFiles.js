@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import '../styles/files.css';
 import { AuthContext } from '../userContext';
 import AppBar from '../appBar';
 import Container from '@material-ui/core/Container';

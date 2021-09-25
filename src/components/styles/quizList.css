@@ -53,6 +53,7 @@
     font-size: inherit;
     font-family: inherit;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .loginDialogBtn{

@@ -10,7 +10,7 @@
     box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.8)
 }
 
-.file-upload-root h2, p{
+.file-upload-root h2 {
     color: gray;
 }
 
@@ -39,7 +39,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 50px;
+    margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .file{
@@ -47,7 +48,7 @@
     display: flex;
     justify-content: space-around;
     border-radius: 10px;
-    box-shadow: 2px 2px 3px rgba(81, 20, 109, 1);
+    box-shadow: 2px 2px 3px rgba(81, 20, 109, 0.7);
 }
 
 .file span{
@@ -92,9 +93,9 @@
         width: 100%;
     }
     .file .file-info{
-        width: 90%;
+        width: 80%;
     }
     .file .download-icon{
-        width: 10%;
+        width: 20%;
     }
 }

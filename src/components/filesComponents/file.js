@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import '../styles/files.css';
 import { Link } from 'react-router-dom';
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import DeleteButton from './deleteButton';
+import { AuthContext } from '../userContext';
 
-function File({ file, fromDashboard }) {
+function File({ file, fromDashboard, handelDeleteFile }) {
+
+    const { user } = useContext(AuthContext);
+
     return (
         <div className="file">
             <div className="file-info">
-                {/* <DeleteButton deleteFromDashbord={fromDashboard} handleQuizDelete={props.handleQuizDelete} quizId={props.quiz.id} /> */}
-                <DeleteButton deleteFromDashbord={fromDashboard} fileId={file.id} />
+                {(user && user.id === file.uploadedBy.id) &&
+                    <DeleteButton
+                        deleteFromDashbord={fromDashboard}
+                        fileId={file.id}
+                        handelDeleteFile={handelDeleteFile}
+                    />
+                }
                 <span>{file.course_name}</span>
                 <span>{file.file_name}</span>
                 <Link to={`/profile/${file.uploadedBy.username}`} > {`Uploaded by : ${file.uploadedBy.username}`}</Link>

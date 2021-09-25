@@ -60,6 +60,17 @@ const FETCH_USER_QUERY = gql`
             down_votes_counts
             participants
         }
+        files{
+            id
+            course_name
+            file_name
+            file_url
+            uploadedBy{
+                id
+                username
+            }
+            downloads
+        }
         posts{
           id
           body

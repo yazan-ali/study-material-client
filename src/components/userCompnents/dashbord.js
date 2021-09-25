@@ -7,6 +7,8 @@ import QuizItem from '../quizComponents/quizItem';
 import PostCard from '../postsComponets/postCard';
 import PostForm from '../postsComponets/postForm';
 import ImageUplode from '../image_uplode';
+import FileUpload from '../filesComponents/fileUpload';
+import File from '../filesComponents/file.js';
 import { AuthContext } from '../userContext';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useMutation } from '@apollo/client';
@@ -27,11 +29,10 @@ function Dashbord(props) {
         setTab(value);
     };
 
-
     const [userData, setUserData] = useState(props.userData);
 
     const addPost = (newPost) => {
-        const newData = { ...userData, posts: [...userData.posts, newPost] }
+        const newData = { ...userData, posts: [newPost, ...userData.posts] }
         setUserData(newData)
     }
 
@@ -52,7 +53,6 @@ function Dashbord(props) {
     }
 
     const addComment = (postId, newComment) => {
-        console.log(newComment);
         const newPostsData = userData.posts.map(post => {
             if (post.id === postId) {
                 const newPostComment = [newComment, ...post.comments];
@@ -94,6 +94,16 @@ function Dashbord(props) {
             }
         });
         setUserData({ ...userData, posts: filterUserPostComments });
+    }
+
+    const addFile = (newFile) => {
+        const newData = { ...userData, files: [newFile, ...userData.files] }
+        setUserData(newData)
+    }
+
+    const deleteFile = (id) => {
+        const filterUserFiles = userData.files.filter(file => file.id !== id);
+        setUserData({ ...userData, files: filterUserFiles });
     }
 
     const handleQuizDelete = (id) => {
@@ -162,7 +172,8 @@ function Dashbord(props) {
                         </div>
                         <div className="tabs-bar">
                             <button style={{ borderBottom: tab === 0 && "4px solid #5F2384" }} onClick={() => handleTabsChange(0)}>Quizizz</button>
-                            <button style={{ borderBottom: tab === 1 && "4px solid #5F2384" }} onClick={() => handleTabsChange(1)}>Posts</button>
+                            <button style={{ borderBottom: tab === 1 && "4px solid #5F2384" }} onClick={() => handleTabsChange(1)}>Documents</button>
+                            <button style={{ borderBottom: tab === 2 && "4px solid #5F2384" }} onClick={() => handleTabsChange(2)}>Posts</button>
                         </div>
                     </div>
                     {tab === 0 && (
@@ -178,6 +189,18 @@ function Dashbord(props) {
                         </div>
                     )}
                     {tab === 1 && (
+                        <div style={{ marginTop: 50 }}>
+                            {user && <FileUpload addFile={addFile} fromDashboard={true} />}
+                            <div style={{ marginTop: 10 }} className="files-list">
+                                {
+                                    userData.files.map(file => (
+                                        <File key={file.id} file={file} fromDashboard={true} handelDeleteFile={deleteFile} />
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    )}
+                    {tab === 2 && (
                         <div style={{ marginTop: 50 }} className="posts-container">
                             {user && <PostForm user={user} fromDashboard={true} addPost={addPost} />}
                             {

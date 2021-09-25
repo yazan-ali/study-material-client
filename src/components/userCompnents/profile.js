@@ -8,6 +8,7 @@ import Loading from '../loading';
 import Avatar from '@material-ui/core/Avatar';
 import QuizItem from '../quizComponents/quizItem';
 import PostCard from '../postsComponets/postCard';
+import File from '../filesComponents/file.js';
 import { AuthContext } from '../userContext';
 
 
@@ -60,7 +61,8 @@ function Profile(props) {
                                         </div>
                                         <div className="tabs-bar">
                                             <button style={{ borderBottom: tab === 0 && "4px solid #5F2384" }} onClick={() => handleTabsChange(0)}>Quizizz</button>
-                                            <button style={{ borderBottom: tab === 1 && "4px solid #5F2384" }} onClick={() => handleTabsChange(1)}>Posts</button>
+                                            <button style={{ borderBottom: tab === 1 && "4px solid #5F2384" }} onClick={() => handleTabsChange(1)}>Documents</button>
+                                            <button style={{ borderBottom: tab === 2 && "4px solid #5F2384" }} onClick={() => handleTabsChange(2)}>Posts</button>
                                         </div>
                                     </div>
                                     {tab === 0 && (
@@ -76,6 +78,17 @@ function Profile(props) {
                                         </div>
                                     )}
                                     {tab === 1 && (
+                                        <div style={{ marginTop: 50 }}>
+                                            <div style={{ marginTop: 10 }} className="files-list">
+                                                {
+                                                    data.getUser.files.map(file => (
+                                                        <File key={file.id} file={file} />
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
+                                    )}
+                                    {tab === 2 && (
                                         <div style={{ marginTop: 50 }} className="posts-container">
                                             {
                                                 data.getUser.posts.map(post => (
@@ -126,6 +139,17 @@ const FETCH_USER_QUERY = gql`
             down_votes_counts
             participants
         }
+        files{
+            id
+            course_name
+            file_name
+            file_url
+            uploadedBy{
+                id
+                username
+            }
+            downloads
+        }
         posts{
           id
           body
@@ -150,8 +174,6 @@ const FETCH_USER_QUERY = gql`
           commentsCount
           likeCount
         }
-        # up_voted_quiz:[Quiz!]
-        # down_voted_quiz:[Quiz!]
       }
   }
 `
