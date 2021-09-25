@@ -22,7 +22,7 @@ function AllFiles() {
             <div className="file-list-root">
                 <AppBar backgroundColor={"#4A156B"} />
                 <Container maxWidth="lg">
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
                         {user && <FileUpload />}
                         <FilesList files={data.getFiles} filesPerPage={12} />
                     </div>
