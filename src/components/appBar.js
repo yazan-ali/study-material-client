@@ -23,7 +23,9 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
+import ChatBubbleRoundedIcon from '@material-ui/icons/ChatBubbleRounded';
 import SchoolIcon from '@material-ui/icons/School';
+import DescriptionIcon from '@material-ui/icons/Description';
 import './styles/appBar.css';
 import { AuthContext } from './userContext';
 import { useQuery } from '@apollo/client';
@@ -301,13 +303,13 @@ function App_Bar(props) {
                         </Link>
                         <Link className={classes.listItem} to="/files">
                             <ListItem button>
-                                <ListItemIcon><SchoolIcon /></ListItemIcon>
+                                <ListItemIcon><DescriptionIcon /></ListItemIcon>
                                 <ListItemText primary="Documents" />
                             </ListItem>
                         </Link>
                         <Link className={classes.listItem} to="/posts">
                             <ListItem button>
-                                <ListItemIcon><HomeIcon /></ListItemIcon>
+                                <ListItemIcon><ChatBubbleRoundedIcon /></ListItemIcon>
                                 <ListItemText primary="Posts" />
                             </ListItem>
                         </Link>
