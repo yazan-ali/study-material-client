@@ -25,8 +25,8 @@ function FilesList({ files, filesPerPage, fromDashboard }) {
                 }
             </div>
             < Pagination
-                totalQuizizz={files.length}
-                quizizzPerPage={filesPerPage}
+                totalItems={files.length}
+                itemsPerPage={filesPerPage}
                 paginate={paginate}
                 currentPage={currentPage}
             />

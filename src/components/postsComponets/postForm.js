@@ -110,10 +110,10 @@ function PostForm({ user, fromDashboard, addPost }) {
                                 </Avatar>
                             )
                         }
-                        <span> {user.first_name} {user.last_name}</span>
+                        <span style={{ color: "gray" }}> {user.first_name} {user.last_name}</span>
                     </Link>
                 }
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: "flex", marginTop: 20 }}>
                     <input type="text"
                         name="body"
                         value={values.body}

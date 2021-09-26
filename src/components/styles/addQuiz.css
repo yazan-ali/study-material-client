@@ -8,6 +8,8 @@
     justify-content: center;
     width: 100%;
     color: white;
+    box-shadow: 2px 2px 3px rgba(81, 20, 109, 0.7), -1px -1px 3px rgba(81, 20, 109, 0.7);
+    border-radius: 10px;
 }
 
 .addQuiz-question{
@@ -25,7 +27,7 @@
 
 .addQuiz-answer{
     padding-left: 15px;
-    background-color: #E0E8EA;
+    background-color: #fff;
     color: #4A156B;
     width: 50%;
     border-top-right-radius:10px;
