@@ -189,7 +189,7 @@ function Dashbord(props) {
                         </div>
                     )}
                     {tab === 1 && (
-                        <div style={{ marginTop: 50 }}>
+                        <div style={{ marginTop: 50, width: "100%" }}>
                             {user && <FileUpload addFile={addFile} fromDashboard={true} />}
                             <div style={{ marginTop: 10 }} className="files-list">
                                 {

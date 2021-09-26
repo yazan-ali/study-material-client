@@ -28,6 +28,9 @@ const BootstrapInput = withStyles((theme) => ({
         [theme.breakpoints.down('md')]: {
             width: "300px",
         },
+        [theme.breakpoints.down('sm')]: {
+            width: "200px",
+        },
         padding: '10px 12px',
         marginBottom: 15,
         transition: theme.transitions.create(['border-color', 'box-shadow']),
