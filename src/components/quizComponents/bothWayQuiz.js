@@ -5,8 +5,9 @@ import UpVoteButton from './upVoteButton';
 import DownVoteButton from './downVoteButton';
 import { useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 
-function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, up_votes, down_votes, up_votes_counts, down_votes_counts }, user }) {
+function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, up_votes, down_votes }, user }) {
     const [score, setScore] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [answers, setAnswers] = useState({});
@@ -20,7 +21,6 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
 
     const handleChange = (evt) => {
         setAnswers({ ...answers, [evt.target.name]: evt.target.value });
-        console.log(answers)
     }
 
     const handleSubmit = (evt) => {
@@ -35,7 +35,10 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
 
         setScore(result);
         setShowScore(true);
+        setShowCorrectAnswers(true);
         addParticipant();
+        window.scrollTo(0, 0)
+
     }
 
 
@@ -80,7 +83,6 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
                                         </div>
                                     </div>
                                     <button onClick={retyQuiz} className="submitBtn">Rety</button>
-                                    <button onClick={showAnswers} style={{ width: "auto" }} className="submitBtn">Show Correct Answers</button>
                                 </div>) :
                                 (
                                     questions.map((q, idx) => (
@@ -112,18 +114,33 @@ function BothWayQuiz({ quiz: { id, questions, course_name, number_of_questions, 
                                 </form>
                             )
                         }
-                        {questions.map((q, i) => (
-                            showCorrectAnswers && <div className="correct-answers-container">
-                                <div className="correct-answers-question">
-                                    <h3>
-                                        {`Q ${i + 1} : ${q.question}`}
-                                    </h3>
-                                </div>
-                                <div className="correct-answers">
-                                    <p><span style={{ fontWeight: "600" }}>correct answer: </span>{q.correctAnswer}</p>
-                                </div>
-                            </div>
-                        ))}
+                        {
+                            (
+                                questions.map((q, idx) => (
+                                    showCorrectAnswers && <div className="question-container">
+                                        <div className="question">
+                                            <h5>{`Question ${idx + 1} of ${number_of_questions}`}</h5>
+                                            <h3>{q.question}</h3>
+                                        </div>
+                                        <div className="answers">
+                                            {q.answersOptions.map((answer, i) => (
+                                                < div className="option">
+                                                    {answer.answerText &&
+                                                        <div>
+                                                            <label className="answerLabel" for={`answer${idx}${i + 1}`}>{`${symbols[i]}: ${answer.answerText}`}
+                                                                <input checked={answers[idx] === answer.answerText} type="radio" id={`answer${idx}${i + 1}`} name={idx} value={answer.answerText} />
+                                                                <span className="checkmark"></span>
+                                                                <span style={{ marginLeft: 10 }}>{q.correctAnswer === answer.answerText && <CheckRoundedIcon style={{ color: "green" }} />}</span>
+                                                            </label>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div >
+                                ))
+                            )
+                        }
                     </div >
                 )}
         </div>

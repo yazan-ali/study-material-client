@@ -5,6 +5,7 @@ import UpVoteButton from './upVoteButton';
 import DownVoteButton from './downVoteButton';
 import { useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 
 function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_of_questions, isOneWay, up_votes, down_votes, up_votes_counts, down_votes_counts }, user }) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -33,7 +34,9 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
         }
         else {
             setShowScore(true);
+            setShowCorrectAnswers(true);
             addParticipant();
+            window.scrollTo(0, 0)
         }
     }
 
@@ -83,7 +86,6 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
                                         </div>
                                     </div>
                                     <button onClick={retyQuiz} className="submitBtn">Rety</button>
-                                    <button onClick={showAnswers} style={{ width: "auto" }} className="submitBtn">Show Correct Answers</button>
                                 </div>
                             ) :
                                 (
@@ -102,7 +104,7 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
                                                     {
                                                         answer.answerText && <label className="answerLabel" for={`answer${i + 1}`}>{`${symbols[i]}: ${answer.answerText}`}
                                                             <input onChange={handleChange} type="radio" id={`answer${i + 1}`} name="answer" value={answer.answerText} />
-                                                            <span class="checkmark"></span>
+                                                            <span className="checkmark"></span>
                                                         </label>
                                                     }
                                                 </div>
@@ -111,18 +113,33 @@ function OneWayQuizizz({ quiz: { id, questions, course_name, quiz_title, number_
                                     </div>
                                 )
                         }
-                        {questions.map((q, i) => (
-                            showCorrectAnswers && <div className="correct-answers-container">
-                                <div className="correct-answers-question">
-                                    <h3>
-                                        {`Q ${i + 1} : ${q.question}`}
-                                    </h3>
-                                </div>
-                                <div className="correct-answers">
-                                    <p><span style={{ fontWeight: "600" }}>correct answer: </span>{q.correctAnswer}</p>
-                                </div>
-                            </div>
-                        ))}
+                        {
+                            (
+                                questions.map((q, idx) => (
+                                    showCorrectAnswers && <div className="question-container">
+                                        <div className="question">
+                                            <h5>{`Question ${idx + 1} of ${number_of_questions}`}</h5>
+                                            <h3>{q.question}</h3>
+                                        </div>
+                                        <div className="answers">
+                                            {q.answersOptions.map((answer, i) => (
+                                                < div className="option">
+                                                    {answer.answerText &&
+                                                        <div>
+                                                            <label className="answerLabel" for={`answer${idx}${i + 1}`}>{`${symbols[i]}: ${answer.answerText}`}
+                                                                <input type="radio" id={`answer${idx}${i + 1}`} name={idx} value={answer.answerText} />
+                                                                <span className="checkmark"></span>
+                                                                <span style={{ marginLeft: 10 }}>{q.correctAnswer === answer.answerText && <CheckRoundedIcon style={{ color: "green" }} />}</span>
+                                                            </label>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div >
+                                ))
+                            )
+                        }
                     </div >
                 )}
         </div >
