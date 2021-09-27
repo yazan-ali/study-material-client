@@ -78,7 +78,7 @@ function Profile(props) {
                                         </div>
                                     )}
                                     {tab === 1 && (
-                                        <div style={{ marginTop: 50 }}>
+                                        <div style={{ marginTop: 50, width: "100%" }}>
                                             <div style={{ marginTop: 10 }} className="files-list">
                                                 {
                                                     data.getUser.files.map(file => (
