@@ -1,7 +1,7 @@
 import React from 'react';
 import Quiz from '../components/quizComponents/quiz';
 import AllQuizizz from '../components/quizComponents/allQuizizz';
-import OneCourseQuizizz from '../components/quizComponents/oneCourseQuizizz';
+import OneCourseItems from '../components/oneCourseItems';
 import AddQuiz from '../components/quizComponents/addQuiz';
 import EditQuiz from '../components/quizComponents/editQuiz';
 import Login from '../components/userCompnents/login';
@@ -25,7 +25,7 @@ function Routes() {
                 <AuthRoute exact path="/login" component={Login} />
                 <AuthRoute exact path="/register" component={SignUp} />
                 <AuthRoute exact path="/register/admin" component={RegisterAdmin} />
-                <Route exact path="/:course_name" render={(routeProps) => <OneCourseQuizizz {...routeProps} />} />
+                <Route exact path="/:course_name" render={(routeProps) => <OneCourseItems {...routeProps} />} />
                 <Route exact path="/quiz/:course_name/:id" render={(routeProps) => < Quiz {...routeProps} />} />
                 <MutationRoute exact path="/quiz/new" component={AddQuiz} />
                 <Route exact path="/quiz/:id/:username/edit" render={(routeProps) => <EditQuiz {...routeProps} />} />
