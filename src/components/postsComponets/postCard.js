@@ -40,7 +40,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                             </div>
                         )}
                         <div className="post-header">
-                            <Link className="post-createdBy" to={`profile/${createdBy.username}`}>
+                            <Link className="post-createdBy" to={`/profile/${createdBy.username}`}>
                                 {
                                     createdBy.image ? (
                                         <img style={{ width: 80, height: 80 }} src={createdBy.image} className="profile-pic" alt="profile-pic" />

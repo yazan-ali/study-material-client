@@ -21,7 +21,7 @@ function File({ file, fromDashboard, handelDeleteFile }) {
                 }
                 <span>{file.course_name}</span>
                 <span>{file.file_name}</span>
-                <Link to={`/profile/${file.uploadedBy.username}`} > {`Uploaded by : ${file.uploadedBy.username}`}</Link>
+                <Link style={{ marginTop: "auto" }} to={`/profile/${file.uploadedBy.username}`} > {`Uploaded by : ${file.uploadedBy.username}`}</Link>
             </div>
             <div className="download-icon">
                 <a href={file.file_url}><GetAppRoundedIcon style={{ color: "#5F2384", fontSize: 30 }} /></a>

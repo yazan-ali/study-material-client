@@ -75,18 +75,20 @@ function QuizItem(props) {
                 <span>{props.quiz.participants}</span>
             </div>
             <Link to={`/profile/${props.quiz.createdBy.username}`} > {`Created by : ${props.quiz.createdBy.username}`}</Link>
-            <UpVoteButton
-                quizId={props.quiz.id}
-                up_votes={props.quiz.up_votes}
-                up_votes_count={props.quiz.up_votes_counts}
-                user={user}
-            />
-            <DownVoteButton
-                quizId={props.quiz.id}
-                down_votes={props.quiz.down_votes}
-                down_votes_count={props.quiz.down_votes_counts}
-                user={user}
-            />
+            <div style={{ marginTop: "auto" }}>
+                <UpVoteButton
+                    quizId={props.quiz.id}
+                    up_votes={props.quiz.up_votes}
+                    up_votes_count={props.quiz.up_votes_counts}
+                    user={user}
+                />
+                <DownVoteButton
+                    quizId={props.quiz.id}
+                    down_votes={props.quiz.down_votes}
+                    down_votes_count={props.quiz.down_votes_counts}
+                    user={user}
+                />
+            </div>
         </div >
     );
 }
