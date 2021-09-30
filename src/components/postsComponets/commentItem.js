@@ -30,7 +30,7 @@ function CommentItem({ comment: { createdBy: { username, first_name, last_name, 
                 ) : (
                     <div className="comment">
                         <div style={{ marginLeft: -10 }} className="post-header">
-                            <Link className="post-createdBy" to={`profile/${username}`}>
+                            <Link className="post-createdBy" to={`/profile/${username}`}>
                                 {
                                     image ? (
                                         <img style={{ width: 50, height: 50 }} src={image} className="profile-pic" alt="profile-pic" />
