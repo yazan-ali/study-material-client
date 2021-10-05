@@ -33,7 +33,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                         editPost={editPost}
                     />
                 ) : (
-                    <div className="post-card" style={{ width: showComments ? "" : "100%", borderBottomRightRadius: showComments && 0 }}>
+                    <div className="post-card" style={{ width: showComments ? "" : "100%", borderRadius: showComments && "10px 10px 0 0" }}>
                         <div className="post-header" style={{ borderTopRightRadius: showComments && 0 }}>
                             <div>
                                 {user && user.username === createdBy.username && (

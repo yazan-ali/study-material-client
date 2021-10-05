@@ -12,13 +12,12 @@ hr{
     margin-bottom: 20px;
     background-color: #fff;
     color: #fff;
-    border-radius: 10px;
 }
 
 .post-card{
     border-radius: 10px;
     box-shadow: -2px -1px 5px rgba(0,0,0,0.6), 2px 1px 5px rgba(0,0,0,0.6);
-    width: 65%;
+    width: 60%;
 }
 
 .post-header{
@@ -55,15 +54,13 @@ hr{
 }
 
 .comments-card{
-    width: 35%;
+    width: 40%;
     border-radius: 10px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     box-shadow: 2px 1px 5px rgba(0,0,0,0.6);
     padding: 15px;
     color: #4B4A4C;
-    overflow: auto;
-    max-height: 600px;
 }
 
 .comment-form-container{
@@ -92,6 +89,12 @@ hr{
     border-radius: 10px;
     padding: 10px 20px 10px 20px;
     margin-bottom: 10px;
+    width: 95%;
+}
+
+.comments-list{
+    overflow: auto;
+    max-height: 400px;
 }
 
 .comment .comment-header{
@@ -240,9 +243,11 @@ button[disabled]{
     }
     .post-card{
         width: 100%;
+        box-shadow: 2px 1px 5px rgba(0,0,0,0.6);
     }
     .comments-card{
         width: 100%;
         border-left: none;
+        border-radius: 0 0 10px 10px;
     }
 }
