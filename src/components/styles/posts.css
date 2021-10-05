@@ -19,12 +19,11 @@ hr{
 
 .post-card{
     border-radius: 10px;
-    width: 60%;
+    width: 65%;
 }
 
 .post-header{
     display: flex;
-    justify-content: space-between;
     background-color: #5F2384;
     padding: 15px;
     border-radius: 10px 10px 0 0;
