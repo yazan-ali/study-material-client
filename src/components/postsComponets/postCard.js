@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import CreateCommentForm from './createCommentForm';
@@ -14,15 +14,10 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
 
     const [showComments, setShowComments] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
-    const [screenWidth, setScreenWidth] = useState(1500);
 
     const handleEditForm = () => {
         setShowEditForm(!showEditForm);
     }
-
-    // useEffect(() => {
-    //     setScreenWidth(window.screen.width)
-    // })
 
     return (
         <div className="post-container">
@@ -38,7 +33,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                         editPost={editPost}
                     />
                 ) : (
-                    <div className="post-card" style={{ width: showComments ? "" : "100%" }}>
+                    <div className="post-card" style={{ width: showComments ? "" : "100%", borderBottomRightRadius: showComments && 0 }}>
                         <div className="post-header" style={{ borderTopRightRadius: showComments && 0 }}>
                             <div>
                                 {user && user.username === createdBy.username && (

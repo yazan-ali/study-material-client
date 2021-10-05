@@ -11,13 +11,13 @@ hr{
     display: flex;
     margin-bottom: 20px;
     background-color: #fff;
-    box-shadow: -2px -1px 5px rgba(0,0,0,0.6), 2px 1px 5px rgba(0,0,0,0.6);
     color: #fff;
     border-radius: 10px;
 }
 
 .post-card{
     border-radius: 10px;
+    box-shadow: -2px -1px 5px rgba(0,0,0,0.6), 2px 1px 5px rgba(0,0,0,0.6);
     width: 65%;
 }
 
@@ -57,9 +57,9 @@ hr{
 .comments-card{
     width: 35%;
     border-radius: 10px;
-    border-left: 3px solid gray;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    box-shadow: 2px 1px 5px rgba(0,0,0,0.6);
     padding: 15px;
     color: #4B4A4C;
     overflow: auto;
@@ -83,7 +83,7 @@ hr{
 }
 
 .comments-card h3{
-    margin-top: -10px;
+    margin-top: -5px;
     color: #676767;
 }
 
