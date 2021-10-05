@@ -9,7 +9,6 @@ hr{
 .post-container{
     width: 100%;
     display: flex;
-    justify-content: space-between;
     margin-bottom: 20px;
     background-color: #fff;
     box-shadow: -2px -1px 5px rgba(0,0,0,0.6), 2px 1px 5px rgba(0,0,0,0.6);
@@ -24,6 +23,7 @@ hr{
 
 .post-header{
     display: flex;
+    justify-content: space-between;
     background-color: #5F2384;
     padding: 15px;
     border-radius: 10px 10px 0 0;
