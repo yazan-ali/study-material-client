@@ -34,29 +34,31 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                     />
                 ) : (
                     <div className="post-card" style={{ width: showComments ? "" : "100%" }}>
-                        {user && user.username === createdBy.username && (
-                            <div style={{ marginLeft: -30, marginTop: -10 }}>
-                                <EditDeleteIcon showEditForm={handleEditForm} deletePost={deletePost} postId={id} fromDashboard={fromDashboard} iconColor="white" />
+                        <div className="post-header" style={{ width: showComments && 592, borderTopRightRadius: showComments && 0 }}>
+                            <div>
+                                {user && user.username === createdBy.username && (
+                                    <div style={{ marginTop: -10, marginLeft: -30 }}>
+                                        <EditDeleteIcon showEditForm={handleEditForm} deletePost={deletePost} postId={id} fromDashboard={fromDashboard} iconColor="white" />
+                                    </div>
+                                )}
+                                <Link className="post-createdBy" to={`/profile/${createdBy.username}`}>
+                                    {
+                                        createdBy.image ? (
+                                            <img style={{ width: 80, height: 80 }} src={createdBy.image} className="profile-pic" alt="profile-pic" />
+                                        ) : (
+                                            <Avatar
+                                                style={{
+                                                    width: 70,
+                                                    height: 70,
+                                                    fontSize: 15,
+                                                }} alt="Remy Sharp">
+                                                {createdBy.first_name[0].toUpperCase()}  {createdBy.last_name[0].toUpperCase()}
+                                            </Avatar>
+                                        )
+                                    }
+                                    <span> {createdBy.first_name} {createdBy.last_name}</span>
+                                </Link>
                             </div>
-                        )}
-                        <div className="post-header">
-                            <Link className="post-createdBy" to={`/profile/${createdBy.username}`}>
-                                {
-                                    createdBy.image ? (
-                                        <img style={{ width: 80, height: 80 }} src={createdBy.image} className="profile-pic" alt="profile-pic" />
-                                    ) : (
-                                        <Avatar
-                                            style={{
-                                                width: 70,
-                                                height: 70,
-                                                fontSize: 15,
-                                            }} alt="Remy Sharp">
-                                            {createdBy.first_name[0].toUpperCase()}  {createdBy.last_name[0].toUpperCase()}
-                                        </Avatar>
-                                    )
-                                }
-                                <span> {createdBy.first_name} {createdBy.last_name}</span>
-                            </Link>
                             <span>{moment(createdAt).fromNow()}</span>
                         </div>
                         <div className="post-content">
