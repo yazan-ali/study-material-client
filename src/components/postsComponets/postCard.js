@@ -59,7 +59,7 @@ function PostCard({ post: { id, body, image, createdAt, createdBy, comments, com
                                     <span> {createdBy.first_name} {createdBy.last_name}</span>
                                 </Link>
                             </div>
-                            <span>{moment(createdAt).fromNow()}</span>
+                            <span style={{ height: 40 }}>{moment(createdAt).fromNow()}</span>
                         </div>
                         <div className="post-content">
                             <p className="post-body">{body}</p>

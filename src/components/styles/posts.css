@@ -23,6 +23,7 @@ hr{
 .post-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #5F2384;
     padding: 15px;
     border-radius: 10px 10px 0 0;
